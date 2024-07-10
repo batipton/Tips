@@ -22,7 +22,6 @@ export default async function CardWrapper() {
     if  (!session.user.id) return null;
 
     const numberOfTokens = await fetchTokens(session.user.id)
-    console.log(numberOfTokens);
   return (
     <>
       {/* NOTE: comment in this code when you get to this point in the course */}
