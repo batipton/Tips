@@ -1,6 +1,5 @@
 'use client';
 import { likePost } from '@/app/lib/actions';
-import { auth } from "@/auth";
 
 import { useState } from 'react';
  
