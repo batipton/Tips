@@ -4,7 +4,9 @@ import {
   UserGroupIcon,
   InboxIcon,
 } from '@heroicons/react/24/outline';
+import { fetchCardData, fetchTokens } from '@/app/lib/data';
 import { lusitana } from '@/app/ui/fonts';
+import { auth } from "@/auth"
 
 const iconMap = {
   collected: BanknotesIcon,
@@ -14,12 +16,19 @@ const iconMap = {
 };
 
 export default async function CardWrapper() {
+    const session = await auth();
+
+    if (!session?.user) return null;
+    if  (!session.user.id) return null;
+
+    const numberOfTokens = await fetchTokens(session.user.id)
+    console.log(numberOfTokens);
   return (
     <>
       {/* NOTE: comment in this code when you get to this point in the course */}
-
-      {/* <Card title="Collected" value={totalPaidInvoices} type="collected" />
-      <Card title="Pending" value={totalPendingInvoices} type="pending" />
+     
+      <Card title="Tokens" value={ numberOfTokens } type="collected" />
+      {/* <Card title="Pending" value={totalPendingInvoices} type="pending" />
       <Card title="Total Invoices" value={numberOfInvoices} type="invoices" />
       <Card
         title="Total Customers"

@@ -5,21 +5,17 @@ import {
   InvoiceForm,
   InvoicesTable,
   LatestInvoiceRaw,
+  LatestPost,
   Revenue,
+  ProfileField,
 } from './definitions';
 import { formatCurrency } from './utils';
 
 export async function fetchRevenue() {
   try {
-    // Artificially delay a response for demo purposes.
-    // Don't do this in production :)
-
-    // console.log('Fetching revenue data...');
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const data = await sql<Revenue>`SELECT * FROM revenue`;
 
-    // console.log('Data fetch completed after 3 seconds.');
+    console.log('Data fetch completed after 3 seconds.');
 
     return data.rows;
   } catch (error) {
@@ -35,7 +31,7 @@ export async function fetchLatestInvoices() {
       FROM invoices
       JOIN customers ON invoices.customer_id = customers.id
       ORDER BY invoices.date DESC
-      LIMIT 5`;
+      `;
 
     const latestInvoices = data.rows.map((invoice) => ({
       ...invoice,
@@ -45,6 +41,35 @@ export async function fetchLatestInvoices() {
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch the latest invoices.');
+  }
+}
+
+export async function fetchLatestPosts() {
+  try {
+    const data = await sql<LatestPost>`
+      SELECT posts.tips, posts.text, users.name, users.image_url, users.email, posts.customer_id, posts.id
+      FROM posts
+      JOIN users ON posts.customer_id = users.id
+      ORDER BY posts.date DESC
+      `;
+
+    const latestPosts = data.rows;
+    return latestPosts;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch the latest posts.');
+  }
+}
+
+export async function fetchTokens(userid: string) {
+  try {
+    const tokenCountPromise = sql`SELECT users.tokens FROM users WHERE id=${userid}`
+    const data = await Promise.all([tokenCountPromise]);
+    const tokenCount = Number(data[0].rows[0].tokens ?? '0');
+    return tokenCount;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch card data.');
   }
 }
 
@@ -180,6 +205,35 @@ export async function fetchCustomers() {
   } catch (err) {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch all customers.');
+  }
+}
+
+export async function fetchProfile(id : string) {
+  try {
+    const data = await sql<ProfileField>`
+    SELECT
+      name,
+      image_url
+    FROM users
+    WHERE id = ${id}
+    `
+    const profile = data.rows[0];
+    return profile;
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch profile.');
+  }
+}
+
+export async function isFriend(followerId : string, followedId: string) {
+  try {
+    const data = await sql<ProfileField>`
+    SELECT * FROM following WHERE follower = ${followerId} AND followed = ${followedId}
+    `
+    return data;
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch followings.');
   }
 }
 

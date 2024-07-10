@@ -7,7 +7,9 @@ export type User = {
   name: string;
   email: string;
   password: string;
-};
+  image_url: string;
+  tokens: number;
+}; 
 
 export type Customer = {
   id: string;
@@ -26,6 +28,14 @@ export type Invoice = {
   status: 'pending' | 'paid';
 };
 
+export type Post = {
+  id: string;
+  customer_id: string;
+  tips: number;
+  text: string;
+  date: string;
+};
+
 export type Revenue = {
   month: string;
   revenue: number;
@@ -37,6 +47,16 @@ export type LatestInvoice = {
   image_url: string;
   email: string;
   amount: string;
+};
+
+export type LatestPost = {
+  tips: number;
+  text: string;
+  name: string;
+  image_url: string;
+  email: string;
+  customer_id: string;
+  id: string;
 };
 
 // The database returns a number for amount, but we later format it to a string with the formatCurrency function
@@ -79,6 +99,11 @@ export type CustomerField = {
   id: string;
   name: string;
 };
+
+export type ProfileField = {
+  name: string;
+  image_url: string;
+}
 
 export type InvoiceForm = {
   id: string;
