@@ -1,4 +1,5 @@
 import { sql } from '@vercel/postgres';
+import { auth } from "@/auth"
 import {
   CustomerField,
   CustomersTableType,
@@ -118,22 +119,12 @@ export async function fetchFilteredInvoices(
   try {
     const invoices = await sql<InvoicesTable>`
       SELECT
-        invoices.id,
-        invoices.amount,
-        invoices.date,
-        invoices.status,
-        customers.name,
-        customers.email,
-        customers.image_url
-      FROM invoices
-      JOIN customers ON invoices.customer_id = customers.id
+        users.name,
+        users.id,
+        users.image_url
+      FROM users
       WHERE
-        customers.name ILIKE ${`%${query}%`} OR
-        customers.email ILIKE ${`%${query}%`} OR
-        invoices.amount::text ILIKE ${`%${query}%`} OR
-        invoices.date::text ILIKE ${`%${query}%`} OR
-        invoices.status ILIKE ${`%${query}%`}
-      ORDER BY invoices.date DESC
+        users.name ILIKE ${`%${query}%`} 
       LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
     `;
 
@@ -225,6 +216,24 @@ export async function fetchProfile(id : string) {
   }
 }
 
+export async function fetchFollowers(id : string) {
+  try {
+    const data = await sql`
+    SELECT COUNT(*) AS count_of_value
+    FROM following
+    WHERE followed = ${id};
+    `
+
+    console.log("fetch followers...");
+    console.log(data);
+    const profile = data.rows[0];
+    return profile;
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch profile.');
+  }
+}
+
 export async function isFriend(followerId : string, followedId: string) {
   try {
     const data = await sql<ProfileField>`
@@ -268,4 +277,30 @@ export async function fetchFilteredCustomers(query: string) {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch customer table.');
   }
+}
+
+export async function getCurrentUser() {
+
+  const session = await auth();
+  if (!session?.user) return null
+
+  try {
+    const data = await sql`
+    SELECT 
+      users.name,
+      users.image_url
+    FROM users
+    WHERE id = ${session.user.id}`;
+
+    const user = {
+      name: data.rows[0].name,
+      image_url: data.rows[0].image_url
+    }
+
+    return user;
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch customer table.');
+  }
+ 
 }

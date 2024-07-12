@@ -1,9 +1,11 @@
 'use server';
 
+import { auth } from "@/auth"
 import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import bcrypt from 'bcrypt';
  
 const FormSchema = z.object({
   id: z.string(),
@@ -86,6 +88,32 @@ export async function authenticate(
   }
 }
 
+export async function signupUser(formData : FormData) {
+  try {
+    const password = await bcrypt.hash(formData.get('password')?.toString()!, 10);
+    const name = formData.get('name')?.toString();
+    const email = formData.get('email')?.toString();
+    const image_url = 'evil-rabbit.png';
+    const tokens = 50;
+    await sql`
+      INSERT INTO users (name, email, password, image_url, tokens)
+      VALUES (${name}, ${email}, ${password}, ${image_url}, ${tokens})
+    `
+
+    redirect('/login');
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return 'Invalid credentials.';
+        default:
+          return 'Something went wrong.';
+      }
+    }
+    throw error;
+  }
+}
+
 export async function likePost(id: string, tips: number, userid: string) {
   await sql`
     UPDATE posts
@@ -127,6 +155,20 @@ export async function unfollowProfile(id: string, userid: string) {
   DELETE FROM following 
   WHERE follower=${userid} and followed=${id}
   `;
+
+  revalidatePath('/dashboard');
+}
+
+export async function updateImageUrl(image_url: string) {
+
+  const session = await auth();
+  if (!session?.user) return null
+
+  await sql`
+  UPDATE users
+  SET image_url= ${image_url}
+  WHERE id= ${session.user.id}
+  `
 
   revalidatePath('/dashboard');
 }

@@ -26,11 +26,13 @@ export default async function Page() {
                     alt="Profile" 
                   />
                   <h1 className="text-2xl font-bold text-gray-900 mt-4">{profile.name}</h1>
+                  <p className="text-lg text-gray-700 mt-2">18 Followers</p>
                 </div>
               </div>
             </div>
           </div>
           <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
+              {/* @ts-expect-error Async Server Component */}
               <LatestPosts />
           </div>
         </div>

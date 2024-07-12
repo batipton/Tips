@@ -41,12 +41,12 @@ export default async function CustomersTable({
                             <p>{customer.name}</p>
                           </div>
                         </div>
-                        <p className="text-sm text-gray-500">
+                        {/* <p className="text-sm text-gray-500">
                           {customer.email}
-                        </p>
+                        </p> */}
                       </div>
                     </div>
-                    <div className="flex w-full items-center justify-between border-b py-5">
+                    {/* <div className="flex w-full items-center justify-between border-b py-5">
                       <div className="flex w-1/2 flex-col">
                         <p className="text-xs">Pending</p>
                         <p className="font-medium">{customer.total_pending}</p>
@@ -58,12 +58,12 @@ export default async function CustomersTable({
                     </div>
                     <div className="pt-4 text-sm">
                       <p>{customer.total_invoices} invoices</p>
-                    </div>
+                    </div> */}
                   </div>
                 ))}
               </div>
               <table className="hidden min-w-full rounded-md text-gray-900 md:table">
-                <thead className="rounded-md bg-gray-50 text-left text-sm font-normal">
+                {/* <thead className="rounded-md bg-gray-50 text-left text-sm font-normal">
                   <tr>
                     <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
                       Name
@@ -81,9 +81,9 @@ export default async function CustomersTable({
                       Total Paid
                     </th>
                   </tr>
-                </thead>
+                </thead> */}
 
-                <tbody className="divide-y divide-gray-200 text-gray-900">
+                {/* <tbody className="divide-y divide-gray-200 text-gray-900">
                   {customers.map((customer) => (
                     <tr key={customer.id} className="group">
                       <td className="whitespace-nowrap bg-white py-5 pl-4 pr-3 text-sm text-black group-first-of-type:rounded-md group-last-of-type:rounded-md sm:pl-6">
@@ -112,7 +112,7 @@ export default async function CustomersTable({
                       </td>
                     </tr>
                   ))}
-                </tbody>
+                </tbody> */}
               </table>
             </div>
           </div>
