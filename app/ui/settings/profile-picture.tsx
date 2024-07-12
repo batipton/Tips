@@ -1,3 +1,4 @@
+'use server'
 import { auth } from "@/auth"
 import { getCurrentUser } from "@/app/lib/data"
 
