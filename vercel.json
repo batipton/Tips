@@ -2,7 +2,7 @@
     "crons": [
       {
         "path": "/app/lib/updateTokens",
-        "schedule": "* * * * *"
+        "schedule": "0 14 * * *"
       }
     ]
 }
