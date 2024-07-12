@@ -1,6 +1,5 @@
-'use server'
-import { auth } from "@/auth"
-import { getCurrentUser } from "@/app/lib/data"
+'use server';
+import { getCurrentUser } from "@/app/lib/data";
 
 export default async function ProfilePicture() {
     const user = await getCurrentUser();

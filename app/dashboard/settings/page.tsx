@@ -1,7 +1,5 @@
 "use client";
 import React from 'react';
-import Image from 'next/image';
-import { auth } from "@/auth"
 
 import { updateImageUrl } from "@/app/lib/actions";
 
@@ -26,7 +24,7 @@ export default function Page() {
         <h1 className="text-2xl font-bold mb-6 text-gray-700 text-center">Settings</h1>
         <form onSubmit={(e) => { e.preventDefault(); handleSaveChanges(); }}>
           <div className="mb-4 flex flex-col items-center">
-            <ProfilePicture />
+            {/* <ProfilePicture /> */}
             <UploadButton
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {
