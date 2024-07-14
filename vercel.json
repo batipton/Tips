@@ -1,7 +1,7 @@
 {
     "crons": [
       {
-        "path": "/app/lib/updateTokens",
+        "path": "/lib/updateTokens",
         "schedule": "0 14 * * *"
       }
     ]
