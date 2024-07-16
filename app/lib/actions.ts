@@ -31,8 +31,8 @@ export async function createInvoice(formData: FormData) {
     VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
   `;
 
-  revalidatePath('/dashboard/invoices');
-  redirect('/dashboard/invoices');
+  revalidatePath('/home/invoices');
+  redirect('/home/invoices');
 }
 
 // Use Zod to update the expected types
@@ -56,12 +56,12 @@ export async function updateInvoice(id: string, formData: FormData) {
   `;
  
   revalidatePath('/dashboard/invoices');
-  redirect('/dashboard/invoices');
+  redirect('/home/invoices');
 }
 
 export async function deleteInvoice(id: string) {
     await sql`DELETE FROM invoices WHERE id = ${id}`;
-    revalidatePath('/dashboard/invoices');
+    revalidatePath('/home/invoices');
 }
 
 import { signIn } from '@/auth';
@@ -145,7 +145,7 @@ export async function likePost(id: string, tips: number, userid: string) {
   AND tokens > 0
   `;
 
-  revalidatePath('/dashboard');
+  revalidatePath('/home');
 }
 
 export async function followProfile(id: string, userid: string) {
@@ -154,7 +154,7 @@ export async function followProfile(id: string, userid: string) {
   VALUES (${id}, ${userid})
   `;
 
-  revalidatePath('/dashboard');
+  revalidatePath('/home');
 }
 
 export async function unfollowProfile(id: string, userid: string) {
@@ -163,7 +163,7 @@ export async function unfollowProfile(id: string, userid: string) {
   WHERE follower=${userid} and followed=${id}
   `;
 
-  revalidatePath('/dashboard');
+  revalidatePath('/home');
 }
 
 export async function updateImageUrl(image_url: string) {
@@ -177,7 +177,7 @@ export async function updateImageUrl(image_url: string) {
   WHERE id= ${session.user.id}
   `
 
-  revalidatePath('/dashboard');
+  revalidatePath('/home');
 }
 
 export async function updateProfileInformation(username:string) {
@@ -190,5 +190,5 @@ export async function updateProfileInformation(username:string) {
   WHERE id= ${session.user.id}
   `
 
-  revalidatePath('/dashboard');
+  revalidatePath('/home');
 }
