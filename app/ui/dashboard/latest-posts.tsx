@@ -6,11 +6,12 @@ import LikeButton from './like-button';
 import { auth } from "@/auth";
 import Link from 'next/link';
 
-export default async function LatestPosts() {
-  const latestPosts = await fetchLatestPosts();
+export default async function LatestPosts({ mode, id }:{ mode:string, id:string }) {
   const session = await auth();
 
   if (!session?.user) return null
+  
+  const latestPosts = await fetchLatestPosts(mode, session.user?.id!, id);
 
 
   return (

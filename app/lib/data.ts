@@ -45,17 +45,50 @@ export async function fetchLatestInvoices() {
   }
 }
 
-export async function fetchLatestPosts() {
+export async function fetchLatestPosts(mode:string, userid:string, id:string) {
   try {
-    const data = await sql<LatestPost>`
+    if(mode == "followers") {
+      const data = await sql<LatestPost>`
+      SELECT p.tips, p.text, u.name, u.image_url, u.email, p.customer_id, p.id
+      FROM posts p 
+      JOIN following f ON p.customer_id = f.followed
+      JOIN users u ON p.customer_id = u.id 
+      WHERE f.follower = ${userid}
+      ORDER BY p.date DESC;
+      `;
+      const latestPosts = data.rows;
+      return latestPosts;
+    } else if (mode == "user") {
+      const data = await sql<LatestPost>`
+      SELECT posts.tips, posts.text, users.name, users.image_url, users.email, posts.customer_id, posts.id
+      FROM posts
+      JOIN users ON posts.customer_id = users.id
+      WHERE posts.customer_id = ${userid}
+      ORDER BY posts.date DESC
+      `;
+      const latestPosts = data.rows;
+      return latestPosts;
+    } else if (mode == "follower") {
+      const data = await sql<LatestPost>`
+      SELECT posts.tips, posts.text, users.name, users.image_url, users.email, posts.customer_id, posts.id
+      FROM posts
+      JOIN users ON posts.customer_id = users.id
+      WHERE posts.customer_id = ${id}
+      ORDER BY posts.date DESC
+      `;
+      const latestPosts = data.rows;
+      return latestPosts;
+    } else {
+      const data = await sql<LatestPost>`
       SELECT posts.tips, posts.text, users.name, users.image_url, users.email, posts.customer_id, posts.id
       FROM posts
       JOIN users ON posts.customer_id = users.id
       ORDER BY posts.date DESC
       `;
-
-    const latestPosts = data.rows;
-    return latestPosts;
+      const latestPosts = data.rows;
+      return latestPosts;
+    }
+  
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch the latest posts.');
