@@ -44,9 +44,9 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
                       height={32}
                     />
                     <div className="min-w-0">
-                      <p className="truncate text-sm font-semibold md:text-base">
+                      <Link href={`/dashboard/friends/${post.customer_id}`} className="truncate text-sm font-semibold md:text-base">
                         {post.name}
-                      </p>
+                      </Link>
                       <p className="hidden text-sm text-gray-500 sm:block">
                         {post.email}
                       </p>
@@ -64,11 +64,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
                   </p>
                 </div>
                 <LikeButton id={post.id} tips={post.tips} userid={session.user?.id}/>
-                <Link href={`/dashboard/friends/${post.customer_id}`} className="rounded-md border p-2 hover:bg-gray-100">
-                  Test Friend
-                </Link>
               </div>
-              
             );
           })}
         </div>
@@ -76,9 +72,3 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
     </div>
   );
 }
-
-
-{/* <div className="flex items-center pb-2 pt-6">
-          <ArrowPathIcon className="h-5 w-5 text-gray-500" />
-          <h3 className="ml-2 text-sm text-gray-500 ">Updated just now</h3>
-</div> */}
