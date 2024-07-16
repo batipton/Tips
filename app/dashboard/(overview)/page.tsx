@@ -5,7 +5,6 @@ import React from 'react';
 
 
 export default async function Page() {
-
   return (
     <main>
       <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
@@ -17,19 +16,6 @@ export default async function Page() {
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
         <LatestPosts mode="followers" id=""/>
       </div>
-      
     </main>
   );
 }
-
-{/* <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-        <Suspense fallback={<RevenueChartSkeleton />}>
-          
-          <RevenueChart />
-        </Suspense>
-
-        <Suspense fallback={<LatestInvoicesSkeleton />}>
-          
-          <LatestInvoices />
-        </Suspense>
-</div> */}

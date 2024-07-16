@@ -16,8 +16,6 @@ export async function fetchRevenue() {
   try {
     const data = await sql<Revenue>`SELECT * FROM revenue`;
 
-    console.log('Data fetch completed after 3 seconds.');
-
     return data.rows;
   } catch (error) {
     console.error('Database Error:', error);
@@ -256,9 +254,7 @@ export async function fetchFollowers(id : string) {
     FROM following
     WHERE followed = ${id};
     `
-
-    console.log("fetch followers...");
-    console.log(data);
+    
     const profile = data.rows[0];
     return profile;
   } catch (err) {

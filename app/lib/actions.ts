@@ -95,6 +95,15 @@ export async function signupUser(formData : FormData) {
     const email = formData.get('email')?.toString();
     const image_url = 'evil-rabbit.png';
     const tokens = 50;
+
+    const data = await sql`
+      SELECT * FROM users WHERE email = ${email}
+    `
+
+    if(data.rows.length > 0) {
+      return;
+    }
+
     await sql`
       INSERT INTO users (name, email, password, image_url, tokens)
       VALUES (${name}, ${email}, ${password}, ${image_url}, ${tokens})
@@ -121,8 +130,6 @@ export async function likePost(id: string, tips: number, userid: string) {
     WHERE id = ${id}
   `;
 
-  console.log(tips);
-  console.log(tips % 2);
   if(tips % 2 == 0) {
     await sql`
       UPDATE users
@@ -167,6 +174,19 @@ export async function updateImageUrl(image_url: string) {
   await sql`
   UPDATE users
   SET image_url= ${image_url}
+  WHERE id= ${session.user.id}
+  `
+
+  revalidatePath('/dashboard');
+}
+
+export async function updateProfileInformation(username:string) {
+  const session = await auth();
+  if (!session?.user) return null
+
+  await sql`
+  UPDATE users
+  SET name= ${username}
   WHERE id= ${session.user.id}
   `
 

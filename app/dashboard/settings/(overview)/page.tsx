@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 
-import { updateImageUrl } from "@/app/lib/actions";
+import { updateImageUrl, updateProfileInformation } from "@/app/lib/actions";
 
 import ProfilePicture from "@/app/ui/settings/profile-picture";
  
@@ -14,8 +14,7 @@ export default function Page() {
 
   const handleSaveChanges = () => {
     console.log('Username:', username);
-    console.log('Bio:', bio);
-    // Handle saving changes here, e.g., sending data to a server
+    updateProfileInformation(username);
   };
 
   return (
