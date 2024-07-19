@@ -192,3 +192,17 @@ export async function updateProfileInformation(username:string) {
 
   revalidatePath('/home');
 }
+
+export async function createNewPost(text:string) {
+  const session = await auth();
+  if (!session?.user) return null
+
+  const date = new Date().toISOString().split('T')[0];
+
+  await sql`
+  INSERT INTO posts (customer_id, tips, text, date)
+  VALUES (${session.user.id}, ${0}, ${text}, ${date})
+  `
+
+  revalidatePath('/home');
+}

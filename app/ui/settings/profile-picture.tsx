@@ -3,7 +3,6 @@ import { getCurrentUser } from "@/app/lib/data";
 
 export default async function ProfilePicture() {
     const user = await getCurrentUser();
-    console.log(user);
 
     return (
         <img 
