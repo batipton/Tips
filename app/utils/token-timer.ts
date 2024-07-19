@@ -3,7 +3,7 @@
 export const timeUntilNextIncrement = () => {
     const now = new Date();
     const nextIncrement = new Date();
-    nextIncrement.setUTCHours(0, 0, 0, 0); // Set to midnight UTC
+    nextIncrement.setUTCHours(18, 0, 0, 0); // Set to midnight UTC
     if (now >= nextIncrement) {
       nextIncrement.setUTCDate(nextIncrement.getUTCDate() + 1);
     }
