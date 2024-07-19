@@ -17,6 +17,9 @@ export default async function Page({
     const currentPage = Number(searchParams?.page) || 1;
 
     const totalPages = await fetchInvoicesPages(query);
+
+    const table: JSX.Element = (await Table({query: query, currentPage:currentPage}))!;
+
   return (
     <div className="w-full">
       <div className="flex w-full items-center justify-between">
@@ -26,7 +29,7 @@ export default async function Page({
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search people..." />
       </div>
-        <Table query={query} currentPage={currentPage} />
+        {table}
       <div className="mt-5 flex w-full justify-center">
         <Pagination totalPages={totalPages} />
       </div>

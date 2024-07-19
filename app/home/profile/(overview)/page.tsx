@@ -11,6 +11,8 @@ export default async function Page() {
     const profilePromise = await Promise.all([fetchProfile(session.user.id || "")]);
     const profile = profilePromise[0];
 
+    const latestPosts: JSX.Element = (await LatestPosts({mode:"user", id:""}))!;
+
     return (
         <div>
           <div>
@@ -32,7 +34,7 @@ export default async function Page() {
             </div>
           </div>
           <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-              <LatestPosts mode="user" id=""/>
+              {latestPosts}
           </div>
         </div>
       );

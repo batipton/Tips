@@ -40,7 +40,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
                       height={32}
                     />
                     <div className="min-w-0">
-                      <Link href={`/dashboard/friends/${post.customer_id}`} className="truncate text-sm font-semibold md:text-base">
+                      <Link href={`/home/friends/${post.customer_id}`} className="truncate text-sm font-semibold md:text-base">
                         {post.name}
                       </Link>
                       <p className="hidden text-sm text-gray-500 sm:block">

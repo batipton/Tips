@@ -7,8 +7,7 @@ import PostInput from '@/app/ui/post-input';
 
 export default async function Page() {
 
-  // const asyncComponent: JSX.Element = await AsyncComponent({ props: any })
-  const latestPosts: JSX.Element = await LatestPosts({mode:"followers", id:""}) || <></>;
+  const latestPosts: JSX.Element = (await LatestPosts({mode:"followers", id:""}))!;
 
   return (
     <main>
@@ -17,7 +16,6 @@ export default async function Page() {
       </h2>
       <PostInput />
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-        {/* <LatestPosts mode="followers" id=""/> */}
         {latestPosts}
       </div>
     </main>

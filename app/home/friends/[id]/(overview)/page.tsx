@@ -22,6 +22,8 @@ export default async function Page({ params }: { params: { id: string } }) {
     const followersPromise = await Promise.all([fetchFollowers(id)]);
     const followers = followersPromise[0].count_of_value;
 
+    const latestPosts: JSX.Element = (await LatestPosts({mode:"follower", id:id}))!;
+
   return (
     <div>
       <div>
@@ -44,7 +46,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         </div>
       </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-          <LatestPosts mode="follower" id={id} />
+          {latestPosts}
       </div>
     </div>
   );
