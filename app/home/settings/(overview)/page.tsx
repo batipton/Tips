@@ -3,7 +3,6 @@ import React from 'react';
 
 import { updateImageUrl, updateProfileInformation } from "@/app/lib/actions";
 
-import ProfilePicture from "@/app/ui/settings/profile-picture";
  
 import { UploadButton } from "@/app/utils/uploadthing";
  
@@ -13,7 +12,6 @@ export default function Page() {
   const [bio, setBio] = React.useState('');
 
   const handleSaveChanges = () => {
-    console.log('Username:', username);
     updateProfileInformation(username);
   };
 

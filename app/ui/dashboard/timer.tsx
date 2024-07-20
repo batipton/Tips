@@ -14,7 +14,7 @@ export default function CountdownTimer() {
   }, []);
 
   return (
-        <bdi>{timeRemaining.hours}h {timeRemaining.minutes}m {timeRemaining.seconds}s</bdi>
+    <bdi>{timeRemaining.hours}h {timeRemaining.minutes}m {timeRemaining.seconds}s</bdi>
   );
 };
 

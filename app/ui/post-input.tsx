@@ -33,7 +33,7 @@ const PostInput: React.FC = () => {
             </div>
             <button
               type="submit"
-              className="px-4 py-2 mb-2 bg-green-500 hover:bg-green-600 text-white rounded-md"
+              className="px-4 py-2 mb-2 bg-green-500 hover:bg-green-400 text-white rounded-md"
             >
               Post
             </button>
