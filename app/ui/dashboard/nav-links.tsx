@@ -4,6 +4,7 @@ import {
   UserGroupIcon,
   HomeIcon,
   DocumentDuplicateIcon,
+  Cog6ToothIcon
 } from '@heroicons/react/24/outline';
 
 import Link from 'next/link';
@@ -16,7 +17,7 @@ const links = [
   { name: 'Home', href: '/home', icon: HomeIcon },
   { name: 'Friends', href: '/home/friends', icon: UserGroupIcon },
   { name: 'Profile', href: '/home/profile', icon: DocumentDuplicateIcon},
-  { name: 'Settings', href: '/home/settings', icon: DocumentDuplicateIcon}
+  { name: 'Settings', href: '/home/settings', icon: Cog6ToothIcon}
 ];
 
 export default function NavLinks() {
