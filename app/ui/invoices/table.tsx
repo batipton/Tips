@@ -1,7 +1,4 @@
 import Image from 'next/image';
-import { UpdateInvoice, DeleteInvoice } from '@/app/ui/invoices/buttons';
-import InvoiceStatus from '@/app/ui/invoices/status';
-import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredInvoices } from '@/app/lib/data';
 import Link from 'next/link';
 
@@ -36,22 +33,8 @@ export default async function InvoicesTable({
                       />
                       <p>{invoice.name}</p>
                     </div>
-                    {/* <p className="text-sm text-gray-500">{invoice.email}</p> */}
                   </div>
-                  {/* <InvoiceStatus status={invoice.status} /> */}
                 </div>
-                {/* <div className="flex w-full items-center justify-between pt-4">
-                  <div>
-                    <p className="text-xl font-medium">
-                      {formatCurrency(invoice.amount)}
-                    </p>
-                    <p>{formatDateToLocal(invoice.date)}</p>
-                  </div>
-                  <div className="flex justify-end gap-2">
-                    <UpdateInvoice id={invoice.id} />
-                    <DeleteInvoice id={invoice.id} />
-                  </div>
-                </div> */}
               </div>
             ))}
           </div>
@@ -61,21 +44,6 @@ export default async function InvoicesTable({
                 <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
                   Username
                 </th>
-                {/* <th scope="col" className="px-3 py-5 font-medium">
-                  Email
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  Amount
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  Date
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  Status
-                </th> */}
-                {/* <th scope="col" className="relative py-3 pl-6 pr-3">
-                  <span className="sr-only">Edit</span>
-                </th> */}
               </tr>
             </thead>
             <tbody className="bg-white">
@@ -86,7 +54,6 @@ export default async function InvoicesTable({
                 >
                   <td className="whitespace-nowrap py-3 pl-6 pr-3 hover:bg-sky-100 hover:text-green-500">
                     <Link href={`/home/friends/${invoice.id}`} className="flex items-center gap-3 ">
-                      {/* <div className="flex items-center gap-3"> */}
                         <Image
                           src={invoice.image_url}
                           className="rounded-full"
@@ -95,27 +62,8 @@ export default async function InvoicesTable({
                           alt={`${invoice.name}'s profile picture`}
                         />
                         {invoice.name}
-                      {/* </div> */}
                     </Link>
                   </td>
-                  {/* <td className="whitespace-nowrap px-3 py-3">
-                    {invoice.email}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-3">
-                    {formatCurrency(invoice.amount)}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-3">
-                    {formatDateToLocal(invoice.date)}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-3">
-                    <InvoiceStatus status={invoice.status} />
-                  </td> */}
-                  {/* <td className="whitespace-nowrap py-3 pl-6 pr-3">
-                    <div className="flex justify-end gap-3">
-                      <UpdateInvoice id={invoice.id} />
-                      <DeleteInvoice id={invoice.id} />
-                    </div>
-                  </td> */}
                 </tr>
               ))}
             </tbody>
