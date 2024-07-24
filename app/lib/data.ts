@@ -47,12 +47,13 @@ export async function fetchLatestPosts(mode:string, userid:string, id:string) {
   try {
     if(mode == "followers") {
       const data = await sql<LatestPost>`
-      SELECT p.tips, p.text, u.name, u.image_url, u.email, p.customer_id, p.id
+      SELECT p.tips, p.text, u.name, u.image_url, u.email, p.customer_id, p.id 
       FROM posts p 
-      JOIN following f ON p.customer_id = f.followed
+      LEFT JOIN following f ON p.customer_id = f.followed AND f.follower = ${userid} 
       JOIN users u ON p.customer_id = u.id 
-      WHERE f.follower = ${userid}
-      ORDER BY p.date DESC;
+      WHERE p.customer_id = ${userid} OR f.followed IS NOT NULL 
+      ORDER BY p.date DESC
+
       `;
       const latestPosts = data.rows;
       return latestPosts;
