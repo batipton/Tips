@@ -12,6 +12,7 @@ const PostInput: React.FC = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     // Handle the form submission logic here
+    console.log(postContent);
     if(postContent != "") {
       createNewPost(postContent);
     }

@@ -93,7 +93,7 @@ export async function signupUser(formData : FormData) {
     const password = await bcrypt.hash(formData.get('password')?.toString()!, 10);
     const name = formData.get('name')?.toString();
     const email = formData.get('email')?.toString();
-    const image_url = 'evil-rabbit.png';
+    const image_url = '/customers/default.png';
     const tokens = 50;
 
     const data = await sql`
