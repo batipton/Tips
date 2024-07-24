@@ -1,6 +1,6 @@
 import { auth } from "@/auth"
 import { lusitana } from '@/app/ui/fonts';
-import { fetchProfile } from '@/app/lib/data';
+import { fetchProfile, fetchFollowers } from '@/app/lib/data';
 import LatestPosts from '@/app/ui/dashboard/latest-posts';
 
 export default async function Page() {
@@ -8,8 +8,13 @@ export default async function Page() {
 
     if (!session?.user) return null
 
-    const profilePromise = await Promise.all([fetchProfile(session.user.id || "")]);
+    const id = session.user.id!;
+
+    const profilePromise = await Promise.all([fetchProfile(id)]);
     const profile = profilePromise[0];
+
+    const followersPromise = await Promise.all([fetchFollowers(id)]);
+    const followers = followersPromise[0].count_of_value;
 
     const latestPosts: JSX.Element = (await LatestPosts({mode:"user", id:""}))!;
 
@@ -28,7 +33,7 @@ export default async function Page() {
                     alt="Profile" 
                   />
                   <h1 className="text-2xl font-bold text-gray-900 mt-4">{profile.name}</h1>
-                  <p className="text-lg text-gray-700 mt-2">18 Followers</p>
+                  <p className="text-lg text-gray-700 mt-2">{followers} Followers</p>
                 </div>
               </div>
             </div>
