@@ -180,14 +180,12 @@ export async function updateImageUrl(image_url: string) {
   revalidatePath('/home');
 }
 
-export async function updateProfileInformation(username:string) {
-  const session = await auth();
-  if (!session?.user) return null
+export async function updateProfileInformation(id:string, username:string) {
 
   await sql`
   UPDATE users
   SET name= ${username}
-  WHERE id= ${session.user.id}
+  WHERE id= ${id}
   `
 
   revalidatePath('/home');
