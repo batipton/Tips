@@ -16,7 +16,7 @@ export default function UserInfo({id, name}:{id:string, name:string}) {
 
     return (
         <>
-            <UploadButton
+            <UploadButton className="ut-button:bg-green-500"
                 endpoint="imageUploader"
                 onClientUploadComplete={(res) => {
                     // Do something with the response
