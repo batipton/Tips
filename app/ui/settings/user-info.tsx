@@ -6,7 +6,7 @@ import { UploadButton } from "@/app/utils/uploadthing";
 
 import React from 'react';
 
-export default function UserInfo({id, name}:{id:string, name:string}) {
+export default function UserInfo({id, name, url}:{id:string, name:string, url:string}) {
     const [username, setUsername] = React.useState(name);
     const [bio, setBio] = React.useState('');
 
@@ -16,19 +16,28 @@ export default function UserInfo({id, name}:{id:string, name:string}) {
 
     return (
         <>
-            <UploadButton className="ut-button:bg-green-500"
-                endpoint="imageUploader"
-                onClientUploadComplete={(res) => {
-                    // Do something with the response
-
-                    updateImageUrl(res[0].url);
-                    alert("Upload Completed");
-                }}
-                onUploadError={(error: Error) => {
-                    // Do something with the error.
-                    alert(`ERROR! ${error.message}`);
-                }}
+            <div className="mb-4 flex flex-col items-center">
+                <img 
+                        className="w-32 h-32 rounded-full object-cover" 
+                        src={url} 
+                        alt="Profile" 
                 />
+            </div>
+
+            <UploadButton className="ut-button:bg-green-500"
+                    endpoint="imageUploader"
+                    onClientUploadComplete={(res) => {
+                        // Do something with the response
+
+                        updateImageUrl(res[0].url);
+                        alert("Upload Completed");
+                    }}
+                    onUploadError={(error: Error) => {
+                        // Do something with the error.
+                        alert(`ERROR! ${error.message}`);
+                    }}
+                />
+            
             <form onSubmit={(e) => { e.preventDefault(); handleSaveChanges(); }}>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
