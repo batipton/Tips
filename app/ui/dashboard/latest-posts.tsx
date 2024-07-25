@@ -4,6 +4,8 @@ import { lusitana } from '@/app/ui/fonts';
 import { fetchLatestPosts } from '@/app/lib/data';
 import LikeButton from './like-button';
 import { auth } from "@/auth";
+import Comments  from '@/app/ui/dashboard/comments';
+import CommentForm  from '@/app/ui/dashboard/comment-form';
 import Link from 'next/link';
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
@@ -15,6 +17,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
   if (!session?.user) return null
   
   const latestPosts = await fetchLatestPosts(mode, session.user?.id!, id);
+  const userid = session.user?.id!;
 
   const timeAgo = new TimeAgo('en-US')
 
@@ -68,6 +71,10 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
                   </p>
                 </div>
                 <LikeButton id={post.id} tips={post.tips} userid={session.user?.id} posterid={post.customer_id}/>
+                <div className="px-8">
+                  <Comments postid={post.id}/>
+                  <CommentForm postid={post.id} userid={userid} />
+                </div>
               </div>
             );
           })}

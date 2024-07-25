@@ -334,3 +334,24 @@ export async function getCurrentUser() {
   }
  
 }
+
+export async function fetchComments(postid:string) {
+  try {
+    const {rows, fields} = await sql`
+      SELECT 
+        comments.text,
+        comments.commenter_id,
+        comments.date
+      FROM comments
+      WHERE post_id=${postid}
+    `;
+
+    console.log("rows:", rows);
+    console.log("fields:", fields);
+
+    return rows;
+  } catch(err) {
+    console.error('Database Error:', err);
+    throw new Error(`Failed to fetch comments for post ${postid}`);
+  }
+}

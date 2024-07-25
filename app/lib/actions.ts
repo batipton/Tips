@@ -203,3 +203,13 @@ export async function createNewPost(text:string) {
 
   revalidatePath('/home');
 }
+
+export async function createNewComment(postid:string, userid:string, comment:string) {
+    const date = new Date().toISOString().split('T')[0];
+    await sql`
+    INSERT INTO comments (post_id, commenter_id, text, date)
+    VALUES (${postid}, ${userid}, ${comment}, ${date})
+    `
+
+    revalidatePath('/home');
+}
