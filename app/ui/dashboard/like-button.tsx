@@ -4,12 +4,12 @@ import { likePost } from '@/app/lib/actions';
 
 import { useState } from 'react';
  
-export default function LikeButton({tips=0, id="", userid=""}) {
+export default function LikeButton({tips=0, id="", userid="", posterid=""}) {
   const [likes, setLikes] = useState(tips);
  
   function handleClick() {
     setLikes(likes + 1);
-    likePost(id, likes+1, userid);
+    likePost(id, likes+1, userid, posterid);
   }
 
   return (

@@ -67,7 +67,6 @@ export async function deleteInvoice(id: string) {
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
  
-// ...
  
 export async function authenticate(
   prevState: string | undefined,
@@ -123,18 +122,18 @@ export async function signupUser(formData : FormData) {
   }
 }
 
-export async function likePost(id: string, tips: number, userid: string) {
+export async function likePost(id: string, tips: number, userid: string, posterid: string) {
   await sql`
     UPDATE posts
     SET tips = ${tips}
     WHERE id = ${id}
   `;
 
-  if(tips % 2 == 0) {
+  if(tips % 2 == 0 && userid != posterid) {
     await sql`
       UPDATE users
       SET tokens = tokens+1
-      WHERE id = ${id}
+      WHERE id = ${posterid}
     `;
   }
 

@@ -67,7 +67,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
                     {post.text}
                   </p>
                 </div>
-                <LikeButton id={post.id} tips={post.tips} userid={session.user?.id}/>
+                <LikeButton id={post.id} tips={post.tips} userid={session.user?.id} posterid={post.customer_id}/>
               </div>
             );
           })}
