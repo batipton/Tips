@@ -57,6 +57,7 @@ export type LatestPost = {
   email: string;
   customer_id: string;
   id: string;
+  date: string;
 };
 
 // The database returns a number for amount, but we later format it to a string with the formatCurrency function

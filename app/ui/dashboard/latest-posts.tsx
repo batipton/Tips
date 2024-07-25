@@ -5,6 +5,9 @@ import { fetchLatestPosts } from '@/app/lib/data';
 import LikeButton from './like-button';
 import { auth } from "@/auth";
 import Link from 'next/link';
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
+TimeAgo.addDefaultLocale(en)
 
 export default async function LatestPosts({ mode, id }:{ mode:string, id:string }) {
   const session = await auth();
@@ -13,6 +16,10 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
   
   const latestPosts = await fetchLatestPosts(mode, session.user?.id!, id);
 
+  const timeAgo = new TimeAgo('en-US')
+
+
+
 
   return (
     <div className="flex w-full flex-col md:col-span-8">
@@ -20,6 +27,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
         {/* NOTE: comment in this code when you get to this point in the course */}
         <div className="bg-white px-6">
           {latestPosts.map((post, i) => {
+            const time = timeAgo.format(new Date(post.date))
             return (
               <div>
                 <div
@@ -44,7 +52,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
                         {post.name}
                       </Link>
                       <p className="hidden text-sm text-gray-500 sm:block">
-                        {post.email}
+                        {time}
                       </p>
                     </div>
                   </div>
