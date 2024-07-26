@@ -8,7 +8,7 @@ import React from 'react';
 
 export default function UserInfo({id, name, bio, url}:{id:string, name:string, bio:string, url:string}) {
     const [username, setUsername] = React.useState(name);
-    const [bio_, setBio] = React.useState('');
+    const [bio_, setBio] = React.useState(bio);
 
     function handleSaveChanges() {
         updateProfileInformation(id, username, bio_);
@@ -64,7 +64,7 @@ export default function UserInfo({id, name, bio, url}:{id:string, name:string, b
                     <textarea
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="bio"
-                    placeholder={bio_ ? bio_ : "Tell us about yourself"}
+                    placeholder={bio ? bio : "Tell us about yourself"}
                     value={bio_}
                     onChange={(e) => setBio(e.target.value)}
                     ></textarea>

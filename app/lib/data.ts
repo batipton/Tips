@@ -320,7 +320,8 @@ export async function getCurrentUser() {
     SELECT 
       users.name,
       users.image_url,
-      users.tokens
+      users.tokens,
+      users.bio
     FROM users
     WHERE id = ${session.user.id}`;
 
