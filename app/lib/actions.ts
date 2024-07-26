@@ -93,7 +93,7 @@ export async function signupUser(formData : FormData) {
     const name = formData.get('name')?.toString();
     const email = formData.get('email')?.toString();
     const image_url = '/customers/default.png';
-    const tokens = 50;
+    const tokens = 20;
 
     const data = await sql`
       SELECT * FROM users WHERE email = ${email}
