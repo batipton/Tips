@@ -104,6 +104,7 @@ export type CustomerField = {
 export type ProfileField = {
   name: string;
   image_url: string;
+  bio: string;
 }
 
 export type InvoiceForm = {

@@ -180,11 +180,11 @@ export async function updateImageUrl(image_url: string) {
   revalidatePath('/home');
 }
 
-export async function updateProfileInformation(id:string, username:string) {
+export async function updateProfileInformation(id:string, username:string, bio:string) {
 
   await sql`
   UPDATE users
-  SET name= ${username}
+  SET name= ${username}, bio= ${bio}
   WHERE id= ${id}
   `
 

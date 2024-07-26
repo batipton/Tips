@@ -12,6 +12,7 @@ export default async function Page() {
 
     const profilePromise = await Promise.all([fetchProfile(id)]);
     const profile = profilePromise[0];
+    const bio = profile.bio;
 
     const followersPromise = await Promise.all([fetchFollowers(id)]);
     const followers = followersPromise[0].count_of_value;
@@ -32,8 +33,9 @@ export default async function Page() {
                     src={profile.image_url} 
                     alt="Profile" 
                   />
-                  <h1 className="text-2xl font-bold text-gray-900 mt-4">{profile.name}</h1>
-                  <p className="text-lg text-gray-700 mt-2">{followers} Followers</p>
+                  <h1 className={`${lusitana.className} text-2xl font-bold text-gray-900 mt-4`}>{profile.name}</h1>
+                  <p className={`${lusitana.className} text-lg text-gray-700 mt-2`}>{followers} Followers</p>
+                  <p className={`${lusitana.className}`}>{bio}</p>
                 </div>
               </div>
             </div>

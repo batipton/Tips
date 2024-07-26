@@ -21,12 +21,14 @@ export default async function Page({ params }: { params: { id: string } }) {
 
     const profilePromise = await Promise.all([fetchProfile(id)]);
     const profile = profilePromise[0];
+    const bio = profile.bio;
 
     const friend = await Promise.all([isFriend("" + user.id, id)]);
     const following = friend[0].rows.length != 0;
 
     const followersPromise = await Promise.all([fetchFollowers(id)]);
     const followers = followersPromise[0].count_of_value;
+    
 
     const latestPosts: JSX.Element = (await LatestPosts({mode:"follower", id:id}))!;
 
@@ -44,8 +46,9 @@ export default async function Page({ params }: { params: { id: string } }) {
                 src={profile.image_url} 
                 alt="Profile" 
               />
-              <h1 className="text-2xl font-bold text-gray-900 mt-4">{profile.name}</h1>
-              <p className="text-lg text-gray-700 mt-2">{followers} Followers</p>
+              <h1 className={`${lusitana.className} text-2xl font-bold text-gray-900 mt-4`}>{profile.name}</h1>
+              <p className={`${lusitana.className} text-lg text-gray-700 mt-2`}>{followers} Followers</p>
+              <p className={`${lusitana.className}`}>{bio}</p>
               <FollowButton isFollowing={following} id={id} userid={user.id || ""} />
             </div>
           </div>

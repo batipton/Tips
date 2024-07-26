@@ -236,7 +236,8 @@ export async function fetchProfile(id : string) {
     const data = await sql<ProfileField>`
     SELECT
       name,
-      image_url
+      image_url,
+      bio
     FROM users
     WHERE id = ${id}
     `
@@ -326,7 +327,8 @@ export async function getCurrentUser() {
     const user = {
       name: data.rows[0].name,
       image_url: data.rows[0].image_url,
-      tokens: data.rows[0].tokens
+      tokens: data.rows[0].tokens,
+      bio: data.rows[0].bio
     }
 
     return user;
