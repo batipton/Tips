@@ -24,7 +24,8 @@ export default function UserInfo({id, name, url}:{id:string, name:string, url:st
                 />
             </div>
 
-            <UploadButton className="ut-button:bg-green-500"
+
+            <UploadButton 
                     endpoint="imageUploader"
                     onClientUploadComplete={(res) => {
                         // Do something with the response
@@ -36,6 +37,10 @@ export default function UserInfo({id, name, url}:{id:string, name:string, url:st
                         // Do something with the error.
                         alert(`ERROR! ${error.message}`);
                     }}
+                    appearance={{
+                        button:
+                          "ut-ready:bg-green-500 ut-uploading:cursor-not-allowed bg-green-500 bg-none after:bg-green-400",
+                      }}
                 />
             
             <form onSubmit={(e) => { e.preventDefault(); handleSaveChanges(); }}>
