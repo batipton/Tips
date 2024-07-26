@@ -4,12 +4,19 @@ import { likePost } from '@/app/lib/actions';
 
 import { useState } from 'react';
  
-export default function LikeButton({tips=0, id="", userid="", posterid=""}) {
+export default function LikeButton({tips=0, id="", userid="", posterid="", tokens=0}) {
   const [likes, setLikes] = useState(tips);
+  const [numTokens, setTokens] = useState(tokens);
+
  
   function handleClick() {
-    setLikes(likes + 1);
-    likePost(id, likes+1, userid, posterid);
+    if(numTokens > 0) {
+      setLikes(likes + 1);
+      setTokens(tokens-1);
+      likePost(id, likes+1, userid, posterid);
+    } else {
+      alert("Sorry! You do not have enough tokens.");
+    }
   }
 
   return (

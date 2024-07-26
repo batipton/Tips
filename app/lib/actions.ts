@@ -123,6 +123,7 @@ export async function signupUser(formData : FormData) {
 }
 
 export async function likePost(id: string, tips: number, userid: string, posterid: string) {
+
   await sql`
     UPDATE posts
     SET tips = ${tips}

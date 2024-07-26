@@ -318,13 +318,15 @@ export async function getCurrentUser() {
     const data = await sql`
     SELECT 
       users.name,
-      users.image_url
+      users.image_url,
+      users.tokens
     FROM users
     WHERE id = ${session.user.id}`;
 
     const user = {
       name: data.rows[0].name,
-      image_url: data.rows[0].image_url
+      image_url: data.rows[0].image_url,
+      tokens: data.rows[0].tokens
     }
 
     return user;

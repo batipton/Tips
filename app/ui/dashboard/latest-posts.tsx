@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import { lusitana } from '@/app/ui/fonts';
-import { fetchLatestPosts } from '@/app/lib/data';
+import { fetchLatestPosts, getCurrentUser } from '@/app/lib/data';
 import LikeButton from './like-button';
 import { auth } from "@/auth";
 import Comments  from '@/app/ui/dashboard/comments';
@@ -18,6 +18,8 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
   
   const latestPosts = await fetchLatestPosts(mode, session.user?.id!, id);
   const userid = session.user?.id!;
+
+  const user = await getCurrentUser();
 
   const timeAgo = new TimeAgo('en-US')
 
@@ -70,7 +72,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
                     {post.text}
                   </p>
                 </div>
-                <LikeButton id={post.id} tips={post.tips} userid={session.user?.id} posterid={post.customer_id}/>
+                <LikeButton id={post.id} tips={post.tips} userid={session.user?.id} posterid={post.customer_id} tokens={user!.tokens}/>
                 <div className="px-8">
                   <Comments postid={post.id}/>
                   <CommentForm postid={post.id} userid={userid} />
