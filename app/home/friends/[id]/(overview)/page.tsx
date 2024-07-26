@@ -5,13 +5,19 @@ import LatestPosts from '@/app/ui/dashboard/latest-posts';
 import { lusitana } from '@/app/ui/fonts';
 import { auth } from "@/auth"
 import FollowButton from '@/app/ui/followers/follow-button';
+import { redirect } from 'next/navigation'
 
 export default async function Page({ params }: { params: { id: string } }) {
     const session = await auth();
+    
 
     if (!session?.user) return null
     const user = session?.user
     const id = params.id;
+
+    if(id === user.id) {
+      redirect('/home/profile');
+    }
 
     const profilePromise = await Promise.all([fetchProfile(id)]);
     const profile = profilePromise[0];
