@@ -10,6 +10,7 @@ import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from './button';
 import { useActionState } from 'react';
 import { authenticate, signupUser } from '@/app/lib/actions';
+import Link from 'next/link';
 
 export default function SignupForm() {
   const [errorMessage, formAction, isPending] = useActionState(
@@ -85,6 +86,7 @@ export default function SignupForm() {
         <Button className="mt-4 w-full bg-green-500 hover:bg-green-600">
            Signup <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
         </Button>
+        <p className={`${lusitana.className}`}>Already have an account? <Link href='/login' className="text-green-500">Login</Link></p>
         <div className="flex h-8 items-end space-x-1">
           {errorMessage && (
               <>
