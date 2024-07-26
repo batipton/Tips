@@ -21,7 +21,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
 
   const user = await getCurrentUser();
 
-  const timeAgo = new TimeAgo('en-US')
+  const timeAgo = new TimeAgo('en-US');
 
 
 

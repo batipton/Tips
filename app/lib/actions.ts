@@ -195,7 +195,8 @@ export async function createNewPost(text:string) {
   const session = await auth();
   if (!session?.user) return null
 
-  const date = new Date().toISOString().split('T')[0];
+  const date = new Date().toISOString()
+  console.log("Date...", date);
 
   await sql`
   INSERT INTO posts (customer_id, tips, text, date)
