@@ -14,7 +14,7 @@ export default function CountdownTimer() {
   }, []);
 
   return (
-    <bdi>{timeRemaining.hours}h {timeRemaining.minutes}m {timeRemaining.seconds}s</bdi>
+    <p suppressHydrationWarning>More in  {timeRemaining.hours}h {timeRemaining.minutes}m {timeRemaining.seconds}s</p>
   );
 };
 

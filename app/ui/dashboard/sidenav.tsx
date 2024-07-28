@@ -6,6 +6,7 @@ import { signOut, auth } from '@/auth';
 import { fetchTokens } from '@/app/lib/data';
 import CountdownTimer from "./timer";
 
+
 export default async function SideNav() {
   const session = await auth();
 
@@ -27,7 +28,9 @@ export default async function SideNav() {
         <NavLinks />
         <div className="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"></div>
         <div> {numberOfTokens} Tokens</div>
-        <div> More in <CountdownTimer /></div>
+        <div>
+          <CountdownTimer />
+        </div>
         <form action={async () => {
             'use server';
             await signOut();
