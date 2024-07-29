@@ -9,6 +9,8 @@ import CommentForm  from '@/app/ui/dashboard/comment-form';
 import Link from 'next/link';
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
+const ReactDOMServer = require('react-dom/server');
+const HtmlToReactParser = require('html-to-react').Parser;
 TimeAgo.addDefaultLocale(en)
 
 export default async function LatestPosts({ mode, id }:{ mode:string, id:string }) {
@@ -33,10 +35,11 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
         <div className="bg-white px-6">
           {latestPosts.map((post, i) => {
             const time = timeAgo.format(new Date(post.date))
+            const htmlToReactParser = new HtmlToReactParser();
+            const reactElement = htmlToReactParser.parse(post.text);
             return (
-              <div>
+              <div key={post.id}>
                 <div
-                  key={post.id}
                   className={clsx(
                     'flex flex-row items-center justify-between py-4',
                     {
@@ -68,9 +71,10 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
                   </p>
                 </div>
                 <div>
-                  <p className={`${lusitana.className} text-sm font-medium md:text-base`}>
+                  {/* <p className={`${lusitana.className} text-sm font-medium md:text-base`}>
                     {post.text}
-                  </p>
+                  </p> */}
+                  {reactElement}
                 </div>
                 <LikeButton id={post.id} tips={post.tips} userid={session.user?.id} posterid={post.customer_id} tokens={user!.tokens}/>
                 <div className="px-8">
