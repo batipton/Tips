@@ -9,6 +9,7 @@ import {
   LatestPost,
   Revenue,
   ProfileField,
+  FormattedFollowersTable
 } from './definitions';
 import { formatCurrency } from './utils';
 
@@ -251,7 +252,7 @@ export async function fetchProfile(id : string) {
 
 export async function fetchFollowers(id : string) {
   try {
-    const data = await sql`
+    const data = await sql<FormattedFollowersTable>`
     SELECT *
     FROM users u
     JOIN following f ON u.id = f.follower
