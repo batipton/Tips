@@ -18,7 +18,7 @@ const style = {
   p: 4,
 };
 
-export default function FollowerModal({followers=null, followerCount=0}) {
+export default function FollowerModal({followers, followerCount}:{followers:ResultQueryRow[], followerCount:number}) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
