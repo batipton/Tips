@@ -20,13 +20,12 @@ async function Comment({text, commenter_id, key}:{text:string, commenter_id:stri
     return (
         <div key={key}>
             <div className="flex items-center">
-                <Image
-                    src={commenter.image_url}
-                    alt={`${commenter.name}'s profile picture`}
-                    className="mr-4 rounded-full"
-                    width={16}
-                    height={16}
-                />
+                <img
+                      src={commenter.image_url}
+                      alt={`${commenter.name}'s profile picture`}
+                      className="mr-4 h-8 w-8 rounded-full"
+
+                    />
                 <Link href={`/home/friends/${commenter_id}`} className="truncate text-sm font-semibold md:text-base">
                     {commenter.name}
                 </Link>

@@ -48,12 +48,11 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
                   )}
                 >
                   <div className="flex items-center">
-                    <Image
+                    <img
                       src={post.image_url}
                       alt={`${post.name}'s profile picture`}
-                      className="mr-4 rounded-full"
-                      width={32}
-                      height={32}
+                      className="mr-4 h-10 w-10 rounded-full"
+
                     />
                     <div className="min-w-0">
                       <Link href={`/home/friends/${post.customer_id}`} className="truncate text-sm font-semibold md:text-base">
@@ -64,11 +63,11 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
                       </p>
                     </div>
                   </div>
-                  <p
+                  {/* <p
                     className={`${lusitana.className} truncate text-sm font-medium md:text-base`}
                   >
                     {post.tips}
-                  </p>
+                  </p> */}
                 </div>
                 <div>
                   {/* <p className={`${lusitana.className} text-sm font-medium md:text-base`}>

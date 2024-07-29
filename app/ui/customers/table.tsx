@@ -31,13 +31,14 @@ export default async function CustomersTable({
                       <div>
                         <div className="mb-2 flex items-center">
                           <div className="flex items-center gap-3">
-                            <Image
+                            {/* <Image
                               src={customer.image_url}
                               className="rounded-full"
                               alt={`${customer.name}'s profile picture`}
                               width={28}
                               height={28}
-                            />
+                            /> */}
+                            <img src={customer.image_url} className="rounded-full h-10 w-10" />
                             <p>{customer.name}</p>
                           </div>
                         </div>
