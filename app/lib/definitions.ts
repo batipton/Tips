@@ -96,6 +96,19 @@ export type FormattedCustomersTable = {
   total_paid: string;
 };
 
+export type FormattedFollowersTable = {
+  bio: string;
+  email: string;
+  followed: string;
+  follower: string;
+  id: string;
+  image_url: string;
+  name: string;
+  password: string;
+  tokens: number
+};
+
+
 export type CustomerField = {
   id: string;
   name: string;
