@@ -1,7 +1,8 @@
 import { auth } from "@/auth"
 import { lusitana } from '@/app/ui/fonts';
-import { fetchProfile, fetchFollowers } from '@/app/lib/data';
+import { fetchProfile, fetchFollowers, fetchFollowersCount } from '@/app/lib/data';
 import LatestPosts from '@/app/ui/dashboard/latest-posts';
+import FollowerModal  from '@/app/ui/followers/follower-information';
 
 export default async function Page() {
     const session = await auth();
@@ -14,8 +15,11 @@ export default async function Page() {
     const profile = profilePromise[0];
     const bio = profile.bio;
 
+    const followerCountPromise = await Promise.all([fetchFollowersCount(id)]);
+    const followerCount = followerCountPromise[0].count_of_value;
+
     const followersPromise = await Promise.all([fetchFollowers(id)]);
-    const followers = followersPromise[0].count_of_value;
+    const followers = followersPromise[0];
 
     const latestPosts: JSX.Element = (await LatestPosts({mode:"user", id:""}))!;
 
@@ -34,7 +38,7 @@ export default async function Page() {
                     alt="Profile" 
                   />
                   <h1 className={`${lusitana.className} text-2xl font-bold text-gray-900 mt-4`}>{profile.name}</h1>
-                  <p className={`${lusitana.className} text-lg text-gray-700 mt-2`}>{followers} Followers</p>
+                  <FollowerModal followers={followers} followerCount={followerCount} />
                   <p className={`${lusitana.className}`}>{bio}</p>
                 </div>
               </div>

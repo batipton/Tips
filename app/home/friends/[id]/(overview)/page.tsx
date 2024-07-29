@@ -1,10 +1,12 @@
 import Form from '@/app/ui/invoices/edit-form';
+import React from 'react';
 import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
-import { fetchProfile, isFriend, fetchFollowers} from '@/app/lib/data';
+import { fetchProfile, isFriend, fetchFollowers, fetchFollowersCount } from '@/app/lib/data';
 import LatestPosts from '@/app/ui/dashboard/latest-posts';
 import { lusitana } from '@/app/ui/fonts';
 import { auth } from "@/auth"
-import FollowButton from '@/app/ui/followers/follow-button';
+import FollowerModal  from '@/app/ui/followers/follower-information';
+import FollowButton from '@/app/ui/followers/follow-button'
 import { redirect } from 'next/navigation'
 
 export default async function Page({ params }: { params: { id: string } }) {
@@ -26,11 +28,15 @@ export default async function Page({ params }: { params: { id: string } }) {
     const friend = await Promise.all([isFriend("" + user.id, id)]);
     const following = friend[0].rows.length != 0;
 
+    const followerCountPromise = await Promise.all([fetchFollowersCount(id)]);
+    const followerCount = followerCountPromise[0].count_of_value;
+
     const followersPromise = await Promise.all([fetchFollowers(id)]);
-    const followers = followersPromise[0].count_of_value;
+    const followers = followersPromise[0];
     
 
     const latestPosts: JSX.Element = (await LatestPosts({mode:"follower", id:id}))!;
+
 
   return (
     <div>
@@ -47,7 +53,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                 alt="Profile" 
               />
               <h1 className={`${lusitana.className} text-2xl font-bold text-gray-900 mt-4`}>{profile.name}</h1>
-              <p className={`${lusitana.className} text-lg text-gray-700 mt-2`}>{followers} Followers</p>
+              <FollowerModal followers={followers} followerCount={followerCount} />
               <p className={`${lusitana.className}`}>{bio}</p>
               <FollowButton isFollowing={following} id={id} userid={user.id || ""} />
             </div>

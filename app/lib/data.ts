@@ -252,6 +252,23 @@ export async function fetchProfile(id : string) {
 export async function fetchFollowers(id : string) {
   try {
     const data = await sql`
+    SELECT *
+    FROM users u
+    JOIN following f ON u.id = f.follower
+    WHERE f.followed = ${id};
+    `
+    
+    const followers = data.rows;
+    return followers;
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch profile.');
+  }
+}
+
+export async function fetchFollowersCount(id : string) {
+  try {
+    const data = await sql`
     SELECT COUNT(*) AS count_of_value
     FROM following
     WHERE followed = ${id};
