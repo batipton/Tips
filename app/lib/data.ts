@@ -9,7 +9,8 @@ import {
   LatestPost,
   Revenue,
   ProfileField,
-  FormattedFollowersTable
+  FormattedFollowersTable,
+  FormattedComments
 } from './definitions';
 import { formatCurrency } from './utils';
 
@@ -360,13 +361,24 @@ export async function getCurrentUser() {
 
 export async function fetchComments(postid:string) {
   try {
-    const {rows, fields} = await sql`
+    const {rows, fields} = await sql<FormattedComments>`
       SELECT 
-        comments.text,
-        comments.commenter_id,
-        comments.date
-      FROM comments
-      WHERE post_id=${postid}
+          comments.id AS comment_id, 
+          comments.post_id, 
+          comments.text, 
+          comments.date, 
+          comments.commenter_id, 
+          users.id AS user_id, 
+          users.name,
+          users.image_url 
+      FROM 
+          comments
+      JOIN 
+          users ON comments.commenter_id = users.id
+      WHERE 
+          comments.post_id = ${postid}
+      ORDER BY 
+          comments.date DESC;
     `;
 
     console.log("rows:", rows);

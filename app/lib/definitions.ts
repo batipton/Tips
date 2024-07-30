@@ -126,3 +126,14 @@ export type InvoiceForm = {
   amount: number;
   status: 'pending' | 'paid';
 };
+
+export type FormattedComments = {
+  comment_id: string;
+  post_id: string;
+  text: string;
+  date: string;
+  commenter_id: string;
+  user_id: string;
+  name: string;
+  image_url: string;
+}

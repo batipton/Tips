@@ -27,7 +27,6 @@ export default function FollowerModal({followers, followerCount}:{followers:Form
 
 
 
-    console.log("followers...", followers);
 
     return (
         <div>

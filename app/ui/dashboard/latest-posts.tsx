@@ -1,8 +1,9 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import { lusitana } from '@/app/ui/fonts';
-import { fetchLatestPosts, getCurrentUser } from '@/app/lib/data';
+import { fetchLatestPosts, getCurrentUser, fetchComments } from '@/app/lib/data';
 import LikeButton from './like-button';
+import CommentButton from './comment-button';
 import { auth } from "@/auth";
 import Comments  from '@/app/ui/dashboard/comments';
 import CommentForm  from '@/app/ui/dashboard/comment-form';
@@ -21,6 +22,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
   const latestPosts = await fetchLatestPosts(mode, session.user?.id!, id);
   const userid = session.user?.id!;
 
+
   const user = await getCurrentUser();
 
   const timeAgo = new TimeAgo('en-US');
@@ -33,12 +35,13 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
       <div className="flex grow flex-col justify-between rounded-xl bg-gray-50 p-4">
         {/* NOTE: comment in this code when you get to this point in the course */}
         <div className="bg-white px-6">
-          {latestPosts.map((post, i) => {
+          {latestPosts.map(async (post, i) => {
             const time = timeAgo.format(new Date(post.date))
             const htmlToReactParser = new HtmlToReactParser();
             const reactElement = htmlToReactParser.parse(post.text);
+            const comments = await fetchComments(post.id);
             return (
-              <div key={post.id}>
+              <div key={post.id} >
                 <div
                   className={clsx(
                     'flex flex-row items-center justify-between py-4',
@@ -63,23 +66,15 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
                       </p>
                     </div>
                   </div>
-                  {/* <p
-                    className={`${lusitana.className} truncate text-sm font-medium md:text-base`}
-                  >
-                    {post.tips}
-                  </p> */}
                 </div>
                 <div>
-                  {/* <p className={`${lusitana.className} text-sm font-medium md:text-base`}>
-                    {post.text}
-                  </p> */}
                   {reactElement}
                 </div>
-                <LikeButton id={post.id} tips={post.tips} userid={session.user?.id} posterid={post.customer_id} tokens={user!.tokens}/>
-                <div className="px-8">
-                  <Comments postid={post.id}/>
-                  <CommentForm postid={post.id} userid={userid} />
+                <div className="flex">
+                  <LikeButton id={post.id} tips={post.tips} userid={session.user?.id} posterid={post.customer_id} tokens={user!.tokens}/>
+                  <CommentButton comments={comments} postid={post.id} userid={userid} />    
                 </div>
+                
               </div>
             );
           })}
