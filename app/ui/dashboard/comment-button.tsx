@@ -32,12 +32,12 @@ export default function CommentButton({comments, postid, userid}:{comments:Forma
 
 
     return (
-        <div className="flex flex-row mt-2 mb-2">
+        <div className="flex flex-row mt-2 mb-2 mr-2">
             <button type="button" title="see comments" className="text-green-500 bg-transparent font-medium rounded-lg text-sm py-1 dark:bg-green-400 dark:hover:bg-green-500 focus:outline-none dark:focus:ring-green-700" 
             onClick={handleOpen}>
-                <ChatBubbleOvalLeftIcon className="w-8 text-green-500"  />
+                <ChatBubbleOvalLeftIcon className="w-7 text-green-500"  />
             </button>
-            <p className="px-3 mb-2 mt-2">{comments.length}</p>
+            <p className="px-1 mb-2 mt-2">{comments.length}</p>
             <Modal
             open={open}
             onClose={handleClose}

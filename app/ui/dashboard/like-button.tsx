@@ -20,12 +20,12 @@ export default function LikeButton({tips=0, id="", userid="", posterid="", token
   }
 
   return (
-    <div className="flex flex-row mt-2 mb-2">
+    <div className="flex flex-row mt-2 mb-2 mr-2">
       <button type="button" title="give tip" className="text-green-500 bg-transparent font-medium rounded-lg text-sm py-1 dark:bg-green-400 dark:hover:bg-green-500 focus:outline-none dark:focus:ring-green-700" 
       onClick={handleClick}>
-        <BanknotesIcon className="w-8 text-green-500"  />
+        <BanknotesIcon className="w-7 text-green-500"  />
       </button>
-      <p className="px-3 mb-2 mt-2">{likes}</p>
+      <p className="px-1 mb-2 mt-2">{likes}</p>
     </div>
   );
 }
