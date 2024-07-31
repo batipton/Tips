@@ -17,6 +17,7 @@ export default async function InvoicesTable({
         <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
           <div className="md:hidden">
             {invoices?.map((invoice) => (
+              <Link href={`/home/followers/${invoice.id}`}>
               <div
                 key={invoice.id}
                 className="mb-2 w-full rounded-md bg-white p-4"
@@ -30,6 +31,7 @@ export default async function InvoicesTable({
                   </div>
                 </div>
               </div>
+              </Link>
             ))}
           </div>
           <table className="hidden min-w-full text-gray-900 md:table">
