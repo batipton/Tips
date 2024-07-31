@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import Image from 'next/image';
-import { lusitana } from '@/app/ui/fonts';
+import { lusitana } from '@/app/ui/general/fonts';
 import { fetchLatestPosts, getCurrentUser, fetchComments } from '@/app/lib/data';
 import LikeButton from '@/app/ui/posts/like-button';
 import CommentButton from '@/app/ui/posts/comment-button';
