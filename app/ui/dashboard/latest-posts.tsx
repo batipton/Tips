@@ -58,7 +58,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
 
                     />
                     <div className="min-w-0">
-                      <Link href={`/home/friends/${post.customer_id}`} className="truncate text-sm font-semibold md:text-base">
+                      <Link href={`/home/followers/${post.customer_id}`} className="truncate text-sm font-semibold md:text-base">
                         {post.username}
                       </Link>
                       <p className="hidden text-sm text-gray-500 sm:block">

@@ -25,7 +25,7 @@ function Comment({comment, key}:{comment:FormattedComments, key:number}) {
                       className="mr-4 h-8 w-8 rounded-full"
 
                     />
-                <Link href={`/home/friends/${comment.user_id}`} className="truncate text-sm font-semibold md:text-base">
+                <Link href={`/home/followers/${comment.user_id}`} className="truncate text-sm font-semibold md:text-base">
                     {comment.username}
                 </Link>
             </div>
