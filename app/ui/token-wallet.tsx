@@ -12,8 +12,8 @@ export default async function TokenWallet() {
     const numberOfTokens = await fetchTokens(session.user.id!)
 
     return (
-        <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 h-16 w-1/6 bg-green-500 text-white p-4 text-center rounded-t-lg">
-            <div className="flex items-center justify-center">
+        <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 h-16 bg-green-500 text-white p-4 text-center rounded-t-lg">
+            <div className="flex items-center justify-center min-w-min">
                 <CurrencyDollarIcon className="w-6 mr-2" />
                 <p>{numberOfTokens}</p>
             </div>
