@@ -17,7 +17,7 @@ TimeAgo.addDefaultLocale(en)
 export default async function LatestPosts({ mode, id }:{ mode:string, id:string }) {
   const session = await auth();
 
-  if (!session?.user) return null
+  if (!session?.user) return null;
   
   const latestPosts = await fetchLatestPosts(mode, session.user?.id!, id);
   const userid = session.user?.id!;
