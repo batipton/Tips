@@ -8,7 +8,8 @@ import CountdownTimer from "@/app/ui/dashboard/timer";
 export default async function TokenWallet() {
     const session = await auth();
     if (!session?.user) return null;
-    const numberOfTokens = await fetchTokens(session.user.id)
+    if  (!session.user.id) return null;
+    const numberOfTokens = await fetchTokens(session.user.id!)
 
     return (
         <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 h-16 w-1/6 bg-green-500 text-white p-4 text-center rounded-t-lg">
