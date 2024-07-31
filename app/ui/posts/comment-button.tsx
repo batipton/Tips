@@ -19,7 +19,7 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-  };
+};
 
 export default function CommentButton({comments, postid, userid}:{comments:FormattedComments[], postid:string, userid:string}) {
     const [open, setOpen] = React.useState(false);

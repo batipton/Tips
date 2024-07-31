@@ -7,6 +7,7 @@ import CommentButton from '@/app/ui/posts/comment-button';
 import { auth } from "@/auth";
 import Comments  from '@/app/ui/posts/comments';
 import CommentForm  from '@/app/ui/posts/comment-form';
+import PostSettings from '@/app/ui/posts/post-settings';
 import Link from 'next/link';
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
@@ -66,6 +67,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
                       </p>
                     </div>
                   </div>
+                  <PostSettings userid={userid} posterid={post.customer_id} postid={post.id}/>
                 </div>
                 <div>
                   {reactElement}

@@ -206,6 +206,13 @@ export async function createNewPost(text:string) {
   revalidatePath('/home');
 }
 
+export async function deletePost(postid:string) {
+  await sql`
+  DELETE FROM posts WHERE id=${postid}`
+
+  revalidatePath('/home');
+}
+
 export async function createNewComment(postid:string, userid:string, comment:string) {
     const date = new Date().toISOString().split('T')[0];
     await sql`
