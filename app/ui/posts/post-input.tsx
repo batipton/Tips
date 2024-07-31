@@ -33,6 +33,7 @@ const PostInput: React.FC = () => {
     if(quill !== undefined && quill!.getText() != "") {
       createNewPost(quill.getSemanticHTML());
     }
+    quill.setContents('');
     setPostContent('');
   };
 
