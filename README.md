@@ -1,5 +1,5 @@
-## Next.js App Router Course - Starter
+## Nest.js Social Medie Project
 
-This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application.
+Created a social media app using Next.js. The social media has a currency system where users are given tokens everyday that
 
-For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
+they can use to tip posts that they like.
