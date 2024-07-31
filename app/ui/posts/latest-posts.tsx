@@ -2,11 +2,11 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { lusitana } from '@/app/ui/fonts';
 import { fetchLatestPosts, getCurrentUser, fetchComments } from '@/app/lib/data';
-import LikeButton from './like-button';
-import CommentButton from './comment-button';
+import LikeButton from '@/app/ui/posts/like-button';
+import CommentButton from '@/app/ui/posts/comment-button';
 import { auth } from "@/auth";
-import Comments  from '@/app/ui/dashboard/comments';
-import CommentForm  from '@/app/ui/dashboard/comment-form';
+import Comments  from '@/app/ui/posts/comments';
+import CommentForm  from '@/app/ui/posts/comment-form';
 import Link from 'next/link';
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'

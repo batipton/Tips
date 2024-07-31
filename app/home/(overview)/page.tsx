@@ -1,6 +1,6 @@
-import LatestPosts from '@/app/ui/dashboard/latest-posts';
-import { lusitana } from '@/app/ui/fonts';
-import PostInput from '@/app/ui/post-input';
+import LatestPosts from '@/app/ui/posts/latest-posts';
+import { lusitana } from '@/app/ui/general/fonts';
+import PostInput from '@/app/ui/posts/post-input';
 
 
 export default async function Page() {

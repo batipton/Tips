@@ -1,7 +1,7 @@
 'use client'
 import { createNewPost } from "@/app/lib/actions";
 import React, { useState } from 'react';
-import { lusitana } from '@/app/ui/fonts';
+import { lusitana } from '@/app/ui/general/fonts';
 import { useQuill } from 'react-quilljs';
 import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';

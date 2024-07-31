@@ -1,5 +1,5 @@
-import SideNav from '@/app/ui/dashboard/sidenav';
-import TokenWallet from '@/app/ui/token-wallet';
+import SideNav from '@/app/ui/nav/sidenav';
+import TokenWallet from '@/app/ui/wallet/token-wallet';
 
 export const experimental_ppr = true;
 

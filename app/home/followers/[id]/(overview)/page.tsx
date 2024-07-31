@@ -1,9 +1,7 @@
-import Form from '@/app/ui/invoices/edit-form';
 import React from 'react';
-import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
 import { fetchProfile, isFriend, fetchFollowers, fetchFollowersCount } from '@/app/lib/data';
-import LatestPosts from '@/app/ui/dashboard/latest-posts';
-import { lusitana } from '@/app/ui/fonts';
+import LatestPosts from '@/app/ui/posts/latest-posts';
+import { lusitana } from '@/app/ui/general/fonts';
 import { auth } from "@/auth"
 import FollowerModal  from '@/app/ui/followers/follower-information';
 import FollowButton from '@/app/ui/followers/follow-button'

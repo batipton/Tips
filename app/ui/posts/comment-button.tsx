@@ -6,8 +6,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import Comments  from '@/app/ui/dashboard/comments';
-import CommentForm  from '@/app/ui/dashboard/comment-form';
+import Comments  from '@/app/ui/posts/comments';
+import CommentForm  from '@/app/ui/posts/comment-form';
 
 const style = {
     position: 'absolute' as 'absolute',

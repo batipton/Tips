@@ -1,7 +1,7 @@
-import Pagination from '@/app/ui/invoices/pagination';
-import Search from '@/app/ui/search';
-import Table from '@/app/ui/invoices/table';
-import { lusitana } from '@/app/ui/fonts';
+import Pagination from '@/app/ui/search/pagination';
+import Search from '@/app/ui/search/search';
+import Table from '@/app/ui/search/table';
+import { lusitana } from '@/app/ui/general/fonts';
 import { fetchInvoicesPages } from '@/app/lib/data';
 
  
@@ -33,7 +33,6 @@ export default async function Page({
       <div className="mt-5 flex w-full justify-center">
         <Pagination totalPages={totalPages} />
       </div>
-      
     </div>
   );
 }

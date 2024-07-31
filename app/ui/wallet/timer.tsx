@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react';
-import { timeUntilNextIncrement } from '../../utils/token-timer';
+import { timeUntilNextIncrement } from '@/app/utils/token-timer';
 
 export default function CountdownTimer() {
   const [timeRemaining, setTimeRemaining] = useState(timeUntilNextIncrement());

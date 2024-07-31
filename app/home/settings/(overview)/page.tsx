@@ -18,8 +18,8 @@ export default async function Page() {
 
   const user = await getCurrentUser();
 
-  const username = user.username;
-  const name = user.name;
+  const username = user.username!;
+  const name = user.name!;
 
   const profilePromise = await Promise.all([fetchProfile(id)]);
   const profile = profilePromise[0];
