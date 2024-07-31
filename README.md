@@ -1,5 +1,3 @@
 ## Nest.js Social Medie Project
 
-Created a social media app using Next.js. The social media has a currency system where users are given tokens everyday that
-
-they can use to tip posts that they like.
+Created a social media app using Next.js. The social media has a currency system where users are given tokens everyday that they can use to tip posts that they like.
