@@ -9,6 +9,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <meta name="description" content="Welcome to Tips, where your content has real value! 
+            Earn tokens daily and spend those tokens to access, promote, and reward 
+            the best content in our community. 
+            Engage, earn, and discover with Tips!" />
       <body className={`${inter.className} antialiased`}>
         {children}
         <Analytics />
