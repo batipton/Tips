@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import NavLinks from '@/app/ui/nav/nav-links';
-import AcmeLogo from '@/app/ui/general/logo';
+import Logo from '@/app/ui/general/logo';
 import { PowerIcon } from '@heroicons/react/24/outline';
 import { signOut, auth } from '@/auth';
 import { fetchTokens } from '@/app/lib/data';
@@ -21,7 +21,7 @@ export default async function SideNav() {
         href="/"
       >
         <div className="w-32 text-white md:w-40">
-          <AcmeLogo />
+          <Logo />
         </div>
       </Link>
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
