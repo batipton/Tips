@@ -4,7 +4,6 @@ import Logo from '@/app/ui/general/logo';
 import { PowerIcon } from '@heroicons/react/24/outline';
 import { signOut, auth } from '@/auth';
 import { fetchTokens } from '@/app/lib/data';
-import CountdownTimer from "./timer";
 
 
 export default async function SideNav() {
@@ -27,10 +26,6 @@ export default async function SideNav() {
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
         <NavLinks />
         <div className="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"></div>
-        {/* <div> {numberOfTokens} Tokens</div>
-        <div>
-          <CountdownTimer />
-        </div> */}
         <form action={async () => {
             'use server';
             await signOut();
