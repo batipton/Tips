@@ -5,7 +5,8 @@ import {
   HomeIcon,
   DocumentDuplicateIcon,
   Cog6ToothIcon,
-  UserCircleIcon
+  UserCircleIcon,
+  MagnifyingGlassIcon
 } from '@heroicons/react/24/outline';
 
 import Link from 'next/link';
@@ -16,7 +17,7 @@ import clsx from 'clsx';
 // Depending on the size of the application, this would be stored in a database.
 const links = [
   { name: 'Home', href: '/home', icon: HomeIcon },
-  { name: 'Followers', href: '/home/followers', icon: UserGroupIcon },
+  { name: 'Search', href: '/home/followers', icon: MagnifyingGlassIcon },
   { name: 'Profile', href: '/home/profile', icon: UserCircleIcon },
   { name: 'Settings', href: '/home/settings', icon: Cog6ToothIcon}
 ];

@@ -46,10 +46,12 @@ export default async function InvoicesTable({
                   key={invoice.id}
                   className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
                 >
-                  <td className="whitespace-nowrap py-3 pl-6 pr-3 hover:bg-sky-100 hover:text-green-500">
-                    <Link href={`/home/followers/${invoice.id}`} className="flex items-center gap-3 ">
+                  <td className="whitespace-nowrap hover:bg-sky-100 hover:text-green-500">
+                    <Link href={`/home/followers/${invoice.id}`}>
+                      <div className="flex items-center gap-3  py-3 pl-6 pr-3">
                         <img src={invoice.image_url} className="rounded-full h-10 w-10 mr-2 " />
                         {invoice.username}
+                      </div>
                     </Link>
                   </td>
                 </tr>
