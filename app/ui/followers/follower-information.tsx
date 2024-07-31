@@ -54,7 +54,7 @@ export default function FollowerModal({followers, followerCount}:{followers:Form
                         <td className="whitespace-nowrap py-3 pl-6 pr-3 hover:bg-sky-100 hover:text-green-500">
                             <Link href={`/home/friends/${follower.follower}`} className="flex items-center gap-3 ">
                                 <img src={follower.image_url} className="rounded-full h-10 w-10 mr-2 " />
-                                {follower.name}
+                                {follower.username}
                             </Link>
                         </td>
                         </tr>
