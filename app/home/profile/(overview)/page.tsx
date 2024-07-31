@@ -35,9 +35,9 @@ export default async function Page() {
                   <img 
                     className="w-32 h-32 rounded-full object-cover" 
                     src={profile.image_url} 
-                    alt="Profile" 
+                    alt={`${profile.username}'s profile picture`}
                   />
-                  <h1 className={`${lusitana.className} text-2xl font-bold text-gray-900 mt-4`}>{profile.name}</h1>
+                  <h1 className={`${lusitana.className} text-2xl font-bold text-gray-900 mt-4`}>{profile.username}</h1>
                   <FollowerModal followers={followers} followerCount={followerCount} />
                   <p className={`${lusitana.className}`}>{bio}</p>
                 </div>

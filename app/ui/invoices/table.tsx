@@ -32,7 +32,7 @@ export default async function InvoicesTable({
                         alt={`${invoice.name}'s profile picture`}
                       /> */}
                       <img src={invoice.image_url} className="rounded-full h-10 w-10 mr-2 " />
-                      <p>{invoice.name}</p>
+                      <p>{invoice.username}</p>
                     </div>
                   </div>
                 </div>
@@ -63,7 +63,7 @@ export default async function InvoicesTable({
                           alt={`${invoice.name}'s profile picture`}
                         /> */}
                         <img src={invoice.image_url} className="rounded-full h-10 w-10 mr-2 " />
-                        {invoice.name}
+                        {invoice.username}
                     </Link>
                   </td>
                 </tr>

@@ -53,13 +53,13 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
                   <div className="flex items-center">
                     <img
                       src={post.image_url}
-                      alt={`${post.name}'s profile picture`}
+                      alt={`${post.username}'s profile picture`}
                       className="mr-4 h-10 w-10 rounded-full"
 
                     />
                     <div className="min-w-0">
                       <Link href={`/home/friends/${post.customer_id}`} className="truncate text-sm font-semibold md:text-base">
-                        {post.name}
+                        {post.username}
                       </Link>
                       <p className="hidden text-sm text-gray-500 sm:block">
                         {time}

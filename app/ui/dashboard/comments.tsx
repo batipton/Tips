@@ -21,12 +21,12 @@ function Comment({comment, key}:{comment:FormattedComments, key:number}) {
             <div className="flex items-center">
                 <img
                       src={comment.image_url}
-                      alt={`${comment.name}'s profile picture`}
+                      alt={`${comment.username}'s profile picture`}
                       className="mr-4 h-8 w-8 rounded-full"
 
                     />
                 <Link href={`/home/friends/${comment.user_id}`} className="truncate text-sm font-semibold md:text-base">
-                    {comment.name}
+                    {comment.username}
                 </Link>
             </div>
             <div>

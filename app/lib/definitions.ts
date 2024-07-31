@@ -4,7 +4,7 @@
 // However, these types are generated automatically if you're using an ORM such as Prisma.
 export type User = {
   id: string;
-  name: string;
+  username: string;
   email: string;
   password: string;
   image_url: string;
@@ -52,7 +52,7 @@ export type LatestInvoice = {
 export type LatestPost = {
   tips: number;
   text: string;
-  name: string;
+  username: string;
   image_url: string;
   email: string;
   customer_id: string;
@@ -68,7 +68,7 @@ export type LatestInvoiceRaw = Omit<LatestInvoice, 'amount'> & {
 export type InvoicesTable = {
   id: string;
   customer_id: string;
-  name: string;
+  username: string;
   email: string;
   image_url: string;
   date: string;
@@ -78,7 +78,7 @@ export type InvoicesTable = {
 
 export type CustomersTableType = {
   id: string;
-  name: string;
+  username: string;
   email: string;
   image_url: string;
   total_invoices: number;
@@ -88,7 +88,7 @@ export type CustomersTableType = {
 
 export type FormattedCustomersTable = {
   id: string;
-  name: string;
+  username: string;
   email: string;
   image_url: string;
   total_invoices: number;
@@ -103,7 +103,7 @@ export type FormattedFollowersTable = {
   follower: string;
   id: string;
   image_url: string;
-  name: string;
+  username: string;
   password: string;
   tokens: number
 };
@@ -111,11 +111,11 @@ export type FormattedFollowersTable = {
 
 export type CustomerField = {
   id: string;
-  name: string;
+  username: string;
 };
 
 export type ProfileField = {
-  name: string;
+  username: string;
   image_url: string;
   bio: string;
 }
@@ -134,6 +134,6 @@ export type FormattedComments = {
   date: string;
   commenter_id: string;
   user_id: string;
-  name: string;
+  username: string;
   image_url: string;
 }

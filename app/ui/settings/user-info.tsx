@@ -6,12 +6,13 @@ import { UploadButton } from "@/app/utils/uploadthing";
 
 import React from 'react';
 
-export default function UserInfo({id, name, bio, url}:{id:string, name:string, bio:string, url:string}) {
-    const [username, setUsername] = React.useState(name);
+export default function UserInfo({id, username, name, bio, url}:{id:string, username:string, name:string, bio:string, url:string}) {
+    const [username_, setUsername] = React.useState(username);
+    const [name_, setName] = React.useState(name);
     const [bio_, setBio] = React.useState(bio);
 
     function handleSaveChanges() {
-        updateProfileInformation(id, username, bio_);
+        updateProfileInformation(id, username_, name_, bio_);
     };
 
     return (
@@ -53,8 +54,21 @@ export default function UserInfo({id, name, bio, url}:{id:string, name:string, b
                     id="username"
                     type="text"
                     placeholder={username}
-                    value={username}
+                    value={username_}
                     onChange={(e) => setUsername(e.target.value)}
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+                    Name
+                    </label>
+                    <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="name"
+                    type="text"
+                    placeholder={name}
+                    value={name_}
+                    onChange={(e) => setName(e.target.value)}
                     />
                 </div>
                 <div className="mb-4">

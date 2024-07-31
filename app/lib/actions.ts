@@ -90,7 +90,7 @@ export async function authenticate(
 export async function signupUser(formData : FormData) {
   try {
     const password = await bcrypt.hash(formData.get('password')?.toString()!, 10);
-    const name = formData.get('name')?.toString();
+    const username = formData.get('username')?.toString();
     const email = formData.get('email')?.toString();
     const image_url = '/customers/default.png';
     const tokens = 20;
@@ -104,8 +104,8 @@ export async function signupUser(formData : FormData) {
     }
 
     await sql`
-      INSERT INTO users (name, email, password, image_url, tokens)
-      VALUES (${name}, ${email}, ${password}, ${image_url}, ${tokens})
+      INSERT INTO users (username, email, password, image_url, tokens)
+      VALUES (${username}, ${email}, ${password}, ${image_url}, ${tokens})
     `
 
     redirect('/login');
@@ -180,11 +180,11 @@ export async function updateImageUrl(image_url: string) {
   revalidatePath('/home');
 }
 
-export async function updateProfileInformation(id:string, username:string, bio:string) {
+export async function updateProfileInformation(id:string, username:string, name:string, bio:string) {
 
   await sql`
   UPDATE users
-  SET name= ${username}, bio= ${bio}
+  SET username= ${username}, bio= ${bio}, name=${name}
   WHERE id= ${id}
   `
 

@@ -49,7 +49,7 @@ export async function fetchLatestPosts(mode:string, userid:string, id:string) {
   try {
     if(mode == "followers") {
       const data = await sql<LatestPost>`
-      SELECT p.tips, p.text, p.date, u.name, u.image_url, u.email, p.customer_id, p.id 
+      SELECT p.tips, p.text, p.date, u.username, u.image_url, u.email, p.customer_id, p.id 
       FROM posts p 
       LEFT JOIN following f ON p.customer_id = f.followed AND f.follower = ${userid} 
       JOIN users u ON p.customer_id = u.id 
@@ -61,7 +61,7 @@ export async function fetchLatestPosts(mode:string, userid:string, id:string) {
       return latestPosts;
     } else if (mode == "user") {
       const data = await sql<LatestPost>`
-      SELECT posts.tips, posts.text, posts.date, users.name, users.image_url, users.email, posts.customer_id, posts.id
+      SELECT posts.tips, posts.text, posts.date, users.username, users.image_url, users.email, posts.customer_id, posts.id
       FROM posts
       JOIN users ON posts.customer_id = users.id
       WHERE posts.customer_id = ${userid}
@@ -71,7 +71,7 @@ export async function fetchLatestPosts(mode:string, userid:string, id:string) {
       return latestPosts;
     } else if (mode == "follower") {
       const data = await sql<LatestPost>`
-      SELECT posts.tips, posts.text, posts.date, users.name, users.image_url, users.email, posts.customer_id, posts.id
+      SELECT posts.tips, posts.text, posts.date, users.username, users.image_url, users.email, posts.customer_id, posts.id
       FROM posts
       JOIN users ON posts.customer_id = users.id
       WHERE posts.customer_id = ${id}
@@ -81,7 +81,7 @@ export async function fetchLatestPosts(mode:string, userid:string, id:string) {
       return latestPosts;
     } else {
       const data = await sql<LatestPost>`
-      SELECT posts.tips, posts.text, posts.date, users.name, users.image_url, users.email, posts.customer_id, posts.id
+      SELECT posts.tips, posts.text, posts.date, users.username, users.image_url, users.email, posts.customer_id, posts.id
       FROM posts
       JOIN users ON posts.customer_id = users.id
       ORDER BY posts.date DESC
@@ -153,12 +153,12 @@ export async function fetchFilteredInvoices(
   try {
     const invoices = await sql<InvoicesTable>`
       SELECT
-        users.name,
+        users.username,
         users.id,
         users.image_url
       FROM users
       WHERE
-        users.name ILIKE ${`%${query}%`} 
+        users.username ILIKE ${`%${query}%`} 
       LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
     `;
 
@@ -172,14 +172,10 @@ export async function fetchFilteredInvoices(
 export async function fetchInvoicesPages(query: string) {
   try {
     const count = await sql`SELECT COUNT(*)
-    FROM invoices
-    JOIN customers ON invoices.customer_id = customers.id
+    FROM users
     WHERE
-      customers.name ILIKE ${`%${query}%`} OR
-      customers.email ILIKE ${`%${query}%`} OR
-      invoices.amount::text ILIKE ${`%${query}%`} OR
-      invoices.date::text ILIKE ${`%${query}%`} OR
-      invoices.status ILIKE ${`%${query}%`}
+      users.username ILIKE ${`%${query}%`} OR
+      users.name ILIKE ${`%${query}%`}
   `;
 
     const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
@@ -220,9 +216,9 @@ export async function fetchCustomers() {
     const data = await sql<CustomerField>`
       SELECT
         id,
-        name
+        username
       FROM customers
-      ORDER BY name ASC
+      ORDER BY username ASC
     `;
 
     const customers = data.rows;
@@ -237,7 +233,7 @@ export async function fetchProfile(id : string) {
   try {
     const data = await sql<ProfileField>`
     SELECT
-      name,
+      username,
       image_url,
       bio
     FROM users
@@ -301,7 +297,7 @@ export async function fetchFilteredCustomers(query: string) {
     const data = await sql<CustomersTableType>`
 		SELECT
 		  customers.id,
-		  customers.name,
+		  customers.username,
 		  customers.email,
 		  customers.image_url,
 		  COUNT(invoices.id) AS total_invoices,
@@ -310,10 +306,10 @@ export async function fetchFilteredCustomers(query: string) {
 		FROM customers
 		LEFT JOIN invoices ON customers.id = invoices.customer_id
 		WHERE
-		  customers.name ILIKE ${`%${query}%`} OR
+		  customers.username ILIKE ${`%${query}%`} OR
         customers.email ILIKE ${`%${query}%`}
-		GROUP BY customers.id, customers.name, customers.email, customers.image_url
-		ORDER BY customers.name ASC
+		GROUP BY customers.id, customers.username, customers.email, customers.image_url
+		ORDER BY customers.username ASC
 	  `;
 
     const customers = data.rows.map((customer) => ({
@@ -337,6 +333,7 @@ export async function getCurrentUser() {
   try {
     const data = await sql`
     SELECT 
+      users.username,
       users.name,
       users.image_url,
       users.tokens,
@@ -345,6 +342,7 @@ export async function getCurrentUser() {
     WHERE id = ${session.user.id}`;
 
     const user = {
+      username: data.rows[0].username,
       name: data.rows[0].name,
       image_url: data.rows[0].image_url,
       tokens: data.rows[0].tokens,
@@ -369,7 +367,7 @@ export async function fetchComments(postid:string) {
           comments.date, 
           comments.commenter_id, 
           users.id AS user_id, 
-          users.name,
+          users.username,
           users.image_url 
       FROM 
           comments
