@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { createNewComment } from "@/app/lib/actions"
 
 
-export default function CommentForm({postid, userid}:{postid:string, userid:string}) {
+export default function CommentForm({postid, userid, posterid}:{postid:string, userid:string, posterid:string}) {
     
     function comment(formData:FormData) {
         const comment = formData.get("comment")?.toString();
         if(comment != null) {
-            createNewComment(postid, userid, comment);
+            createNewComment(postid, userid, comment, posterid);
         }
     }
 

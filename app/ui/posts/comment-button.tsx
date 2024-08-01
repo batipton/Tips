@@ -21,7 +21,7 @@ const style = {
     p: 4,
 };
 
-export default function CommentButton({comments, postid, userid}:{comments:FormattedComments[], postid:string, userid:string}) {
+export default function CommentButton({comments, postid, userid, posterid}:{comments:FormattedComments[], postid:string, userid:string, posterid:string}) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -45,7 +45,7 @@ export default function CommentButton({comments, postid, userid}:{comments:Forma
             aria-describedby="modal-modal-description">
                 <Box sx={style}>
                     <Comments comments={comments}/>
-                    <CommentForm postid={postid} userid={userid} />
+                    <CommentForm postid={postid} userid={userid} posterid={posterid} />
                 </Box>
             </Modal>
         </div>

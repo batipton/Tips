@@ -70,7 +70,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
                 </div>
                 <div className="flex">
                   <LikeButton id={post.id} tips={post.tips} userid={session.user?.id} posterid={post.customer_id} tokens={user!.tokens}/>
-                  <CommentButton comments={comments} postid={post.id} userid={userid} />    
+                  <CommentButton comments={comments} postid={post.id} userid={userid} posterid={post.customer_id} />    
                 </div>
               </div>
             );

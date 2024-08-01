@@ -6,7 +6,8 @@ import {
   DocumentDuplicateIcon,
   Cog6ToothIcon,
   UserCircleIcon,
-  MagnifyingGlassIcon
+  MagnifyingGlassIcon,
+  BellIcon
 } from '@heroicons/react/24/outline';
 
 import Link from 'next/link';
@@ -19,6 +20,7 @@ const links = [
   { name: 'Home', href: '/home', icon: HomeIcon },
   { name: 'Search', href: '/home/followers', icon: MagnifyingGlassIcon },
   { name: 'Profile', href: '/home/profile', icon: UserCircleIcon },
+  { name: 'Notifications', href: '/home/notifications', icon: BellIcon },
   { name: 'Settings', href: '/home/settings', icon: Cog6ToothIcon}
 ];
 

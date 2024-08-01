@@ -65,6 +65,7 @@ export async function fetchLatestPosts(mode:string, userid:string, id:string) {
   }
 }
 
+
 export async function fetchTokens(userid: string) {
   try {
     const tokenCountPromise = sql`SELECT users.tokens FROM users WHERE id=${userid}`
@@ -238,12 +239,31 @@ export async function fetchComments(postid:string) {
           comments.date DESC;
     `;
 
-    console.log("rows:", rows);
-    console.log("fields:", fields);
-
     return rows;
   } catch(err) {
     console.error('Database Error:', err);
     throw new Error(`Failed to fetch comments for post ${postid}`);
+  }
+}
+
+export async function fetchNotifications(userid:string) {
+  try {
+    const {rows, fields} = await sql<Notification>`
+      SELECT *
+      FROM notifications
+      WHERE rec_userid= ${userid}
+      ORDER BY date DESC;    
+    `;
+
+    sql`
+      UPDATE notifications
+      SET seen = true
+      WHERE rec_userid=${userid}
+    `
+
+    return rows;
+  } catch(err) {
+    console.error('Database Error:', err);
+    throw new Error(`Failed to fetch notifications for user ${userid}`);
   }
 }

@@ -137,3 +137,15 @@ export type FormattedComments = {
   username: string;
   image_url: string;
 }
+
+export type Notification = {
+  id string;
+	rec_userid string;
+	send_userid string;
+	seen boolean;
+	type string;
+	postid string;
+	date string;
+}
+
+  

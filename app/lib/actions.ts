@@ -32,6 +32,7 @@ export async function signupUser(formData : FormData) {
   try {
     const password = await bcrypt.hash(formData.get('password')?.toString()!, 10);
     const username = formData.get('username')?.toString();
+    const name = formData.get('name')?.toString();
     const email = formData.get('email')?.toString();
     const image_url = '/customers/default.png';
     const tokens = 20;
@@ -45,8 +46,8 @@ export async function signupUser(formData : FormData) {
     }
 
     await sql`
-      INSERT INTO users (username, email, password, image_url, tokens)
-      VALUES (${username}, ${email}, ${password}, ${image_url}, ${tokens})
+      INSERT INTO users (username, name, email, password, image_url, tokens)
+      VALUES (${username}, ${name}, ${email}, ${password}, ${image_url}, ${tokens})
     `
 
     redirect('/login');
@@ -93,14 +94,18 @@ export async function likePost(postid: string, tips: number, userid: string, pos
     AND tokens > 0
   `;
 
+  createTipNotification(posterid, userid, postid);
+
   revalidatePath('/home');
 }
 
 export async function followProfile(id: string, userid: string) {
   await sql`
-  INSERT INTO following (followed, follower)
-  VALUES (${id}, ${userid})
+    INSERT INTO following (followed, follower)
+    VALUES (${id}, ${userid})
   `;
+
+  createNotification(id, userid, "follow");
 
   revalidatePath('/home');
 }
@@ -160,13 +165,35 @@ export async function deletePost(postid:string) {
   revalidatePath('/home');
 }
 
-export async function createNewComment(postid:string, userid:string, comment:string) {
+export async function createNewComment(postid:string, userid:string, comment:string, posterid:string) {
     const date = new Date().toISOString().split('T')[0];
     await sql`
     INSERT INTO comments (post_id, commenter_id, text, date)
     VALUES (${postid}, ${userid}, ${comment}, ${date})
     `
+
+    createNotification(posterid, userid, "comment", postid);
     revalidatePath('/home');
 }
 
+export async function createTipNotification(rec_userid:string, send_userid, postid:string) {
+  const data = await sql`
+      SELECT * FROM notifications 
+      WHERE rec_userid = ${rec_userid} AND send_userid = ${send_userid} AND postid = ${postid} AND type=${`tip`}
+  `
 
+  if(data.rows.length > 0) {
+    return;
+  }
+
+  createNotification(rec_userid, send_userid, "tip", postid);
+}
+
+export async function createNotification(rec_userid:string, send_userid:string, type:string, postid:string | null) {
+  const date = new Date().toISOString();
+  const test = await sql`
+    INSERT INTO notifications
+    (rec_userid, send_userid, seen, type, postid, date)
+    VALUES (${rec_userid}, ${send_userid}, ${false}, ${type}, ${postid}, ${date});
+  `
+}
