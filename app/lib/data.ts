@@ -10,7 +10,8 @@ import {
   Revenue,
   ProfileField,
   FormattedFollowersTable,
-  FormattedComments
+  FormattedComments,
+  Notification
 } from './definitions';
 import { formatCurrency } from './utils';
 
@@ -254,6 +255,7 @@ export async function fetchNotifications(userid:string) {
       WHERE rec_userid= ${userid}
       ORDER BY date DESC;    
     `;
+
 
     sql`
       UPDATE notifications
