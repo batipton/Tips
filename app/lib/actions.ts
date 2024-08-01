@@ -105,7 +105,7 @@ export async function followProfile(id: string, userid: string) {
     VALUES (${id}, ${userid})
   `;
 
-  createNotification(id, userid, "follow");
+  createNotification(id, userid, "follow", null);
 
   revalidatePath('/home');
 }
