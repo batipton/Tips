@@ -176,7 +176,7 @@ export async function createNewComment(postid:string, userid:string, comment:str
     revalidatePath('/home');
 }
 
-export async function createTipNotification(rec_userid:string, send_userid, postid:string) {
+export async function createTipNotification(rec_userid:string, send_userid:string, postid:string) {
   const data = await sql`
       SELECT * FROM notifications 
       WHERE rec_userid = ${rec_userid} AND send_userid = ${send_userid} AND postid = ${postid} AND type=${`tip`}
