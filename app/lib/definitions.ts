@@ -115,6 +115,7 @@ export type CustomerField = {
 };
 
 export type ProfileField = {
+  id: string;
   username: string;
   image_url: string;
   bio: string;
