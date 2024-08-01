@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import { fetchNotifications, fetchProfile } from "@/app/lib/data";
+import { Notification } from '@/app/lib/definitions'
 import Link from 'next/link';
 
 export default async function NotificationTable() {
@@ -25,7 +26,7 @@ export default async function NotificationTable() {
                   className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
                 >
                   <td className="whitespace-nowrap hover:bg-sky-100 hover:text-green-500">
-                    <Notification notification={notification} />
+                    <NotificationElement notification={notification} />
                   </td>
                 </tr>
               ))}
@@ -34,7 +35,7 @@ export default async function NotificationTable() {
     )
 }
 
-async function Notification({notification}:{notification:Notification}) {
+async function NotificationElement({notification}:{notification:Notification}) {
     const sender = await fetchProfile(notification.send_userid); 
     if(notification.type == "tip") {
         return (
