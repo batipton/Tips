@@ -23,13 +23,9 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
   const latestPosts = await fetchLatestPosts(mode, session.user?.id!, id);
   const userid = session.user?.id!;
 
-
   const user = await getCurrentUser();
 
   const timeAgo = new TimeAgo('en-US');
-
-
-
 
   return (
     <div className="flex w-full flex-col md:col-span-8">
@@ -67,7 +63,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
                       </p>
                     </div>
                   </div>
-                  <PostSettings userid={userid} posterid={post.customer_id} postid={post.id}/>
+                  <PostSettings userid={userid} posterid={post.customer_id} postid={post.id} />
                 </div>
                 <div>
                   {reactElement}
@@ -76,7 +72,6 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
                   <LikeButton id={post.id} tips={post.tips} userid={session.user?.id} posterid={post.customer_id} tokens={user!.tokens}/>
                   <CommentButton comments={comments} postid={post.id} userid={userid} />    
                 </div>
-                
               </div>
             );
           })}

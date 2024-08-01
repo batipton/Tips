@@ -18,8 +18,6 @@ const style = {
 };
 
 export default function PostSettings({userid, posterid, postid}:{userid:string, posterid:string, postid:string}) {
-    console.log("userid...", userid);
-    console.log("posterid...", posterid);
     if(userid != posterid) {
         return;
     }

@@ -6,67 +6,8 @@ import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import bcrypt from 'bcrypt';
- 
-const FormSchema = z.object({
-  id: z.string(),
-  customerId: z.string(),
-  amount: z.coerce.number(),
-  status: z.enum(['pending', 'paid']),
-  date: z.string(),
-});
-
-const CreateInvoice = FormSchema.omit({ id: true, date: true });
-
-export async function createInvoice(formData: FormData) {
-    const { customerId, amount, status } = CreateInvoice.parse({
-      customerId: formData.get('customerId'),
-      amount: formData.get('amount'),
-      status: formData.get('status'),
-    });
-    const amountInCents = amount * 100;
-    const date = new Date().toISOString().split('T')[0];
-
-    await sql`
-    INSERT INTO invoices (customer_id, amount, status, date)
-    VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
-  `;
-
-  revalidatePath('/home/invoices');
-  redirect('/home/invoices');
-}
-
-// Use Zod to update the expected types
-const UpdateInvoice = FormSchema.omit({ id: true, date: true });
- 
-// ...
- 
-export async function updateInvoice(id: string, formData: FormData) {
-  const { customerId, amount, status } = UpdateInvoice.parse({
-    customerId: formData.get('customerId'),
-    amount: formData.get('amount'),
-    status: formData.get('status'),
-  });
- 
-  const amountInCents = amount * 100;
- 
-  await sql`
-    UPDATE invoices
-    SET customer_id = ${customerId}, amount = ${amountInCents}, status = ${status}
-    WHERE id = ${id}
-  `;
- 
-  revalidatePath('/dashboard/invoices');
-  redirect('/home/invoices');
-}
-
-export async function deleteInvoice(id: string) {
-    await sql`DELETE FROM invoices WHERE id = ${id}`;
-    revalidatePath('/home/invoices');
-}
-
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
- 
  
 export async function authenticate(
   prevState: string | undefined,
@@ -122,13 +63,20 @@ export async function signupUser(formData : FormData) {
   }
 }
 
-export async function likePost(id: string, tips: number, userid: string, posterid: string) {
-
+export async function likePost(postid: string, tips: number, userid: string, posterid: string) {
+  const date = new Date().toISOString();
+  
   await sql`
     UPDATE posts
     SET tips = ${tips}
-    WHERE id = ${id}
+    WHERE id = ${postid}
   `;
+
+  await sql`
+    INSERT INTO tips (postid, userid, amount, date)
+    VALUES (${postid}, ${userid}, ${1}, ${date})
+    ON CONFLICT (postid, userid) DO UPDATE SET amount = tips.amount + 1;
+  `
 
   if(tips % 2 == 0 && userid != posterid) {
     await sql`
@@ -139,10 +87,10 @@ export async function likePost(id: string, tips: number, userid: string, posteri
   }
 
   await sql`
-  UPDATE users
-  SET tokens = tokens-1
-  WHERE id = ${userid}
-  AND tokens > 0
+    UPDATE users
+    SET tokens = tokens-1
+    WHERE id = ${userid}
+    AND tokens > 0
   `;
 
   revalidatePath('/home');
@@ -172,9 +120,9 @@ export async function updateImageUrl(image_url: string) {
   if (!session?.user) return null
 
   await sql`
-  UPDATE users
-  SET image_url= ${image_url}
-  WHERE id= ${session.user.id}
+    UPDATE users
+    SET image_url= ${image_url}
+    WHERE id= ${session.user.id}
   `
 
   revalidatePath('/home');
@@ -183,9 +131,9 @@ export async function updateImageUrl(image_url: string) {
 export async function updateProfileInformation(id:string, username:string, name:string, bio:string) {
 
   await sql`
-  UPDATE users
-  SET username= ${username}, bio= ${bio}, name=${name}
-  WHERE id= ${id}
+    UPDATE users
+    SET username= ${username}, bio= ${bio}, name=${name}
+    WHERE id= ${id}
   `
 
   revalidatePath('/home');
@@ -195,12 +143,11 @@ export async function createNewPost(text:string) {
   const session = await auth();
   if (!session?.user) return null
 
-  const date = new Date().toISOString()
-  console.log("Date...", date);
+  const date = new Date().toISOString();
 
   await sql`
-  INSERT INTO posts (customer_id, tips, text, date)
-  VALUES (${session.user.id}, ${0}, ${text}, ${date})
+    INSERT INTO posts (customer_id, tips, text, date)
+    VALUES (${session.user.id}, ${0}, ${text}, ${date})
   `
 
   revalidatePath('/home');
@@ -219,6 +166,7 @@ export async function createNewComment(postid:string, userid:string, comment:str
     INSERT INTO comments (post_id, commenter_id, text, date)
     VALUES (${postid}, ${userid}, ${comment}, ${date})
     `
-
     revalidatePath('/home');
 }
+
+
