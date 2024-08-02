@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Link from 'next/link';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -34,6 +35,11 @@ export default function PostSettings({userid, posterid, postid}:{userid:string, 
         deletePost(postid);
         handleClose();
     }
+
+    const handleGoToPost = () => {
+        redirect(`/post/${postid}`);
+        handleClose();
+    }
     
 
     return (
@@ -57,6 +63,7 @@ export default function PostSettings({userid, posterid, postid}:{userid:string, 
                 }}
             >
                 <MenuItem onClick={handleDelete}>Delete Post</MenuItem>
+                <MenuItem><Link href={`/post/${postid}`}>Go To Post</Link></MenuItem>
             </Menu>
         </div>
     )

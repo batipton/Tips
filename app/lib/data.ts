@@ -66,6 +66,22 @@ export async function fetchLatestPosts(mode:string, userid:string, id:string) {
   }
 }
 
+export async function fetchPost(postid: string) {
+  console.log(postid);
+  try {
+    const data = await sql<LatestPost>`
+    SELECT posts.tips, posts.text, posts.date, users.username, users.image_url, users.email, posts.customer_id, posts.id
+    FROM posts
+    JOIN users ON posts.customer_id = users.id
+    WHERE posts.id=${postid}
+  `
+    return data.rows[0];
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch the post.');
+  }
+  
+}
 
 export async function fetchTokens(userid: string) {
   try {
@@ -268,4 +284,61 @@ export async function fetchNotifications(userid:string) {
     console.error('Database Error:', err);
     throw new Error(`Failed to fetch notifications for user ${userid}`);
   }
+}
+
+export async function fetchRecommendations(userid:string) {
+  try {
+    const {rows, fields} = await sql`
+    WITH user_following AS (
+      SELECT
+          f.followed AS following
+      FROM
+          following f
+      WHERE
+          f.follower = ${userid} -- Replace with the specific user_id
+    ),
+    followers_of_following AS (
+      SELECT
+          f2.followed AS recommended_user,
+          COUNT(*) AS follow_count
+      FROM
+          user_following uf
+      JOIN following f2 ON uf.following = f2.follower
+      WHERE
+          f2.followed <> ${userid} -- Exclude the specific user themselves
+      GROUP BY
+          f2.followed
+    ),
+    already_followed AS (
+      SELECT
+          f.followed
+      FROM
+          following f
+      WHERE
+          f.follower = ${userid} -- Replace with the specific user_id
+    )
+    SELECT
+      fof.recommended_user,
+      u.id,
+      u.name,
+      u.username,
+      u.image_url,
+      fof.follow_count
+    FROM
+      followers_of_following fof
+    LEFT JOIN already_followed af ON fof.recommended_user = af.followed
+    JOIN
+      users u ON fof.recommended_user = u.id
+    WHERE
+      af.followed IS NULL
+    ORDER BY
+      fof.follow_count DESC
+    LIMIT 5;       
+    `
+    console.log(rows);
+    return rows;
+  } catch(err) {
+    console.error('Database Error:', err);
+    throw new Error(`Failed to fetch notifications for user ${userid}`);
+  } 
 }

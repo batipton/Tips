@@ -4,8 +4,8 @@ import LatestPosts from '@/app/ui/posts/latest-posts';
 import { lusitana } from '@/app/ui/general/fonts';
 import { auth } from "@/auth"
 import FollowerModal  from '@/app/ui/followers/follower-information';
-import FollowButton from '@/app/ui/followers/follow-button'
-import { redirect } from 'next/navigation'
+import FollowButton from '@/app/ui/followers/follow-button';
+import { redirect } from 'next/navigation';
 
 export default async function Page({ params }: { params: { id: string } }) {
     const session = await auth();

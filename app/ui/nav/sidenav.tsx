@@ -3,7 +3,7 @@ import NavLinks from '@/app/ui/nav/nav-links';
 import Logo from '@/app/ui/general/logo';
 import { PowerIcon } from '@heroicons/react/24/outline';
 import { signOut, auth } from '@/auth';
-import { fetchTokens } from '@/app/lib/data';
+import { fetchTokens, fetchRecommendations } from '@/app/lib/data';
 
 
 export default async function SideNav() {
@@ -11,6 +11,8 @@ export default async function SideNav() {
 
   if (!session?.user) return null;
   if  (!session.user.id) return null;
+  const data = fetchRecommendations(session.user.id);
+
 
   const numberOfTokens = await fetchTokens(session.user.id)
   return (
