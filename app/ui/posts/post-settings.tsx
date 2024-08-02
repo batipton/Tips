@@ -36,11 +36,6 @@ export default function PostSettings({userid, posterid, postid}:{userid:string, 
         deletePost(postid);
         handleClose();
     }
-
-    const handleGoToPost = () => {
-        redirect(`/post/${postid}`);
-        handleClose();
-    }
     
 
     return (

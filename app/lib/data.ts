@@ -100,6 +100,9 @@ export async function fetchFilteredInvoices(
   query: string,
   currentPage: number,
 ) {
+  if(query === "") {
+    return;
+  }
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
@@ -295,7 +298,7 @@ export async function fetchRecommendations(userid:string) {
       FROM
           following f
       WHERE
-          f.follower = ${userid} -- Replace with the specific user_id
+          f.follower = ${userid}
     ),
     followers_of_following AS (
       SELECT
@@ -305,7 +308,7 @@ export async function fetchRecommendations(userid:string) {
           user_following uf
       JOIN following f2 ON uf.following = f2.follower
       WHERE
-          f2.followed <> ${userid} -- Exclude the specific user themselves
+          f2.followed <> ${userid}
       GROUP BY
           f2.followed
     ),
@@ -315,7 +318,7 @@ export async function fetchRecommendations(userid:string) {
       FROM
           following f
       WHERE
-          f.follower = ${userid} -- Replace with the specific user_id
+          f.follower = ${userid}
     )
     SELECT
       fof.recommended_user,
