@@ -64,7 +64,7 @@ export default function PostSettings({userid, posterid, postid}:{userid:string, 
                 }}
             >
                 <MenuItem onClick={handleDelete}>Delete Post</MenuItem>
-                <MenuItem><Link href={`/post/${postid}`}>Go To Post</Link></MenuItem>
+                <MenuItem><Link href={`/home/post/${postid}`}>Go To Post</Link></MenuItem>
             </Menu>
         </div>
     )
