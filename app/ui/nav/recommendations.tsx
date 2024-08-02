@@ -13,7 +13,7 @@ export default async function Recommendations() {
     }
 
     return (
-        <div className="mt-6 flow-root">
+        <div className="mt-6 px-2 flow-root">
                 <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
                     <table className="min-w-full">
                         <thead className="rounded-lg text-left text-sm font-normal">
