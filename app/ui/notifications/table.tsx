@@ -39,7 +39,7 @@ async function NotificationElement({notification}:{notification:Notification}) {
     const sender = await fetchProfile(notification.send_userid); 
     if(notification.type == "tip") {
         return (
-            <Link href={`/home/followers/${notification.send_userid}`}>
+            <Link href={`/home/post/${notification.postid}`}>
                 <div className="flex items-center gap-3  py-3 pl-6 pr-3">
                     <img src={sender.image_url} className="rounded-full h-10 w-10 mr-2 " />
                     {sender.username} tipped your post
@@ -61,7 +61,7 @@ async function NotificationElement({notification}:{notification:Notification}) {
         )
     } else if (notification.type == "comment") {
         return (
-            <Link href={`/home/followers/${notification.send_userid}`}>
+            <Link href={`/home/followers/${notification.postid}`}>
                 <div className="flex items-center gap-3  py-3 pl-6 pr-3">
                     <img src={sender.image_url} className="rounded-full h-10 w-10 mr-2 " />
                     {sender.username} commented on your post
