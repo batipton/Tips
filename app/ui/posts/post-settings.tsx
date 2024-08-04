@@ -19,10 +19,6 @@ const style = {
     p: 4,
 };
 
-const handleClose = () => {
-    setAnchorEl(null);
-};
-
 export default function PostSettings({userid, posterid, postid}:{userid:string, posterid:string, postid:string}) {
     // if(userid != posterid) {
     //     return;
@@ -32,7 +28,9 @@ export default function PostSettings({userid, posterid, postid}:{userid:string, 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
-    
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     return (
         <div>
@@ -55,13 +53,13 @@ export default function PostSettings({userid, posterid, postid}:{userid:string, 
                 }}
             >
                 <MenuItem><Link href={`/home/post/${postid}`}>Go To Post</Link></MenuItem>
-                <UserPostSettings userid={userid} posterid={posterid} postid={postid} />
+                <UserPostSettings userid={userid} posterid={posterid} postid={postid} handleClose={handleClose} />
             </Menu>
         </div>
     )
 }
 
-export function UserPostSettings({userid, posterid, postid}:{userid:string, posterid:string, postid:string}) {
+export function UserPostSettings({userid, posterid, postid, handleClose}:{userid:string, posterid:string, postid:string, handleClose:any}) {
     if(userid != posterid) {
         return;
     }
