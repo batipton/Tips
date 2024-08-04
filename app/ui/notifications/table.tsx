@@ -63,7 +63,7 @@ async function NotificationElement({notification}:{notification:Notification}) {
         return (
             <Link href={`/home/post/${notification.postid}`}>
                 <div className="flex items-center gap-3 py-3 pl-6 pr-3">
-                    <Image src={sender.image_url} width={20} height={20} className="rounded-full h-10 w-10 mr-2 " />
+                    <Image src={sender.image_url} width={20} height={20} className="rounded-full h-10 w-10 mr-2 " alt={`${sender.username}'s username`} />
                     {sender.username} tipped your post
                     <p className="text-green-500">{notification.seen ? "" : "new"}</p>
                 </div>
@@ -73,7 +73,7 @@ async function NotificationElement({notification}:{notification:Notification}) {
         return (
             <Link href={`/home/followers/${notification.send_userid}`}>
                 <div className="flex items-center gap-3  py-3 pl-6 pr-3">
-                    <Image src={sender.image_url} width={20} height={20} className="rounded-full h-10 w-10 mr-2 " />
+                    <Image src={sender.image_url} width={20} height={20} className="rounded-full h-10 w-10 mr-2 " alt={`${sender.username}'s username`} />
                     {sender.username} followed you
                     <p className="text-green-500">{notification.seen ? "" : "new"}</p>
                 </div>
