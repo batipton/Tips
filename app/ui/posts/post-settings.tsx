@@ -20,9 +20,9 @@ const style = {
 };
 
 export default function PostSettings({userid, posterid, postid}:{userid:string, posterid:string, postid:string}) {
-    if(userid != posterid) {
-        return;
-    }
+    // if(userid != posterid) {
+    //     return;
+    // }
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -31,12 +31,6 @@ export default function PostSettings({userid, posterid, postid}:{userid:string, 
     const handleClose = () => {
         setAnchorEl(null);
     };
-
-    const handleDelete = () => {
-        deletePost(postid);
-        handleClose();
-    }
-    
 
     return (
         <div>
@@ -58,9 +52,24 @@ export default function PostSettings({userid, posterid, postid}:{userid:string, 
                 'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem onClick={handleDelete}>Delete Post</MenuItem>
                 <MenuItem><Link href={`/home/post/${postid}`}>Go To Post</Link></MenuItem>
+                <UserPostSettings userid={userid} posterid={posterid} postid={postid} />
             </Menu>
         </div>
+    )
+}
+
+export function UserPostSettings({userid, posterid, postid}:{userid:string, posterid:string, postid:string}) {
+    if(userid != posterid) {
+        return;
+    }
+
+    const handleDelete = () => {
+        deletePost(postid);
+        handleClose();
+    }
+
+    return (
+        <MenuItem onClick={handleDelete}>Delete Post</MenuItem>
     )
 }

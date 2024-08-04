@@ -33,7 +33,13 @@ export default async function Recommendations() {
                             <td className="whitespace-nowrap hover:bg-sky-100 hover:text-green-500">
                                 <Link href={`/home/followers/${recommendation.id}`}>
                                 <div className="flex items-center gap-3  py-3 pl-6 pr-3">
-                                    <Image src={recommendation.image_url} width={40} height={40} className="rounded-full aspect-square object-cover mr-2"/>
+                                    <Image 
+                                    src={recommendation.image_url} 
+                                    width={40} 
+                                    height={40} 
+                                    className="rounded-full aspect-square object-cover mr-2"
+                                    alt={`${recommendation.name}'s profile picture`}
+                                    />
                                     {recommendation.username}
                                 </div>
                                 </Link>

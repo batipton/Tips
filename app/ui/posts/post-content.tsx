@@ -43,7 +43,6 @@ export default async function Post({id}:{id:string}) {
                     height={40}
                     alt={`${post.username}'s profile picture`}
                     className="rounded-full aspect-square object-cover mr-4"
-
                   />
                   <div className="min-w-0">
                   <p>

@@ -48,7 +48,8 @@ export default async function Page({ params }: { params: { id: string } }) {
             <div className="bg-white rounded-lg p-6 flex flex-col items-center">
               <Image  
                 src={profile.image_url} 
-                width={100} height={100}
+                width={100} 
+                height={100}
                 alt={`${profile.username}'s profile picture`}
                 className="rounded-full aspect-square object-cover"
               />
