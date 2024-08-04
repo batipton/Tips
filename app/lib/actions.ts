@@ -28,9 +28,14 @@ export async function authenticate(
   }
 }
 
-export async function signupUser(previousState : FormData, formData : FormData) {
+export async function signupUser(previousState : string, formData : FormData) {
   console.log(formData);
   try {
+    const passwordEntered = formData.get('password');
+    const passwordVerifyEntered = formData.get('verify-password');
+    if(passwordEntered != passwordVerifyEntered) {
+      return 'Password verification failed';
+    }
     const password = await bcrypt.hash(formData.get('password')?.toString()!, 10);
     const username = formData.get('username')?.toString();
     const name = formData.get('name')?.toString();
