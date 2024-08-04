@@ -290,7 +290,7 @@ export async function fetchNotifications(userid:string) {
 
 export async function fetchNumberOfNewNotifications(userid:string) {
   try {
-    const {rows, fields} = await sql`
+    const {rows, fields} = await sql<number>`
       SELECT COUNT(*) FROM notifications WHERE rec_userid=${userid} AND seen=false
     `
     return rows;
