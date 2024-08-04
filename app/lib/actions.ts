@@ -28,7 +28,7 @@ export async function authenticate(
   }
 }
 
-export async function signupUser(previousState : string, formData : FormData) {
+export async function signupUser(previousState : string | undefined, formData : FormData) {
   console.log(formData);
   try {
     const passwordEntered = formData.get('password');
