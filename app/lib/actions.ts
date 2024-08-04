@@ -28,7 +28,8 @@ export async function authenticate(
   }
 }
 
-export async function signupUser(formData : FormData) {
+export async function signupUser(previousState : FormData, formData : FormData) {
+  console.log(formData);
   try {
     const password = await bcrypt.hash(formData.get('password')?.toString()!, 10);
     const username = formData.get('username')?.toString();
@@ -37,12 +38,20 @@ export async function signupUser(formData : FormData) {
     const image_url = '/customers/default.png';
     const tokens = 20;
 
-    const data = await sql`
+    const emailCheck = await sql`
       SELECT * FROM users WHERE email = ${email}
     `
 
-    if(data.rows.length > 0) {
-      return;
+    if(emailCheck.rows.length > 0) {
+      return 'Email is already in use';
+    }
+
+    const usernameCheck = await sql`
+      SELECT * FROM users WHERE username = ${username}
+    `
+
+    if(usernameCheck.rows.length > 0) {
+      return 'Username is already in use';
     }
 
     await sql`
@@ -190,6 +199,10 @@ export async function createTipNotification(rec_userid:string, send_userid:strin
 }
 
 export async function createNotification(rec_userid:string, send_userid:string, type:string, postid:string | null) {
+  if(rec_userid == send_userid) {
+    // don't allow users to get notifications from themselves
+    return;
+  }
   const date = new Date().toISOString();
   const test = await sql`
     INSERT INTO notifications

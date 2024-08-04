@@ -13,12 +13,9 @@ import { authenticate, signupUser } from '@/app/lib/actions';
 import Link from 'next/link';
 
 export default function SignupForm() {
-  const [errorMessage, formAction, isPending] = useActionState(
-    authenticate,
-    undefined,
-  );
+  const [errorMessage, formAction] = useActionState(signupUser, undefined);
   return (
-    <form action={signupUser} className="space-y-3">
+    <form action={formAction} className="space-y-3">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
         <h1 className={`${lusitana.className} mb-3 text-2xl`}>
           Signup for Tips.
