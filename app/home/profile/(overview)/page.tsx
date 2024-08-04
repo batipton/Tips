@@ -3,6 +3,7 @@ import { lusitana } from '@/app/ui/general/fonts';
 import { fetchProfile, fetchFollowers, fetchFollowersCount } from '@/app/lib/data';
 import LatestPosts from '@/app/ui/posts/latest-posts';
 import FollowerModal  from '@/app/ui/followers/follower-information';
+import Image from 'next/image';
 
 export default async function Page() {
     const session = await auth();
@@ -32,10 +33,12 @@ export default async function Page() {
             <div className="rounded-xl bg-gray-50 p-4 shadow-sm">
               <div className="w-full">
                 <div className="bg-white rounded-lg p-6 flex flex-col items-center">
-                  <img 
-                    className="w-32 h-32 rounded-full object-cover" 
+                  <Image 
                     src={profile.image_url} 
+                    width={100} height={100}
+                    quality={100}
                     alt={`${profile.username}'s profile picture`}
+                    className="rounded-full aspect-square object-cover"
                   />
                   <h1 className={`${lusitana.className} text-2xl font-bold text-gray-900 mt-4`}>{profile.username}</h1>
                   <FollowerModal followers={followers} followerCount={followerCount} />

@@ -1,6 +1,7 @@
 import Pagination from '@/app/ui/search/pagination';
 import Search from '@/app/ui/search/search';
 import Table from '@/app/ui/search/table';
+import Image from 'next/image';
 import { lusitana } from '@/app/ui/general/fonts';
 import { fetchInvoicesPages } from '@/app/lib/data';
 

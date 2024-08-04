@@ -37,10 +37,12 @@ export default async function Post({id}:{id:string}) {
                 )}
               >
                 <div className="flex items-center">
-                  <img
+                  <Image
                     src={post.image_url}
+                    width={40}
+                    height={40}
                     alt={`${post.username}'s profile picture`}
-                    className="mr-4 h-10 w-10 rounded-full"
+                    className="rounded-full aspect-square object-cover mr-4"
 
                   />
                   <div className="min-w-0">

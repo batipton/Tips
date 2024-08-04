@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import { fetchNotifications, fetchProfile } from "@/app/lib/data";
 import { Notification } from '@/app/lib/definitions'
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default async function NotificationTable() {
     const session = await auth();
@@ -62,7 +63,7 @@ async function NotificationElement({notification}:{notification:Notification}) {
         return (
             <Link href={`/home/post/${notification.postid}`}>
                 <div className="flex items-center gap-3 py-3 pl-6 pr-3">
-                    <img src={sender.image_url} className="rounded-full h-10 w-10 mr-2 " />
+                    <Image src={sender.image_url} width={20} height={20} className="rounded-full h-10 w-10 mr-2 " />
                     {sender.username} tipped your post
                     <p className="text-green-500">{notification.seen ? "" : "new"}</p>
                 </div>
@@ -72,7 +73,7 @@ async function NotificationElement({notification}:{notification:Notification}) {
         return (
             <Link href={`/home/followers/${notification.send_userid}`}>
                 <div className="flex items-center gap-3  py-3 pl-6 pr-3">
-                    <img src={sender.image_url} className="rounded-full h-10 w-10 mr-2 " />
+                    <Image src={sender.image_url} width={20} height={20} className="rounded-full h-10 w-10 mr-2 " />
                     {sender.username} followed you
                     <p className="text-green-500">{notification.seen ? "" : "new"}</p>
                 </div>
@@ -83,8 +84,9 @@ async function NotificationElement({notification}:{notification:Notification}) {
         return (
             <Link href={`/home/post/${notification.postid}`}>
                 <div className="flex items-center gap-3  py-3 pl-6 pr-3">
-                    <img src={sender.image_url} className="rounded-full h-10 w-10 mr-2 " />
+                    <Image src={sender.image_url} width={40} height={40} className="rounded-full aspect-square object-cover" />
                     {sender.username} commented on your post
+                    
                     <p className="text-green-500"><strong>{notification.seen ? "" : "new"}</strong></p>
                 </div>
                 
