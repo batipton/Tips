@@ -3,7 +3,7 @@ import NavLinks from '@/app/ui/nav/nav-links';
 import Logo from '@/app/ui/general/logo';
 import { PowerIcon } from '@heroicons/react/24/outline';
 import { signOut, auth } from '@/auth';
-import { fetchTokens, fetchRecommendations } from '@/app/lib/data';
+import { fetchTokens, fetchRecommendations, fetchNumberOfNewNotifications } from '@/app/lib/data';
 
 
 export default async function SideNav() {
@@ -11,7 +11,9 @@ export default async function SideNav() {
 
   if (!session?.user) return null;
   if  (!session.user.id) return null;
+  const userid = session.user.id;
   const data = fetchRecommendations(session.user.id);
+  const numberOfNotifications = fetchNumberOfNewNotifications(userid)
 
 
   const numberOfTokens = await fetchTokens(session.user.id)
@@ -26,7 +28,7 @@ export default async function SideNav() {
         </div>
       </Link>
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
-        <NavLinks />
+        <NavLinks notifications={numberOfNotifications} />
         <div className="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"></div>
         <form action={async () => {
             'use server';

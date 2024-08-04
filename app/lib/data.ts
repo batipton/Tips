@@ -288,6 +288,18 @@ export async function fetchNotifications(userid:string) {
   }
 }
 
+export async function fetchNumberOfNewNotifications(userid:string) {
+  try {
+    const {rows, fields} = await sql`
+      SELECT COUNT(*) FROM notifications WHERE rec_userid=${userid} AND seen=false
+    `
+    return rows;
+  } catch(err) {
+    console.error('Database Error:', err);
+    throw new Error(`Failed to fetch new notifications for user ${userid}`)
+  }
+}
+
 export async function fetchRecommendations(userid:string) {
   try {
     const {rows, fields} = await sql`
