@@ -33,6 +33,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
         {/* NOTE: comment in this code when you get to this point in the course */}
         <div className="bg-white px-6">
           {latestPosts.map(async (post, i) => {
+            console.log(post);
             const time = timeAgo.format(new Date(post.date))
             const htmlToReactParser = new HtmlToReactParser();
             const reactElement = htmlToReactParser.parse(post.text);
@@ -55,9 +56,14 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
 
                     />
                     <div className="min-w-0">
-                      <Link href={`/home/followers/${post.customer_id}`} className="truncate text-sm font-semibold md:text-base">
-                        {post.username}
-                      </Link>
+                      <p>
+                        <Link href={`/home/followers/${post.customer_id}`} className="truncate text-sm font-semibold md:text-base hover:underline">
+                          {post.name} 
+                        </Link>
+                        <Link href={`/home/followers/${post.customer_id}`} className="truncate text-sm md:text-base">
+                          {` $${post.username}`}
+                        </Link>
+                      </p>
                       <p className="hidden text-sm text-gray-500 sm:block">
                         {time}
                       </p>

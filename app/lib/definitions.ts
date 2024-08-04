@@ -52,6 +52,7 @@ export type LatestInvoice = {
 export type LatestPost = {
   tips: number;
   text: string;
+  name: string;
   username: string;
   image_url: string;
   email: string;

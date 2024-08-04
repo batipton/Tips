@@ -31,7 +31,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         <div key={post.id} >
                 <div
                   className={clsx(
-                    'flex flex-row items-center justify-between py-4'
+                    'flex flex-row items-center justify-between py-4',
                   )}
                 >
                   <div className="flex items-center">
@@ -42,9 +42,14 @@ export default async function Page({ params }: { params: { id: string } }) {
 
                     />
                     <div className="min-w-0">
-                      <Link href={`/home/followers/${post.customer_id}`} className="truncate text-sm font-semibold md:text-base">
-                        {post.username}
-                      </Link>
+                    <p>
+                        <Link href={`/home/followers/${post.customer_id}`} className="truncate text-sm font-semibold md:text-base hover:underline">
+                          {post.name} 
+                        </Link>
+                        <Link href={`/home/followers/${post.customer_id}`} className="truncate text-sm md:text-base">
+                          {` $${post.username}`}
+                        </Link>
+                      </p>
                       <p className="hidden text-sm text-gray-500 sm:block">
                         {time}
                       </p>
