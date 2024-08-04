@@ -19,6 +19,10 @@ const style = {
     p: 4,
 };
 
+const handleClose = () => {
+    setAnchorEl(null);
+};
+
 export default function PostSettings({userid, posterid, postid}:{userid:string, posterid:string, postid:string}) {
     // if(userid != posterid) {
     //     return;
@@ -28,9 +32,7 @@ export default function PostSettings({userid, posterid, postid}:{userid:string, 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    
 
     return (
         <div>
