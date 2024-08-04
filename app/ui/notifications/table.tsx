@@ -84,7 +84,7 @@ async function NotificationElement({notification}:{notification:Notification}) {
         return (
             <Link href={`/home/post/${notification.postid}`}>
                 <div className="flex items-center gap-3  py-3 pl-6 pr-3">
-                    <Image src={sender.image_url} width={40} height={40} className="rounded-full aspect-square object-cover" />
+                    <Image src={sender.image_url} width={40} height={40} className="rounded-full aspect-square object-cover" alt={`${sender.username}'s username`} />
                     {sender.username} commented on your post
                     
                     <p className="text-green-500"><strong>{notification.seen ? "" : "new"}</strong></p>
