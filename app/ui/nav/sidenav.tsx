@@ -13,7 +13,7 @@ export default async function SideNav() {
   if  (!session.user.id) return null;
   const userid = session.user.id;
   const data = fetchRecommendations(session.user.id);
-  const numberOfNotifications = fetchNumberOfNewNotifications(userid)
+  const numberOfNotifications = await fetchNumberOfNewNotifications(userid)
 
 
   const numberOfTokens = await fetchTokens(session.user.id)
