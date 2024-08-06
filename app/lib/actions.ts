@@ -78,6 +78,31 @@ export async function signupUser(previousState : string | undefined, formData : 
   }
 }
 
+async function getUser(id: string): Promise<User | undefined> {
+  try {
+    const user = await sql<User>`SELECT * FROM users WHERE id=${id}`;
+    return user.rows[0];
+  } catch (error) {
+    console.error('Failed to fetch user:', error);
+    throw new Error('Failed to fetch user.');
+  }
+}
+
+export async function changePassword(id:string, previousPassword:string, newPassword:string) {
+  const password = await bcrypt.hash(previousPassword, 10);
+  const setPassword = await bcrypt.hash(newPassword, 10);
+  const user = await getUser(id);
+  const passwordsMatched = bcrypt.compare(password, user.password);
+  if(!passwordsMatched) return;
+  await sql`
+    UPDATE users
+    SET password=${setPassword}
+    WHERE id=${id}
+  `
+
+  revalidatePath('/home/settings')
+}
+
 export async function likePost(postid: string, tips: number, userid: string, posterid: string) {
   const date = new Date().toISOString();
   

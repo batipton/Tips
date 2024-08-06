@@ -4,6 +4,7 @@ import React from 'react';
 import { fetchProfile, getCurrentUser } from "@/app/lib/data";
 
 import UserInfo from "@/app/ui/settings/user-info";
+import ChangePassword from "@/app/ui/settings/change-password";
 
 import { auth } from "@/auth";
 
@@ -29,6 +30,7 @@ export default async function Page() {
       <div className="bg-white rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md">
         <h1 className="text-2xl font-bold mb-6 text-gray-700">Settings</h1>
           <UserInfo id={id} username={username} name={name} bio={user?.bio} url={profile.image_url}/>
+          <ChangePassword id={id} />
       </div>
     </div>
   );

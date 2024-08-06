@@ -1,6 +1,7 @@
 import React from 'react';
 import { fetchProfile, isFriend, fetchFollowers, fetchFollowersCount } from '@/app/lib/data';
 import LatestPosts from '@/app/ui/posts/latest-posts';
+import FollowToUnlock from '@/app/ui/posts/follow-to-unlock';
 import { lusitana } from '@/app/ui/general/fonts';
 import { auth } from "@/auth"
 import FollowerModal  from '@/app/ui/followers/follower-information';
@@ -34,8 +35,12 @@ export default async function Page({ params }: { params: { id: string } }) {
     const followers = followersPromise[0];
     
 
-    const latestPosts: JSX.Element = (await LatestPosts({mode:"follower", id:id}))!;
-
+    let latestPosts: JSX.Element;
+    if(following) {    
+      latestPosts = (await LatestPosts({mode:"follower", id:id}))!;
+    } else {
+      latestPosts = (await FollowToUnlock())!;
+    }
 
   return (
     <div>
