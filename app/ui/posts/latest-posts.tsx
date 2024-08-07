@@ -43,7 +43,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
           {/* NOTE: comment in this code when you get to this point in the course */}
           <div className="bg-white px-6">
             {latestPosts.map(async (post, i) => {
-              return <Post id={post.id} />        
+              return <Post id={post.id} />;    
             })}
           </div>
         </div>

@@ -52,7 +52,7 @@ export default function PostSettings({userid, posterid, postid}:{userid:string, 
                 "aria-labelledby": "basic-button",
                 }}
             >
-                <MenuItem><Link href={`/home/post/${postid}`}>Go To Post</Link></MenuItem>
+                <MenuItem key={"go-to-post"}><Link href={`/home/post/${postid}`}>Go To Post</Link></MenuItem>
                 <UserPostSettings userid={userid} posterid={posterid} postid={postid} handleClose={handleClose} />
             </Menu>
         </div>
@@ -70,6 +70,6 @@ export function UserPostSettings({userid, posterid, postid, handleClose}:{userid
     }
 
     return (
-        <MenuItem onClick={handleDelete}>Delete Post</MenuItem>
+        <MenuItem key={"delete-post"} onClick={handleDelete}>Delete Post</MenuItem>
     )
 }

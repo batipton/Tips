@@ -26,9 +26,6 @@ export default function CommentButton({comments, postid, userid, posterid}:{comm
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    function handleClick() {
-        console.log("looking up comments...");
-    }
 
 
     return (

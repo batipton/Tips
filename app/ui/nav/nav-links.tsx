@@ -31,7 +31,7 @@ export default function NavLinks({notifications}:{notifications:number}) {
     <>
       {links.map((link) => {
         const LinkIcon = link.icon;
-        if(link.name == "Notifications") {
+        if(link.name === "Notifications") {
           return <NotiLink name={link.name} href={link.href} notifications={notifications} />
         }
         return (
