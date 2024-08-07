@@ -9,11 +9,10 @@ export default function UserInfo({id}:{id:string}) {
     const [confirmPassword, setConfirmPassword] = React.useState(null);
     
     function handleChangePassword(form:FormData) {
-        if(newPassword != confirmPassword) {
-            console.log("passwords did not match");
+        if(newPassword !== confirmPassword) {
             return;
         }
-        changePassword(id, previousPassword, newPassword);
+        changePassword(id, previousPassword!, newPassword!);
     }
 
     return (
