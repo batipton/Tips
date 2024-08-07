@@ -91,7 +91,7 @@ export async function changePassword(id:string, previousPassword:string, newPass
   const password = await bcrypt.hash(previousPassword, 10);
   const setPassword = await bcrypt.hash(newPassword, 10);
   const user = await getUser(id);
-  const passwordsMatched = bcrypt.compare(password, user?.password);
+  const passwordsMatched = bcrypt.compare(password, user!.password);
   if(!passwordsMatched) {
     return;
   }
