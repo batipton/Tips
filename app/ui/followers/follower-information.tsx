@@ -44,7 +44,7 @@ export default function FollowerModal({followers, followerCount}:{followers:Form
                     </div>
                 </div>
 
-                <table className="hidden min-w-full text-gray-900 md:table">
+                <table className="min-w-full text-gray-900 md:table">
                     <tbody className="bg-white">
                     {followers?.map((follower) => (
                         <tr

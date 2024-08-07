@@ -4,9 +4,9 @@ import { changePassword } from "@/app/lib/actions";
 import React from "react";
 
 export default function UserInfo({id}:{id:string}) {
-    const [previousPassword, setPreviousPassword] = React.useState(null);
-    const [newPassword, setNewPassword] = React.useState(null);
-    const [confirmPassword, setConfirmPassword] = React.useState(null);
+    const [previousPassword, setPreviousPassword] = React.useState("");
+    const [newPassword, setNewPassword] = React.useState("");
+    const [confirmPassword, setConfirmPassword] = React.useState("");
     
     function handleChangePassword() {
         if(newPassword !== confirmPassword) {
