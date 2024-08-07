@@ -8,7 +8,7 @@ export default function UserInfo({id}:{id:string}) {
     const [newPassword, setNewPassword] = React.useState(null);
     const [confirmPassword, setConfirmPassword] = React.useState(null);
     
-    function handleChangePassword(form:FormData) {
+    function handleChangePassword() {
         if(newPassword !== confirmPassword) {
             return;
         }
