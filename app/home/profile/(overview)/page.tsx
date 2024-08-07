@@ -1,14 +1,16 @@
-import { auth } from "@/auth"
-import { lusitana } from '@/app/ui/general/fonts';
-import { fetchProfile, fetchFollowers, fetchFollowersCount } from '@/app/lib/data';
-import LatestPosts from '@/app/ui/posts/latest-posts';
-import FollowerModal  from '@/app/ui/followers/follower-information';
-import Image from 'next/image';
+import { auth } from "@/auth";
+import { lusitana } from "@/app/ui/general/fonts";
+import { fetchProfile, fetchFollowers, fetchFollowersCount } from "@/app/lib/data";
+import LatestPosts from "@/app/ui/posts/latest-posts";
+import FollowerModal  from "@/app/ui/followers/follower-information";
+import Image from "next/image";
 
 export default async function Page() {
     const session = await auth();
 
-    if (!session?.user) return null
+    if (!session?.user) {
+      return null;
+    } 
 
     const id = session.user.id!;
 

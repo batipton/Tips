@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { lusitana } from '@/app/ui/general/fonts';
+import { lusitana } from "@/app/ui/general/fonts";
 import {
   AtSymbolIcon,
   KeyIcon,
   ExclamationCircleIcon,
-} from '@heroicons/react/24/outline';
-import { ArrowRightIcon } from '@heroicons/react/20/solid';
-import { Button } from '@/app/ui/general/button';
-import { useActionState } from 'react';
-import { authenticate } from '@/app/lib/actions';
-import Link from 'next/link';
+} from "@heroicons/react/24/outline";
+import { ArrowRightIcon } from "@heroicons/react/20/solid";
+import { Button } from "@/app/ui/general/button";
+import { useActionState } from "react";
+import { authenticate } from "@/app/lib/actions";
+import Link from "next/link";
 
 export default function LoginForm() {
   const [errorMessage, formAction, isPending] = useActionState(
@@ -67,7 +67,7 @@ export default function LoginForm() {
         <Button className="mt-4 w-full bg-green-500 hover:bg-green-600" aria-disabled={isPending}>
           Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
         </Button>
-        <p className={`${lusitana.className}`}>Need an account? <Link href='/signup' className='text-green-500'>Signup</Link></p>
+        <p className={`${lusitana.className}`}>Need an account? <Link href="/signup" className="text-green-500">Signup</Link></p>
         <div className="flex h-8 items-end space-x-1">
           {errorMessage && (
               <>

@@ -1,4 +1,4 @@
-import { sql } from '@vercel/postgres';
+import { sql } from "@vercel/postgres";
 import { auth } from "@/auth"
 import {
   CustomerField,
@@ -12,12 +12,12 @@ import {
   FormattedFollowersTable,
   FormattedComments,
   Notification
-} from './definitions';
-import { formatCurrency } from './utils';
+} from "./definitions";
+import { formatCurrency } from "./utils";
 
 export async function fetchLatestPosts(mode:string, userid:string, id:string) {
   try {
-    if(mode == "followers") {
+    if(mode === "followers") {
       const data = await sql<LatestPost>`
       SELECT p.tips, p.text, p.date, u.username, u.name, u.image_url, u.email, p.customer_id, p.id 
       FROM posts p 
@@ -25,11 +25,10 @@ export async function fetchLatestPosts(mode:string, userid:string, id:string) {
       JOIN users u ON p.customer_id = u.id 
       WHERE p.customer_id = ${userid} OR f.followed IS NOT NULL 
       ORDER BY p.date DESC
-
       `;
       const latestPosts = data.rows;
       return latestPosts;
-    } else if (mode == "user") {
+    } else if (mode === "user") {
       const data = await sql<LatestPost>`
       SELECT posts.tips, posts.text, posts.date, users.username, users.name, users.image_url, users.email, posts.customer_id, posts.id
       FROM posts
@@ -39,7 +38,7 @@ export async function fetchLatestPosts(mode:string, userid:string, id:string) {
       `;
       const latestPosts = data.rows;
       return latestPosts;
-    } else if (mode == "follower") {
+    } else if (mode === "follower") {
       const data = await sql<LatestPost>`
       SELECT posts.tips, posts.text, posts.date, users.username, users.name, users.image_url, users.email, posts.customer_id, posts.id
       FROM posts
@@ -61,8 +60,8 @@ export async function fetchLatestPosts(mode:string, userid:string, id:string) {
     }
   
   } catch (error) {
-    console.error('Database Error:', error);
-    throw new Error('Failed to fetch the latest posts.');
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch the latest posts.");
   }
 }
 
@@ -73,24 +72,24 @@ export async function fetchPost(postid: string) {
     FROM posts
     JOIN users ON posts.customer_id = users.id
     WHERE posts.id=${postid}
-  `
+    `;
     return data.rows[0];
   } catch (error) {
-    console.error('Database Error:', error);
-    throw new Error('Failed to fetch the post.');
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch the post.");
   }
   
 }
 
 export async function fetchTokens(userid: string) {
   try {
-    const tokenCountPromise = sql`SELECT users.tokens FROM users WHERE id=${userid}`
+    const tokenCountPromise = sql`SELECT users.tokens FROM users WHERE id=${userid}`;
     const data = await Promise.all([tokenCountPromise]);
-    const tokenCount = Number(data[0].rows[0].tokens ?? '0');
+    const tokenCount = Number(data[0].rows[0].tokens ?? "0");
     return tokenCount;
   } catch (error) {
-    console.error('Database Error:', error);
-    throw new Error('Failed to fetch card data.');
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch card data.");
   }
 }
 
@@ -118,8 +117,8 @@ export async function fetchFilteredInvoices(
 
     return invoices.rows;
   } catch (error) {
-    console.error('Database Error:', error);
-    throw new Error('Failed to fetch invoices.');
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch invoices.");
   }
 }
 
@@ -135,8 +134,8 @@ export async function fetchInvoicesPages(query: string) {
     const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
     return totalPages;
   } catch (error) {
-    console.error('Database Error:', error);
-    throw new Error('Failed to fetch total number of invoices.');
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch total number of invoices.");
   }
 }
 
@@ -149,12 +148,12 @@ export async function fetchProfile(id : string) {
       bio
     FROM users
     WHERE id = ${id}
-    `
+    `;
     const profile = data.rows[0];
     return profile;
   } catch (err) {
-    console.error('Database Error:', err);
-    throw new Error('Failed to fetch profile.');
+    console.error("Database Error:", err);
+    throw new Error("Failed to fetch profile.");
   }
 }
 
@@ -165,13 +164,13 @@ export async function fetchFollowers(id : string) {
     FROM users u
     JOIN following f ON u.id = f.follower
     WHERE f.followed = ${id};
-    `
+    `;
     
     const followers = data.rows;
     return followers;
   } catch (err) {
-    console.error('Database Error:', err);
-    throw new Error('Failed to fetch profile.');
+    console.error("Database Error:", err);
+    throw new Error("Failed to fetch profile.");
   }
 }
 
@@ -181,13 +180,13 @@ export async function fetchFollowersCount(id : string) {
     SELECT COUNT(*) AS count_of_value
     FROM following
     WHERE followed = ${id};
-    `
+    `;
     
     const profile = data.rows[0];
     return profile;
   } catch (err) {
-    console.error('Database Error:', err);
-    throw new Error('Failed to fetch profile.');
+    console.error("Database Error:", err);
+    throw new Error("Failed to fetch profile.");
   }
 }
 
@@ -198,8 +197,8 @@ export async function isFriend(followerId : string, followedId: string) {
     `
     return data;
   } catch (err) {
-    console.error('Database Error:', err);
-    throw new Error('Failed to fetch followings.');
+    console.error("Database Error:", err);
+    throw new Error("Failed to fetch followings.");
   }
 }
 
@@ -207,7 +206,9 @@ export async function isFriend(followerId : string, followedId: string) {
 export async function getCurrentUser() {
 
   const session = await auth();
-  if (!session?.user) return null
+  if (!session?.user) {
+    return null;
+  }
 
   try {
     const data = await sql`
@@ -226,12 +227,12 @@ export async function getCurrentUser() {
       image_url: data.rows[0].image_url,
       tokens: data.rows[0].tokens,
       bio: data.rows[0].bio
-    }
+    };
 
     return user;
   } catch (err) {
-    console.error('Database Error:', err);
-    throw new Error('Failed to fetch customer table.');
+    console.error("Database Error:", err);
+    throw new Error("Failed to fetch customer table.");
   }
  
 }
@@ -260,7 +261,7 @@ export async function fetchComments(postid:string) {
 
     return rows;
   } catch(err) {
-    console.error('Database Error:', err);
+    console.error("Database Error:", err);
     throw new Error(`Failed to fetch comments for post ${postid}`);
   }
 }
@@ -279,11 +280,11 @@ export async function fetchNotifications(userid:string) {
       UPDATE notifications
       SET seen = true
       WHERE rec_userid=${userid}
-    `
+    `;
 
     return rows;
   } catch(err) {
-    console.error('Database Error:', err);
+    console.error("Database Error:", err);
     throw new Error(`Failed to fetch notifications for user ${userid}`);
   }
 }
@@ -292,11 +293,11 @@ export async function fetchNumberOfNewNotifications(userid:string) {
   try {
     const {rows, fields} = await sql`
       SELECT COUNT(*) FROM notifications WHERE rec_userid=${userid} AND seen=false
-    `
+    `;
 
     return rows[0].count;
   } catch(err) {
-    console.error('Database Error:', err);
+    console.error("Database Error:", err);
     throw new Error(`Failed to fetch new notifications for user ${userid}`)
   }
 }
@@ -349,11 +350,10 @@ export async function fetchRecommendations(userid:string) {
     ORDER BY
       fof.follow_count DESC
     LIMIT 5;       
-    `
-    console.log(rows);
+    `;
     return rows;
   } catch(err) {
-    console.error('Database Error:', err);
+    console.error("Database Error:", err);
     throw new Error(`Failed to fetch notifications for user ${userid}`);
   } 
 }

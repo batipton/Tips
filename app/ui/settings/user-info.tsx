@@ -4,7 +4,7 @@ import { updateImageUrl, updateProfileInformation } from "@/app/lib/actions";
 
 import { UploadButton } from "@/app/utils/uploadthing";
 
-import React from 'react';
+import React from "react";
 
 export default function UserInfo({id, username, name, bio, url}:{id:string, username:string, name:string, bio:string, url:string}) {
     const [username_, setUsername] = React.useState(username);

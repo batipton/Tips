@@ -1,8 +1,8 @@
 import { fetchComments, fetchProfile } from "@/app/lib/data";
-import { FormattedComments } from '@/app/lib/definitions';
-import Image from 'next/image';
-import Link from 'next/link';
-import { lusitana } from '@/app/ui/general/fonts';
+import { FormattedComments } from "@/app/lib/definitions";
+import Image from "next/image";
+import Link from "next/link";
+import { lusitana } from "@/app/ui/general/fonts";
 
 export default function Comments({comments}:{comments:FormattedComments[]}) {
     return (

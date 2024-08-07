@@ -1,6 +1,6 @@
-import SideNav from '@/app/ui/nav/sidenav';
-import Recommendations from '@/app/ui/nav/recommendations'
-import TokenWallet from '@/app/ui/wallet/token-wallet';
+import SideNav from "@/app/ui/nav/sidenav";
+import Recommendations from "@/app/ui/nav/recommendations";
+import TokenWallet from "@/app/ui/wallet/token-wallet";
 
 export const experimental_ppr = true;
 

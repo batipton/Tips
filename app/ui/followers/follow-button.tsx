@@ -1,5 +1,5 @@
-'use client';
-import { followProfile, unfollowProfile } from '@/app/lib/actions';
+"use client";
+import { followProfile, unfollowProfile } from "@/app/lib/actions";
 
 export default function FollowButton({ isFollowing, id, userid } : {isFollowing:boolean, id:string, userid:string}) {
 

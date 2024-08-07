@@ -1,20 +1,20 @@
-'use client';
-import React from 'react';
-import Link from 'next/link';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import { deletePost } from '@/app/lib/actions';
-import { redirect } from 'next/navigation';
+"use client";
+import React from "react";
+import Link from "next/link";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { deletePost } from "@/app/lib/actions";
+import { redirect } from "next/navigation";
 
 const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    bgcolor: "background.paper",
+    border: "2px solid #000",
     boxShadow: 24,
     p: 4,
 };
@@ -36,9 +36,9 @@ export default function PostSettings({userid, posterid, postid}:{userid:string, 
         <div>
             <Button
                 id="basic-button"
-                aria-controls={open ? 'basic-menu' : undefined}
+                aria-controls={open ? "basic-menu" : undefined}
                 aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
+                aria-expanded={open ? "true" : undefined}
                 onClick={handleClick}
             >
                 <span>&#8230;</span>
@@ -49,7 +49,7 @@ export default function PostSettings({userid, posterid, postid}:{userid:string, 
                 open={open}
                 onClose={handleClose}
                 MenuListProps={{
-                'aria-labelledby': 'basic-button',
+                "aria-labelledby": "basic-button",
                 }}
             >
                 <MenuItem><Link href={`/home/post/${postid}`}>Go To Post</Link></MenuItem>

@@ -1,7 +1,7 @@
-import { fetchRecommendations } from '@/app/lib/data';
+import { fetchRecommendations } from "@/app/lib/data";
 import { auth } from "@/auth";
 import Link from "next/link";
-import Image from 'next/image';
+import Image from "next/image";
 
 export default async function Recommendations() {
     const session = await auth(); 

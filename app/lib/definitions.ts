@@ -109,7 +109,6 @@ export type FormattedFollowersTable = {
   tokens: number
 };
 
-
 export type CustomerField = {
   id: string;
   username: string;

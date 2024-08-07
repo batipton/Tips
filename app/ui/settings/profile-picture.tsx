@@ -1,4 +1,4 @@
-'use server';
+"use server";
 import { getCurrentUser } from "@/app/lib/data";
 
 export default async function ProfilePicture() {

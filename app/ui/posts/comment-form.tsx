@@ -1,5 +1,5 @@
-'use client';
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
 import { createNewComment } from "@/app/lib/actions"
 
 

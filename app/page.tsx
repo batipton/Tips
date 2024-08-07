@@ -1,9 +1,9 @@
-import Logo from '@/app/ui/general/logo';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
-import { lusitana } from '@/app/ui/general/fonts';
-import Image from 'next/image';
-import LoginForm from '@/app/ui/authentication/login-form';
+import Logo from "@/app/ui/general/logo";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { lusitana } from "@/app/ui/general/fonts";
+import Image from "next/image";
+import LoginForm from "@/app/ui/authentication/login-form";
 
 export default function Page() {
   return (

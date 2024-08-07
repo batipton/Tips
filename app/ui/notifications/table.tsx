@@ -1,17 +1,18 @@
 import { auth } from "@/auth";
 import { fetchNotifications, fetchProfile } from "@/app/lib/data";
-import { Notification } from '@/app/lib/definitions'
-import Link from 'next/link';
-import Image from 'next/image';
+import { Notification } from "@/app/lib/definitions"
+import Link from "next/link";
+import Image from "next/image";
 
 export default async function NotificationTable() {
     const session = await auth();
-    if (!session?.user) return null;
+    if (!session?.user) { 
+      return null;
+    }
     const userid = session.user?.id!;
-
     const notifications = await fetchNotifications(userid);
 
-    if(notifications.length == 0) {
+    if(notifications.length === 0) {
       return (
         <>
           <table className="hidden min-w-full text-gray-900 md:table">

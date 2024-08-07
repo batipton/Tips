@@ -1,20 +1,17 @@
-// "use client";
-import React from 'react';
-
+import React from "react";
 import { fetchProfile, getCurrentUser } from "@/app/lib/data";
-
 import UserInfo from "@/app/ui/settings/user-info";
 import ChangePassword from "@/app/ui/settings/change-password";
-
 import { auth } from "@/auth";
 
 export default async function Page() {
 
   const session = await auth();
 
-  if (!session) return null;
+  if (!session) {
+    return null;
+  }
 
-  // const username = session.user?.name!;
   const id = session.user?.id!;
 
   const user = await getCurrentUser();

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 export const timeUntilNextIncrement = () => {
     const now = new Date();

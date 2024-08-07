@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import NavLinks from '@/app/ui/nav/nav-links';
-import Logo from '@/app/ui/general/logo';
-import { PowerIcon } from '@heroicons/react/24/outline';
-import { signOut, auth } from '@/auth';
-import { fetchTokens, fetchRecommendations, fetchNumberOfNewNotifications } from '@/app/lib/data';
+import Link from "next/link";
+import NavLinks from "@/app/ui/nav/nav-links";
+import Logo from "@/app/ui/general/logo";
+import { PowerIcon } from "@heroicons/react/24/outline";
+import { signOut, auth } from "@/auth";
+import { fetchTokens, fetchRecommendations, fetchNumberOfNewNotifications } from "@/app/lib/data";
 
 
 export default async function SideNav() {
@@ -31,7 +31,7 @@ export default async function SideNav() {
         <NavLinks notifications={numberOfNotifications} />
         <div className="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"></div>
         <form action={async () => {
-            'use server';
+            "use server";
             await signOut();
           }}>
           <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-green-500 md:flex-none md:justify-start md:p-2 md:px-3">

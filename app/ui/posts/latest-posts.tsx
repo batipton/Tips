@@ -1,19 +1,19 @@
-import clsx from 'clsx';
-import Image from 'next/image';
-import { lusitana } from '@/app/ui/general/fonts';
-import { fetchLatestPosts, getCurrentUser, fetchComments } from '@/app/lib/data';
-import LikeButton from '@/app/ui/posts/like-button';
-import CommentButton from '@/app/ui/posts/comment-button';
+import clsx from "clsx";
+import Image from "next/image";
+import { lusitana } from "@/app/ui/general/fonts";
+import { fetchLatestPosts, getCurrentUser, fetchComments } from "@/app/lib/data";
+import LikeButton from "@/app/ui/posts/like-button";
+import CommentButton from "@/app/ui/posts/comment-button";
 import { auth } from "@/auth";
-import Comments  from '@/app/ui/posts/comments';
-import CommentForm  from '@/app/ui/posts/comment-form';
-import PostSettings from '@/app/ui/posts/post-settings';
-import Link from 'next/link';
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
-import Post from '@/app/ui/posts/post-content'
-const ReactDOMServer = require('react-dom/server');
-const HtmlToReactParser = require('html-to-react').Parser;
+import Comments  from "@/app/ui/posts/comments";
+import CommentForm  from "@/app/ui/posts/comment-form";
+import PostSettings from "@/app/ui/posts/post-settings";
+import Link from "next/link";
+import TimeAgo from "javascript-time-ago"
+import en from "javascript-time-ago/locale/en"
+import Post from "@/app/ui/posts/post-content"
+const ReactDOMServer = require("react-dom/server");
+const HtmlToReactParser = require("html-to-react").Parser;
 TimeAgo.addDefaultLocale(en);
 
 export default async function LatestPosts({ mode, id }:{ mode:string, id:string }) {
@@ -26,7 +26,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
 
   const user = await getCurrentUser();
 
-  // const timeAgo = new TimeAgo('en-US');
+  // const timeAgo = new TimeAgo("en-US");
 
   if(latestPosts.length == 0) {
     return (

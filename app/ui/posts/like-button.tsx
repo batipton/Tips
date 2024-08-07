@@ -1,8 +1,8 @@
-'use client';
-import { BanknotesIcon } from '@heroicons/react/24/outline';
-import { likePost } from '@/app/lib/actions';
+"use client";
+import { BanknotesIcon } from "@heroicons/react/24/outline";
+import { likePost } from "@/app/lib/actions";
 
-import { useState } from 'react';
+import { useState } from "react";
  
 export default function LikeButton({tips=0, id="", userid="", posterid="", tokens=0}) {
   const [likes, setLikes] = useState(tips);

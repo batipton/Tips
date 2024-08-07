@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
 import { changePassword } from "@/app/lib/actions";
-import React from 'react';
+import React from "react";
 
 export default function UserInfo({id}:{id:string}) {
     const [previousPassword, setPreviousPassword] = React.useState(null);
@@ -10,7 +10,7 @@ export default function UserInfo({id}:{id:string}) {
     
     function handleChangePassword(form:FormData) {
         if(newPassword != confirmPassword) {
-            console.log('passwords did not match');
+            console.log("passwords did not match");
             return;
         }
         changePassword(id, previousPassword, newPassword);

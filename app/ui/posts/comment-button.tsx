@@ -1,22 +1,22 @@
-'use client';
-import React from 'react';
-import { ChatBubbleOvalLeftIcon } from '@heroicons/react/24/outline';
-import { FormattedComments } from '@/app/lib/definitions'
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import Comments  from '@/app/ui/posts/comments';
-import CommentForm  from '@/app/ui/posts/comment-form';
+"use client";
+import React from "react";
+import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline";
+import { FormattedComments } from "@/app/lib/definitions"
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import Comments  from "@/app/ui/posts/comments";
+import CommentForm  from "@/app/ui/posts/comment-form";
 
 const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    bgcolor: "background.paper",
+    border: "2px solid #000",
     boxShadow: 24,
     p: 4,
 };

@@ -1,14 +1,18 @@
 import { auth } from "@/auth";
-import { fetchTokens } from '@/app/lib/data';
+import { fetchTokens } from "@/app/lib/data";
 import {
     CurrencyDollarIcon
-  } from '@heroicons/react/24/outline';
+  } from "@heroicons/react/24/outline";
 import CountdownTimer from "@/app/ui/wallet/timer";
 
 export default async function TokenWallet() {
     const session = await auth();
-    if (!session?.user) return null;
-    if  (!session.user.id) return null;
+    if (!session?.user) {
+        return null;
+    }
+    if  (!session.user.id) {
+        return null;
+    }
     const numberOfTokens = await fetchTokens(session.user.id!)
 
     return (

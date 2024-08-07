@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import { fetchFilteredInvoices } from '@/app/lib/data';
-import Link from 'next/link';
+import Image from "next/image";
+import { fetchFilteredInvoices } from "@/app/lib/data";
+import Link from "next/link";
 
 export default async function InvoicesTable({
   query,

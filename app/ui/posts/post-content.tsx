@@ -1,19 +1,19 @@
-import clsx from 'clsx';
-import Image from 'next/image';
-import { lusitana } from '@/app/ui/general/fonts';
-import { fetchLatestPosts, getCurrentUser, fetchComments, fetchPost } from '@/app/lib/data';
-import LikeButton from '@/app/ui/posts/like-button';
-import CommentButton from '@/app/ui/posts/comment-button';
+import clsx from "clsx";
+import Image from "next/image";
+import { lusitana } from "@/app/ui/general/fonts";
+import { fetchLatestPosts, getCurrentUser, fetchComments, fetchPost } from "@/app/lib/data";
+import LikeButton from "@/app/ui/posts/like-button";
+import CommentButton from "@/app/ui/posts/comment-button";
 
 import { auth } from "@/auth";
-import Comments  from '@/app/ui/posts/comments';
-import CommentForm  from '@/app/ui/posts/comment-form';
-import PostSettings from '@/app/ui/posts/post-settings';
-import Link from 'next/link';
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
-const ReactDOMServer = require('react-dom/server');
-const HtmlToReactParser = require('html-to-react').Parser;
+import Comments  from "@/app/ui/posts/comments";
+import CommentForm  from "@/app/ui/posts/comment-form";
+import PostSettings from "@/app/ui/posts/post-settings";
+import Link from "next/link";
+import TimeAgo from "javascript-time-ago"
+import en from "javascript-time-ago/locale/en"
+const ReactDOMServer = require("react-dom/server");
+const HtmlToReactParser = require("html-to-react").Parser;
 TimeAgo.addDefaultLocale(en)
 
 export default async function Post({id}:{id:string}) {
@@ -22,7 +22,7 @@ export default async function Post({id}:{id:string}) {
     const userid = session.user?.id!;
     const user = await getCurrentUser();
 
-    const timeAgo = new TimeAgo('en-US');
+    const timeAgo = new TimeAgo("en-US");
     const post = await fetchPost(id);
     const time = timeAgo.format(new Date(post.date))
     const htmlToReactParser = new HtmlToReactParser();
@@ -33,7 +33,7 @@ export default async function Post({id}:{id:string}) {
       <div key={post.id} >
               <div
                 className={clsx(
-                  'flex flex-row items-center justify-between py-4',
+                  "flex flex-row items-center justify-between py-4",
                 )}
               >
                 <div className="flex items-center">
