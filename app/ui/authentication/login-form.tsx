@@ -43,7 +43,7 @@ export default function LoginForm() {
     <form action={formAction} className="space-y-3">
       {/* <div className="flex-1 rounded-lg bg-gray-50 pb-4 px-6 pt-8"> */}
         <h1 className={`${lusitana.className} mb-3 text-2xl`}>
-          Log into Tips
+          Log In
         </h1>
         <div className="w-full">
           <div>

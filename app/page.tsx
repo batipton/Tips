@@ -39,23 +39,28 @@ export default function Page() {
   const handleClose = () => setOpen(false);
   return (
     <div className="flex min-h-screen flex-col">
-      <main className="flex-grow flex flex-col p-20">
-      <div className="mt-2 flex grow flex-col gap-2 md:flex-row md:items-start">
-        <div className="md:w-1/2 gap-4 rounded-lg px-24 py-6">
+    <main className="flex-grow flex flex-col p-6 md:p-20">
+      <div className="mt-2 flex grow flex-col gap-4 md:flex-row md:items-start">
+        <div className="md:w-1/2 gap-4 rounded-lg px-4 py-6 md:px-24">
           <div className={`${lusitana.className} flex flex-row items-center leading-none text-white`}>
-            <p className="text-[44px] text-green-500">Tips</p>
+            <p className="text-3xl text-green-500 md:text-[44px]">Tips</p>
           </div>
-          <p className={`${lusitana.className} text-xl text-gray-800 md:text-3xl md:leading-normal`}>
+          <p className={`${lusitana.className} text-lg text-gray-800 md:text-3xl md:leading-normal`}>
             Where your content has real value.
           </p>
         </div>
-        <div className="mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4 md:w-1/2">
+        <div className="mx-auto flex w-full max-w-[400px] flex-col space-y-4 p-4 md:w-1/2">
           <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
             <LoginForm />
             <hr />
-              <Button onClick={handleOpen} className="mt-4 w-full bg-green-500 hover:bg-green-600" aria-disabled={isPending}>
-                  Create An Account <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
-              </Button>
+            <Button 
+              onClick={handleOpen} 
+              className="mt-4 w-full bg-green-500 hover:bg-green-600" 
+              aria-disabled={isPending}
+            >
+              Create An Account 
+              <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+            </Button>
           </div>
           <div>
             <Modal
@@ -65,7 +70,7 @@ export default function Page() {
               aria-describedby="modal-modal-description"
             >
               <Box sx={style}>
-                  <SignupForm />
+                <SignupForm />
               </Box>
             </Modal>
           </div>
@@ -73,6 +78,6 @@ export default function Page() {
       </div>
     </main>
     <Footer />
-    </div>
+  </div>
   );
 }
