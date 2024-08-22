@@ -1,4 +1,8 @@
 "use client";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 
 import { lusitana } from "@/app/ui/general/fonts";
 import {
@@ -11,26 +15,44 @@ import { Button } from "@/app/ui/general/button";
 import { useActionState } from "react";
 import { authenticate } from "@/app/lib/actions";
 import Link from "next/link";
+import SignupForm from "@/app/ui/authentication/signup-form";
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function LoginForm() {
   const [errorMessage, formAction, isPending] = useActionState(
     authenticate,
     undefined,
   );
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
+    <div>
     <form action={formAction} className="space-y-3">
-      <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
+      {/* <div className="flex-1 rounded-lg bg-gray-50 pb-4 px-6 pt-8"> */}
         <h1 className={`${lusitana.className} mb-3 text-2xl`}>
-          Please log in to continue.
+          Log into Tips
         </h1>
         <div className="w-full">
           <div>
-            <label
+            {/* <label
               className="mb-3 mt-5 block text-xs font-medium text-gray-900"
               htmlFor="email"
             >
               Email
-            </label>
+            </label> */}
             <div className="relative">
               <input
                 className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
@@ -44,12 +66,12 @@ export default function LoginForm() {
             </div>
           </div>
           <div className="mt-4">
-            <label
+            {/* <label
               className="mb-3 mt-5 block text-xs font-medium text-gray-900"
               htmlFor="password"
             >
               Password
-            </label>
+            </label> */}
             <div className="relative">
               <input
                 className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
@@ -67,8 +89,7 @@ export default function LoginForm() {
         <Button className="mt-4 w-full bg-green-500 hover:bg-green-600" aria-disabled={isPending}>
           Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
         </Button>
-        <p className={`${lusitana.className}`}>Need an account? <Link href="/signup" className="text-green-500">Signup</Link></p>
-        <div className="flex h-8 items-end space-x-1">
+        <div className="flex pb-2 items-end space-x-1">
           {errorMessage && (
               <>
                 <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
@@ -76,8 +97,8 @@ export default function LoginForm() {
               </>
             )}
         </div>
-        
-      </div>
+      {/* </div> */}
     </form>
+    </div>
   );
 }
