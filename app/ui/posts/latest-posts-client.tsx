@@ -27,7 +27,7 @@ export default async function LatestPostsClient({latestPosts, userTokens}:{lates
                 <div className="flex grow flex-col justify-between rounded-xl bg-gray-50 p-4">
                     <div className="bg-white px-6">
                         {latestPosts.map(async (post, i) => {
-                            return <Post id={post.id} onTip={()=>setTokens(tokens-1)} />;    
+                            return <Post id={post.id} />;    
                         })}
                     </div>
                 </div>
