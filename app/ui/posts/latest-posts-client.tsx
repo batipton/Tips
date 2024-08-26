@@ -1,5 +1,5 @@
 "use client";
-import LatestPost from "@/app/lib/definitions";
+import { LatestPost } from "@/app/lib/definitions";
 import clsx from "clsx";
 import Image from "next/image";
 import { lusitana } from "@/app/ui/general/fonts";
