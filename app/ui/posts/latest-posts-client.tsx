@@ -19,7 +19,7 @@ const HtmlToReactParser = require("html-to-react").Parser;
 TimeAgo.addDefaultLocale(en);
 
 export default async function LatestPostsClient({latestPosts, userTokens}:{latestPosts:LatestPost, userTokens:number}) {
-    const [tokens, setTokens] = useState(userTokens);
+    const [tokens, setTokens] = React.useState(userTokens);
     return (
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
             <div className="flex w-full flex-col md:col-span-8">
