@@ -14,12 +14,13 @@ import Link from "next/link";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import Post from "@/app/ui/posts/post-content";
+import { useState } from "react";
 const ReactDOMServer = require("react-dom/server");
 const HtmlToReactParser = require("html-to-react").Parser;
 TimeAgo.addDefaultLocale(en);
 
 export default async function LatestPostsClient({latestPosts, userTokens}:{latestPosts:LatestPost, userTokens:number}) {
-    const [tokens, setTokens] = React.useState(userTokens);
+    const [tokens, setTokens] = useState(userTokens);
     return (
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
             <div className="flex w-full flex-col md:col-span-8">
