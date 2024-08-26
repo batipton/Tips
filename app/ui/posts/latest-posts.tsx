@@ -9,9 +9,10 @@ import Comments  from "@/app/ui/posts/comments";
 import CommentForm  from "@/app/ui/posts/comment-form";
 import PostSettings from "@/app/ui/posts/post-settings";
 import Link from "next/link";
-import TimeAgo from "javascript-time-ago"
-import en from "javascript-time-ago/locale/en"
-import Post from "@/app/ui/posts/post-content"
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en";
+import Post from "@/app/ui/posts/post-content";
+import LatestPostsClient from "@/app/ui/posts/latest-posts-client";
 const ReactDOMServer = require("react-dom/server");
 const HtmlToReactParser = require("html-to-react").Parser;
 TimeAgo.addDefaultLocale(en);
@@ -25,6 +26,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
   const userid = session.user?.id!;
 
   const user = await getCurrentUser();
+  const tokens = user.tokens;
 
   // const timeAgo = new TimeAgo("en-US");
 
@@ -40,7 +42,6 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
     <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
       <div className="flex w-full flex-col md:col-span-8">
         <div className="flex grow flex-col justify-between rounded-xl bg-gray-50 p-4">
-          {/* NOTE: comment in this code when you get to this point in the course */}
           <div className="bg-white px-6">
             {latestPosts.map(async (post, i) => {
               return <Post id={post.id} />;    

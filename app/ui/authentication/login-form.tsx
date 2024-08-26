@@ -87,7 +87,7 @@ export default function LoginForm() {
           </div>
         </div>
         <Button className="mt-4 w-full bg-green-500 hover:bg-green-600" aria-disabled={isPending}>
-          Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+          Log In <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
         </Button>
         <div className="flex pb-2 items-end space-x-1">
           {errorMessage && (
