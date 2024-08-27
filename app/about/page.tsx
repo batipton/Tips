@@ -7,7 +7,7 @@ export default function() {
       <header className="bg-green-500 w-full py-8 text-white text-center">
           <h1 className="text-4xl font-bold">About Us</h1>
       </header>
-      <div className="flex flex-col items-center min-h-screen bg-gray-100 text-gray-800">
+      <div className="flex flex-col items-center min-h-screen">
         <main className="flex flex-col items-center w-full max-w-4xl p-8">
           <section className="w-full mb-8">
             <h2 className="text-3xl font-semibold mb-4">Our Mission</h2>

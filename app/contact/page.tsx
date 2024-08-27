@@ -12,7 +12,7 @@ export default function sendFeedback() {
     }
     return (
         <div>
-            <div className="flex flex-col items-center justify-center mb-4 min-h-screen text-gray-800">
+            <div className="flex flex-col items-center justify-center mb-4 min-h-screen">
                 <header className="bg-green-500 w-full py-8 text-white text-center">
                     <h1 className="text-4xl font-bold">Contact Us</h1>
                 </header>

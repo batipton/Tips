@@ -106,6 +106,14 @@ export async function changePassword(id:string, previousPassword:string, newPass
 
 export async function likePost(postid: string, tips: number, userid: string, posterid: string) {
   const date = new Date().toISOString();
+
+  const tokens = await sql`
+    SELECT tokens FROM users WHERE id = ${userid} 
+  `
+
+  if(tokens.rows[0].tokens === 0) {
+    return;
+  }
   
   await sql`
     UPDATE posts
