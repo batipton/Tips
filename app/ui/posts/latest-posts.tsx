@@ -26,7 +26,7 @@ export default async function LatestPosts({ mode, id }:{ mode:string, id:string 
   const userid = session.user?.id!;
 
   const user = await getCurrentUser();
-  const tokens = user.tokens;
+  const tokens = user?.tokens;
 
   // const timeAgo = new TimeAgo("en-US");
 
