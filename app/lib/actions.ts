@@ -267,4 +267,6 @@ export async function redeemTokens(userid:string) {
     SET redeem=false, tokens=tokens+15
     WHERE id=${userid}
   `
+
+  revalidatePath("/home");
 }
