@@ -9,6 +9,7 @@ export type User = {
   password: string;
   image_url: string;
   tokens: number;
+  redeem: boolean;
 }; 
 
 export type Customer = {
