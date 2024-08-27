@@ -8,10 +8,7 @@ export default function sendFeedback() {
         const name = formData.get("name")?.toString();
         const email = formData.get("email")?.toString();
         const message = formData.get("message")?.toString();
-        console.log(name);
-        console.log(email);
-        console.log(message);
-        createFeedback(name, email, message);
+        createFeedback(name!, email!, message!);
     }
     return (
         <div>
