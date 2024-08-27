@@ -7,6 +7,7 @@ export default function Footer() {
                 <div className="flex flex-col items-center md:flex-row md:space-x-4">
                     <Link href="/signup" className="hover:underline">Sign Up</Link>
                     <Link href="/login" className="hover:underline">Log In</Link>
+                    <Link href="/about" className="hover:underline">About</Link>
                 </div>
                 <div className="text-center">
                 <p>Tips &copy; {new Date().getFullYear()} </p>

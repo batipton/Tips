@@ -14,7 +14,7 @@ import LoginForm from "@/app/ui/authentication/login-form";
 import { useActionState } from "react";
 import { authenticate } from "@/app/lib/actions";
 import SignupForm from "@/app/ui/authentication/signup-form";
-import Footer from "@/app/ui/authentication/footer";
+import Footer from "@/app/ui/general/footer";
 
 const style = {
   position: "absolute" as "absolute",

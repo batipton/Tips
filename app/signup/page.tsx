@@ -2,7 +2,7 @@ import Logo from "@/app/ui/general/logo";
 import SignupForm from "@/app/ui/authentication/signup-form";
 import { lusitana } from "@/app/ui/general/fonts";
 import Link from "next/link";
-import Footer from "@/app/ui/authentication/footer";
+import Footer from "@/app/ui/general/footer";
  
 export default function SignupPage() {
   return (
