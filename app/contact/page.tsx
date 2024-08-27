@@ -58,7 +58,7 @@ export default function sendFeedback() {
                             id="message"
                             name="message"
                             placeholder="Your Message"
-                            rows="5"
+                            rows={5}
                             ></textarea>
                         </div>
                         <div className="flex justify-center">
