@@ -243,3 +243,12 @@ export async function createNotification(rec_userid:string, send_userid:string, 
     VALUES (${rec_userid}, ${send_userid}, ${false}, ${type}, ${postid}, ${date});
   `;
 }
+
+export async function createFeedback(name:string, email:string, message:string) {
+  const date = new Date().toISOString();
+  await sql`
+    INSERT INTO feedback
+    (name, email, message, date)
+    VALUES (${name}, ${email}, ${message}, ${date});
+  `
+}
