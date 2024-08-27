@@ -77,7 +77,7 @@ export async function signupUser(previousState : string | undefined, formData : 
   }
 }
 
-async function getUser(id: string): Promise<User | undefined> {
+export async function getUser(id: string): Promise<User | undefined> {
   try {
     const user = await sql<User>`SELECT * FROM users WHERE id=${id}`;
     return user.rows[0];
@@ -258,5 +258,13 @@ export async function createFeedback(name:string, email:string, message:string) 
     INSERT INTO feedback
     (name, email, message, date)
     VALUES (${name}, ${email}, ${message}, ${date});
+  `
+}
+
+export async function redeemTokens(userid:string) {
+  await sql`
+    UPDATE users
+    SET redeem=false, tokens=tokens+15
+    WHERE id=${userid}
   `
 }
