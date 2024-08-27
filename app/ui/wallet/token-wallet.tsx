@@ -12,8 +12,8 @@ export default async function TokenWallet() {
     }
     const userid=session.user.id!;
     const user = await getUser(userid);
-    const tokens = user.tokens!;
-    const redeem = user.redeem!;
+    const tokens = user?.tokens!;
+    const redeem = user?.redeem!;
 
     return (
         <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 h-18 bg-green-500 text-white p-2 text-center rounded-t-lg">
