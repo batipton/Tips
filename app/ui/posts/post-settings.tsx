@@ -20,9 +20,6 @@ const style = {
 };
 
 export default function PostSettings({userid, posterid, postid}:{userid:string, posterid:string, postid:string}) {
-    // if(userid != posterid) {
-    //     return;
-    // }
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
