@@ -87,6 +87,16 @@ export async function getUser(id: string): Promise<User | undefined> {
   }
 }
 
+export async function getUserByEmail(email: string): Promise<User | undefined> {
+  try {
+    const user = await sql<User>`SELECT * FROM users WHERE email=${email}`;
+    return user.rows[0];
+  } catch (error) {
+    console.error("Failed to fetch user:", error);
+    throw new Error("Failed to fetch user.");
+  }
+}
+
 export async function changePassword(id:string, previousPassword:string, newPassword:string) {
   const password = await bcrypt.hash(previousPassword, 10);
   const setPassword = await bcrypt.hash(newPassword, 10);
@@ -270,3 +280,26 @@ export async function redeemTokens(userid:string) {
 
   revalidatePath("/home");
 }
+
+export async function resetPassword(token:string, password:string, confirmPassword:string) {
+  if (
+    !password ||
+    typeof password !== 'string' ||
+    password !== confirmPassword
+  ) {
+    return {
+      error:
+        'The passwords did not match. Please try retyping them and submitting again.',
+    }
+  }
+
+  const result = await sql`SELECT userid FROM resettokens WHERE id=${token}`;
+  const userid = result.rows[0].userid;
+  console.log(userid);
+
+  const newPassword=await bcrypt.hash(password, 10);
+  await sql`UPDATE users SET password=${newPassword} WHERE id=${userid}`;
+
+  redirect("/login");
+}
+
