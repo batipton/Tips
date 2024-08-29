@@ -34,9 +34,9 @@ export async function POST(req: NextRequest) {
 
     const token = v4();
 
-    const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const date = new Date().toISOString();
 
-    await sql`INSERT INTO resetTokens (id, userid, created_at) VALUES (${token}, ${user.id}, ${date})`;
+    await sql`INSERT INTO resetTokens (id, userid, date) VALUES (${token}, ${user.id}, ${date})`;
 
 
     try {

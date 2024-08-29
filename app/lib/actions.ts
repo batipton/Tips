@@ -293,9 +293,20 @@ export async function resetPassword(token:string, password:string, confirmPasswo
     }
   }
 
-  const result = await sql`SELECT userid, created_at FROM resettokens WHERE id=${token}`;
+  const result = await sql`SELECT userid, date FROM resettokens WHERE id=${token} ORDER BY date DESC`;
+  console.log("result...", result);
   const userid = result.rows[0].userid;
-  console.log(userid);
+  const date = result.rows[0].date;
+  const dateObj = new Date(date);
+  const now = new Date();
+  const difference = now - dateObj;
+  const differenceInMinutes = difference / (1000 * 60);
+  if(differenceInMinutes >= 15) {
+    redirect("/login/expire");
+    return;
+  }
+
+
 
   const newPassword=await bcrypt.hash(password, 10);
   await sql`UPDATE users SET password=${newPassword} WHERE id=${userid}`;
