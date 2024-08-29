@@ -76,7 +76,6 @@ export default function ForgotForm() {
                         name="email"
                         placeholder="Enter your email address"
                         required
-                        {...register('email')}
                     />
                     <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
                     </div>
