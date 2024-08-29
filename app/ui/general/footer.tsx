@@ -9,6 +9,7 @@ export default function Footer() {
                     <Link href="/login" className="hover:underline">Log In</Link>
                     <Link href="/about" className="hover:underline">About</Link>
                     <Link href="/contact" className="hover:underline">Contact</Link>
+                    <Link href="/" className="hover:underline">Index</Link>
                 </div>
                 <div className="text-center">
                 <p>Tips &copy; {new Date().getFullYear()} </p>

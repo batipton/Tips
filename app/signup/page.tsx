@@ -17,7 +17,7 @@ export default function SignupPage() {
           <div className="flex-1 rounded-lg bg-gray-50 px-4 pb-4 pt-6 md:px-6 md:pb-4 md:pt-8">
             <SignupForm />
             <p className={`${lusitana.className} text-center`}>
-              <Link href="/login" className="text-green-500">Already have an account?</Link>
+              <Link href="/login" className="text-green-500 hover:underline">Already have an account?</Link>
             </p>
           </div>
         </div>

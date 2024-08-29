@@ -49,7 +49,7 @@ export default function LoginForm() {
           <div>
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 focus:border-green-500 focus:outline-none focus:ring-green-500"
                 id="email"
                 type="email"
                 name="email"
@@ -62,7 +62,7 @@ export default function LoginForm() {
           <div className="mt-4">
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 focus:border-green-500 focus:outline-none focus:ring-green-500"
                 id="password"
                 type="password"
                 name="password"
@@ -77,14 +77,16 @@ export default function LoginForm() {
         <Button className="mt-4 w-full bg-green-500 hover:bg-green-600" aria-disabled={isPending}>
           Log In <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
         </Button>
-        <Link href="/login/forgot">Forgot Password?</Link>
-        <div className="flex pb-2 items-end space-x-1">
-          {errorMessage && (
-              <>
-                <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
-                <p className="text-sm text-red-500">{errorMessage}</p>
-              </>
-            )}
+        <div className="text-center text-green-500">
+          <Link href="/login/forgot" className={`${lusitana.className} text-center hover:underline`}>Forgot Password?</Link>
+        </div>
+        <div className="flex flex-col items-center pb-2 space-y-1">
+        {errorMessage && (
+          <div className="flex items-center space-x-1">
+            <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
+            <p className="text-sm text-red-500">{errorMessage}</p>
+          </div>
+        )}
         </div>
     </form>
     </div>

@@ -24,7 +24,7 @@ export default function SignupForm() {
           <div className="mb-4">
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 focus:border-green-500 focus:outline-none focus:ring-green-500"
                 id="email"
                 type="email"
                 name="email"
@@ -37,7 +37,7 @@ export default function SignupForm() {
           <div className="mb-4">
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 focus:border-green-500 focus:outline-none focus:ring-green-500"
                 id="username"
                 type="name"
                 name="username"
@@ -50,7 +50,7 @@ export default function SignupForm() {
           <div className="mb-4">
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 focus:border-green-500 focus:outline-none focus:ring-green-500"
                 id="name"
                 type="name"
                 name="name"
@@ -63,7 +63,7 @@ export default function SignupForm() {
           <div className="mb-4">
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 focus:border-green-500 focus:outline-none focus:ring-green-500"
                 id="password"
                 type="password"
                 name="password"
@@ -77,7 +77,7 @@ export default function SignupForm() {
           <div>
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 focus:border-green-500 focus:outline-none focus:ring-green-500"
                 id="verify-password"
                 type="password"
                 name="verify-password"

@@ -289,7 +289,7 @@ export async function resetPassword(token:string, password:string, confirmPasswo
   ) {
     return {
       error:
-        'The passwords did not match. Please try retyping them and submitting again.',
+        "The passwords did not match.",
     }
   }
 

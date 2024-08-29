@@ -15,8 +15,14 @@ import SignupForm from "@/app/ui/authentication/signup-form";
 
 
 export default function RecoverForm({token}:{token:string}) {
-    function submit(data:FormData) {
-        resetPassword(token, data.get("password"), data.get("confirmPassword"));
+    const [error, setError] = React.useState(null);
+    async function submit(data:FormData) {
+      setError(null);
+      const res = await resetPassword(token, data.get("password"), data.get("confirmPassword"));
+      if(res.error) {
+        console.log("error...", res.error);
+        setError(res.error);
+      }
     }
   return (
     <div>
@@ -29,7 +35,7 @@ export default function RecoverForm({token}:{token:string}) {
           <div className="mt-4">
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 focus:border-green-500 focus:outline-none focus:ring-green-500"
                 id="password"
                 type="password"
                 name="password"
@@ -43,7 +49,7 @@ export default function RecoverForm({token}:{token:string}) {
           <div className="mt-4">
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 focus:border-green-500 focus:outline-none focus:ring-green-500"
                 id="confirmPassword"
                 type="password"
                 name="confirmPassword"
@@ -58,14 +64,14 @@ export default function RecoverForm({token}:{token:string}) {
         <Button className="mt-4 w-full bg-green-500 hover:bg-green-600">
           Change Password <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
         </Button>
-        {/* <div className="flex pb-2 items-end space-x-1">
-          {errorMessage && (
-              <>
-                <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
-                <p className="text-sm text-red-500">{errorMessage}</p>
-              </>
-            )}
-        </div> */}
+        <div className="flex flex-col items-center pb-2 space-y-1">
+          {error && (
+            <div className="flex items-center space-x-1">
+              <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
+              <p className="text-sm text-red-500">{error}</p>
+            </div>
+          )}
+        </div>
     </form>
     </div>
   );

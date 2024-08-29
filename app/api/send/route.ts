@@ -21,17 +21,13 @@ export async function POST(req: NextRequest) {
     const { email } = await req.json();
 
     if (!email || typeof email !== "string") {
-        return {
-          error: "Invalid email",
-        }
+        return Response.json({message:"This is not a valid email"},{status:500});
     }
     
     const user = await getUserByEmail(email);
     
     if (!user) {
-        return {
-          error: "This email is not registered",
-        }
+        return Response.json({message:"This email is not registered"},{status:500});
     }
 
     const token = v4();
@@ -41,20 +37,22 @@ export async function POST(req: NextRequest) {
 
     try {
         const { data, error } = await resend.emails.send({
-        from: "Tips <test@tipseco.com>",
+        from: "Tips <support@tipseco.com>",
         to: `${email}`,
-        subject: "Hello world",
-        react: ForgotPasswordTemplate({ text: `Hello ${user.name}, someone (hopefully you) requested a password reset for this account. If you did want to reset your password, please click here: https://tipseco.com/password-reset/${token}` }),
+        subject: "Reset Password",
+        react: ForgotPasswordTemplate(
+          { 
+            name: `${user.name}`,
+            link: `https://tipseco.com/login/recover/${token}`
+          }),
         });
 
         if (error) {
-            console.error(error);
             return Response.json({ error }, { status: 500 });
         }
 
         return NextResponse.json(data);
     } catch (error) {
-        console.error(error);
         return Response.json({ error }, { status: 500 });
     }
 }

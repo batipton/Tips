@@ -16,9 +16,12 @@ export default function LoginPage() {
           </div>
           <div className="flex-1 rounded-lg bg-gray-50 px-4 pb-4 pt-6 md:px-6 md:pb-4 md:pt-8">
             <LoginForm />
-            <p className={`${lusitana.className} text-center`}>
-              <Link href="/signup" className="text-green-500">Need an account?</Link>
+            <hr/>
+            <div>
+            <p className={`${lusitana.className} text-center mt-4`}>
+              <Link href="/signup" className="text-green-500 hover:underline">Need an account?</Link>
             </p>
+            </div>
           </div>
         </div>
       </main>
