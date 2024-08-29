@@ -7,7 +7,7 @@ import { v4 } from "uuid";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function getUserByEmail(email: string): Promise<User | undefined> {
+async function getUserByEmail(email: string): Promise<User | undefined> {
     try {
       const user = await sql<User>`SELECT * FROM users WHERE email=${email}`;
       return user.rows[0];
