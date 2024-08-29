@@ -293,7 +293,7 @@ export async function resetPassword(token:string, password:string, confirmPasswo
     }
   }
 
-  const result = await sql`SELECT userid FROM resettokens WHERE id=${token}`;
+  const result = await sql`SELECT userid, created_at FROM resettokens WHERE id=${token}`;
   const userid = result.rows[0].userid;
   console.log(userid);
 
