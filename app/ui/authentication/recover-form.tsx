@@ -18,7 +18,7 @@ export default function RecoverForm({token}:{token:string}) {
     const [error, setError] = React.useState(null);
     async function submit(data:FormData) {
       setError(null);
-      const res = await resetPassword(token, data?.get("password"), data?.get("confirmPassword"));
+      const res = await resetPassword(token, data.get("password")!, data.get("confirmPassword")!);
       if(res.error) {
         console.log("error...", res.error);
         setError(res.error);
