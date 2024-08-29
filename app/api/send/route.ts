@@ -20,6 +20,8 @@ async function getUserByEmail(email: string): Promise<User | undefined> {
 export async function POST(req: NextRequest) {
     const { email } = await req.json();
 
+    console.log(email);
+
     if (!email || typeof email !== "string") {
         return Response.json({message:"This is not a valid email"},{status:500});
     }
