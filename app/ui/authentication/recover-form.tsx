@@ -17,7 +17,7 @@ import SignupForm from "@/app/ui/authentication/signup-form";
 export default function RecoverForm({token}:{token:string}) {
     const [error, setError] = React.useState("");
     async function submit(data:FormData) {
-      setError(null);
+      setError("");
       const res = await resetPassword(token, data!.get("password")!.toString()!, data!.get("confirmPassword")!.toString()!);
       if(res.error) {
         setError("Something went wrong! Make sure the passwords match.");
