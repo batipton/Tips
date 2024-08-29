@@ -19,7 +19,7 @@ export default function RecoverForm({token}:{token:string}) {
     async function submit(data:FormData) {
       setError("");
       const res = await resetPassword(token, data!.get("password")!.toString()!, data!.get("confirmPassword")!.toString()!);
-      if(res.error) {
+      if(res!.error) {
         setError("Something went wrong! Make sure the passwords match.");
       }
     }
