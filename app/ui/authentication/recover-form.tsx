@@ -15,7 +15,7 @@ import SignupForm from "@/app/ui/authentication/signup-form";
 
 
 export default function RecoverForm({token}:{token:string}) {
-    const [error, setError] = React.useState(null);
+    const [error, setError] = React.useState("");
     async function submit(data:FormData) {
       setError(null);
       const res = await resetPassword(token, data!.get("password")!.toString()!, data!.get("confirmPassword")!.toString()!);
