@@ -299,7 +299,7 @@ export async function resetPassword(token:string, password:string, confirmPasswo
   const date = result.rows[0].date;
   const dateObj = new Date(date);
   const now = new Date();
-  const difference = now - dateObj;
+  const difference = now.getTime() - dateObj.getTime();
   const differenceInMinutes = difference / (1000 * 60);
   if(differenceInMinutes >= 15) {
     redirect("/login/expire");
