@@ -49,12 +49,12 @@ export default function ForgotForm() {
           if(!res.ok) {
             const errorData = await res.json();
             console.log(errorData);
-            throw new Error(errorData.message || 'Something went wrong!');
+            throw new Error(errorData.message || "Something went wrong!");
           }
 
           toast.success("Reset Link Sent");
         } catch(error) {
-          setError(error.message);
+          setError("Something went wrong!");
         }
 
         reset();
