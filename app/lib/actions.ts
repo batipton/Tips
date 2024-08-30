@@ -154,7 +154,7 @@ export async function likePost(postid: string, tips: number, userid: string, pos
 
   createTipNotification(posterid, userid, postid);
 
-  revalidatePath("/home");
+  //revalidatePath("/home");
 }
 
 export async function followProfile(id: string, userid: string) {
@@ -294,7 +294,6 @@ export async function resetPassword(token:string, password:string, confirmPasswo
   }
 
   const result = await sql`SELECT userid, date FROM resettokens WHERE id=${token} ORDER BY date DESC`;
-  console.log("result...", result);
   const userid = result.rows[0].userid;
   const date = result.rows[0].date;
   const dateObj = new Date(date);

@@ -3,17 +3,23 @@ import { BanknotesIcon } from "@heroicons/react/24/outline";
 import { likePost } from "@/app/lib/actions";
 
 import { useState } from "react";
+import { useTokens } from '@/app/context/TokenContext';
  
-export default function LikeButton({tips=0, id="", userid="", posterid="", tokens=0}) {
-  const [likes, setLikes] = useState(tips);
-  const [numTokens, setTokens] = useState(tokens);
+export default function LikeButton({initialTips=0, id, userid, posterid}:{initialTips:number, id:string, posterid:string}) {
+  // number of tips the post has
+  const [tips, setTips] = useState(initialTips);
+  // number of tokens the user has from context
+  const { tokens, setTokens } = useTokens();
 
  
   function handleClick() {
-    if(numTokens > 0) {
-      setLikes(likes + 1);
-      setTokens(tokens-1);
-      likePost(id, likes+1, userid, posterid);
+    if(tokens > 0) {
+      // update state of post to show 1 more tip
+      setTips(tips + 1);
+      // update state of user to show 1 less token
+      setTokens(tokens - 1);
+      // update db to show 1 more tip on the post
+      likePost(id, tips+1, userid, posterid);
     } else {
       alert("Sorry! You do not have enough tokens.");
     }
@@ -25,7 +31,7 @@ export default function LikeButton({tips=0, id="", userid="", posterid="", token
       onClick={handleClick}>
         <BanknotesIcon className="w-7 text-green-500"  />
       </button>
-      <p className="px-1 mb-2 mt-2">{likes}</p>
+      <p className="px-1 mb-2 mt-2">{tips}</p>
     </div>
   );
 }
