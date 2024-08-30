@@ -1,7 +1,7 @@
 "use client";
 import React, { createContext, useState, useContext } from 'react';
 
-const TokenContext = createContext();
+const TokenContext = createContext(0);
 
 
 export const TokenProvider = ({ children, num }) => {
