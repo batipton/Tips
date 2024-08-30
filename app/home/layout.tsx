@@ -20,7 +20,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
     const tokens = user?.tokens!;
 
   return (
-    <TokenProvider num={tokens}>
+    <TokenProvider initialTokens={tokens}>
       <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
         <div className="w-full flex-none md:w-64">
           <SideNav  />
