@@ -72,16 +72,6 @@ export default function sendFeedback() {
                         </form>
                     </div>
                     </section>
-
-                    <section className="w-full mt-8 text-center">
-                    <h2 className="text-3xl font-semibold mb-4">Contact Information</h2>
-                    <p className="text-lg">
-                        Email: <a href="mailto:bryson.tipton@gmail.com" className="text-green-500 hover:underline">bryson.tipton@gmail.com</a>
-                    </p>
-                    <p className="text-lg">
-                        Phone: <a href="tel:+19373094213" className="text-green-500 hover:underline">+1 (937) 309-4213</a>
-                    </p>
-                    </section>
                 </main>
             </div>
             <Footer />
