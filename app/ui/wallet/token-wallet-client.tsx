@@ -8,7 +8,6 @@ import { useTokens } from '@/app/context/TokenContext';
 
 export default function TokenWalletClient({numTokens, redeem, userid}:{numTokens:number, redeem:boolean, userid:string}) {
     const { tokens, setTokens } = useTokens();
-    //setTokens(numTokens);
 
     return (
         <>
@@ -16,7 +15,7 @@ export default function TokenWalletClient({numTokens, redeem, userid}:{numTokens
                 <CurrencyDollarIcon className="w-6 mr-2" />
                 <p>{tokens}</p>
             </div>
-            <CountdownTimer redeem={redeem} userid={userid} />
+            <CountdownTimer initialRedeem={redeem} userid={userid} />
         </>
     );
 }

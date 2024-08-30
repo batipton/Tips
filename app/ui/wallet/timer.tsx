@@ -2,10 +2,14 @@
 import { useState, useEffect } from "react";
 import { timeUntilNextIncrement } from "@/app/utils/token-timer";
 import { redeemTokens } from "@/app/lib/actions";
+import { useTokens } from '@/app/context/TokenContext';
 
-export default function CountdownTimer({redeem, userid}:{redeem:boolean, userid:string}) {
-  
+export default function CountdownTimer({initialRedeem, userid}:{initialRedeem:boolean, userid:string}) {
+  const { tokens, setTokens } = useTokens();
+  const [redeem, setRedeem] = useState(initialRedeem);
   function getTokens() {
+    setTokens(tokens+15);
+    setRedeem(!redeem);
     redeemTokens(userid);
   }
 
