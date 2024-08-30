@@ -64,7 +64,7 @@ export default async function Post({id}:{id:string}) {
                 {reactElement}
               </div>
               <div className="flex">
-                <LikeButton initialTips={post.tips} id={post.id} userid={session.user?.id} posterid={post.customer_id} />
+                <LikeButton initialTips={post.tips} id={post.id!} userid={session.user?.id!} posterid={post.customer_id!} />
                 <CommentButton comments={comments} postid={post.id} userid={userid} posterid={post.customer_id} />    
               </div>
             </div>
