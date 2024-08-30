@@ -1,8 +1,14 @@
 "use client";
 import React, { createContext, useState, useContext } from 'react';
 
-const TokenContext = createContext(0);
+// const TokenContext = createContext(0);
 
+interface TokenContextType {
+  tokens: number;
+  setTokens: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const TokenContext = createContext<TokenContextType | undefined>(undefined);
 
 export const TokenProvider = ({ 
   children, 
@@ -11,7 +17,7 @@ export const TokenProvider = ({
   children: React.ReactNode, 
   initialTokens: number
 }) => {
-    const [tokens, setTokens] = useState(initialTokens); // initial token count
+    const [tokens, setTokens] = useState<number>(initialTokens); // initial token count
   
     return (
       <TokenContext.Provider value={{ tokens, setTokens }}>
@@ -20,4 +26,10 @@ export const TokenProvider = ({
     );
   };
   
-  export const useTokens = () => useContext(TokenContext);
+  export const useTokens = () => {
+    const context = React.useContext(TokenContext);
+    if (context === undefined) {
+      throw new Error('useToken must be used within a TokenProvider');
+    }
+    return context;
+  };
