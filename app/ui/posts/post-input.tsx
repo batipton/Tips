@@ -29,8 +29,7 @@ const PostInput: React.FC = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     // Handle the form submission logic here
-    console.log(postContent);
-    if(quill !== undefined && quill!.getText() != "") {
+    if(quill !== undefined && quill!.getText().trim().length !== 0) {
       createNewPost(quill.getSemanticHTML());
     }
     quill?.setText("");
