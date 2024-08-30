@@ -5,7 +5,7 @@ import { likePost } from "@/app/lib/actions";
 import { useState } from "react";
 import { useTokens } from '@/app/context/TokenContext';
  
-export default function LikeButton({initialTips=0, id, userid, posterid}:{initialTips:number, id:string, posterid:string}) {
+export default function LikeButton({initialTips, id, userid, posterid}:{initialTips:number, id:string, userid:string, posterid:string}) {
   // number of tips the post has
   const [tips, setTips] = useState(initialTips);
   // number of tokens the user has from context
