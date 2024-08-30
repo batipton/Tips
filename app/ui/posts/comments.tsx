@@ -29,7 +29,7 @@ function Comment({comment, key}:{comment:FormattedComments, key:number}) {
                     {comment.username}
                 </Link>
             </div>
-            <div>
+            <div className="break-words whitespace-normal overflow-auto max-w-full max-h-40">
                 <p className={`${lusitana.className} text-sm font-medium md:text-base`}>
                         {comment.text}
                 </p>
