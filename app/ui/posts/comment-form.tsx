@@ -7,7 +7,7 @@ export default function CommentForm({postid, userid, posterid}:{postid:string, u
     
     function comment(formData:FormData) {
         const comment = formData.get("comment")?.toString();
-        if(comment.trim().length !== 0) {
+        if(comment!=null && comment.trim().length !== 0) {
             createNewComment(postid, userid, comment, posterid);
         }
     }
