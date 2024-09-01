@@ -16,7 +16,7 @@ const style = {
     transform: "translate(-50%, -50%)",
     width: 600,
     bgcolor: "background.paper",
-    border: "2px solid #000",
+    borderRadius: 4,
     boxShadow: 24,
     p: 4,
 };
@@ -40,9 +40,11 @@ export default function CommentButton({comments, postid, userid, posterid}:{comm
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description">
-                <Box sx={style}>
-                    <Comments comments={comments}/>
-                    <CommentForm postid={postid} userid={userid} posterid={posterid} />
+                <Box sx={style} >
+                    <div className="overflow-auto max-w-full max-h-80">
+                        <Comments comments={comments}/>
+                        <CommentForm postid={postid} userid={userid} posterid={posterid} />
+                    </div>
                 </Box>
             </Modal>
         </div>
