@@ -57,7 +57,7 @@ export default function PostSettings({userid, posterid, postid}:{userid:string, 
 }
 
 export function UserPostSettings({userid, posterid, postid, handleClose}:{userid:string, posterid:string, postid:string, handleClose:any}) {
-    if(userid != posterid) {
+    if(userid !== posterid) {
         return;
     }
 
