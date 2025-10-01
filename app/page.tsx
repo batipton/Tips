@@ -40,15 +40,14 @@ export default function Page() {
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
       <main className="flex min-h-screen">
         {/* Left Side - Hero Section */}
-        <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-green-600 to-green-700 p-12 items-center justify-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-black opacity-10"></div>
-          <div className="relative z-10 text-center">
+        <div className="hidden lg:flex lg:w-1/2 p-12 items-center justify-center relative">
+          <div className="text-center">
             <div className="inline-flex items-center justify-center w-20 h-20 mb-8">
-              <div className="w-12 text-white">
+              <div className="w-12 text-gray-700">
                 <Logo />
               </div>
             </div>
-            <p className={`${lusitana.className} text-xl text-green-100 mb-8 leading-relaxed`}>
+            <p className={`${lusitana.className} text-xl text-gray-700 mb-8 leading-relaxed`}>
               Where your content has real value. Connect, share, and earn from your community.
             </p>
           </div>
@@ -109,6 +108,7 @@ export default function Page() {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
