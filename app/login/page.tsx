@@ -14,9 +14,9 @@ export default function LoginPage() {
               <Logo />
             </div>
           </div>
-          <div className="flex-1 rounded-lg bg-gray-50 px-4 pb-4 pt-6 md:px-6 md:pb-4 md:pt-8">
+          <div className="flex-1 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 pb-4 pt-6 md:px-6 md:pb-4 md:pt-8 transition-colors duration-300">
             <LoginForm />
-            <hr/>
+            <hr className="border-gray-300 dark:border-gray-600"/>
             <div>
             <p className={`${lusitana.className} text-center mt-4`}>
               <Link href="/signup" className="text-green-500 hover:underline">Need an account?</Link>

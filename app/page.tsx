@@ -49,9 +49,9 @@ export default function Page() {
             </p>
           </div>
           <div className="mx-auto flex w-full max-w-[400px] flex-col space-y-4 p-4 md:w-1/2">
-            <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
+            <div className="flex-1 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-6 pb-4 pt-8 transition-colors duration-300">
               <LoginForm />
-              <hr />
+              <hr className="border-gray-300 dark:border-gray-600" />
               <Button 
                 onClick={handleOpen} 
                 className="mt-4 w-full bg-green-500 hover:bg-green-600" 

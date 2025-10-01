@@ -24,7 +24,7 @@ export default async function Page({
   return (
     <div className="w-full">
       <div className="flex w-full items-center justify-between">
-        <h1 className={`${lusitana.className} text-2xl`}>Search</h1>
+        <h1 className={`${lusitana.className} text-2xl text-gray-900 dark:text-gray-100 transition-colors duration-200`}>Search</h1>
       </div>
 
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">

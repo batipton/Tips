@@ -30,7 +30,7 @@ export default async function Post({id}:{id:string}) {
     const comments = await fetchComments(post.id);
 
     return (
-      <div key={post.id} >
+      <div key={post.id} className="border-b border-gray-200 dark:border-gray-700 pb-4 mb-4 last:border-b-0 last:mb-0 transition-colors duration-300">
               <div
                 className={clsx(
                   "flex flex-row items-center justify-between py-4",
@@ -46,21 +46,21 @@ export default async function Post({id}:{id:string}) {
                   />
                   <div className="min-w-0">
                   <p>
-                      <Link href={`/home/followers/${post.customer_id}`} className="truncate text-sm font-semibold md:text-base hover:underline">
+                      <Link href={`/home/followers/${post.customer_id}`} className="truncate text-sm font-semibold md:text-base text-gray-900 dark:text-gray-100 hover:underline transition-colors duration-200">
                         {post.name} 
                       </Link>
-                      <Link href={`/home/followers/${post.customer_id}`} className="truncate text-sm md:text-base">
+                      <Link href={`/home/followers/${post.customer_id}`} className="truncate text-sm md:text-base text-gray-700 dark:text-gray-300 transition-colors duration-200">
                         {` $${post.username}`}
                       </Link>
                     </p>
-                    <p className="hidden text-sm text-gray-500 sm:block">
+                    <p className="hidden text-sm text-gray-500 dark:text-gray-400 sm:block transition-colors duration-200">
                       {time}
                     </p>
                   </div>
                 </div>
                 <PostSettings userid={userid} posterid={post.customer_id} postid={post.id} />
               </div>
-              <div className="break-words whitespace-normal overflow-auto max-w-full max-h-80">
+              <div className="break-words whitespace-normal overflow-auto max-w-full max-h-80 text-gray-900 dark:text-gray-100 transition-colors duration-200">
                 <p>{reactElement}</p>
               </div>
               <div className="flex">

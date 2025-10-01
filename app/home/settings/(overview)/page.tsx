@@ -23,11 +23,17 @@ export default async function Page() {
   const profile = profilePromise[0];
 
   return (
-    <div className="flex min-h-screen py-4">
-      <div className="bg-white rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-6 text-gray-700">Settings</h1>
-          <UserInfo id={id} username={username} name={name} bio={user?.bio} url={profile.image_url}/>
-          <ChangePassword id={id} />
+    <div className="flex-1 min-h-full p-4 md:p-6 lg:p-8">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 px-4 md:px-8 pt-6 pb-8 w-full max-w-6xl mx-auto transition-colors duration-300">
+        <h1 className="text-2xl md:text-3xl font-bold mb-8 text-gray-700 dark:text-gray-200 transition-colors duration-200">Settings</h1>
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12">
+          <div className="space-y-6">
+            <UserInfo id={id} username={username} name={name} bio={user?.bio} url={profile.image_url}/>
+          </div>
+          <div className="space-y-6">
+            <ChangePassword id={id} />
+          </div>
+        </div>
       </div>
     </div>
   );

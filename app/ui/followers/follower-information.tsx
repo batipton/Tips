@@ -14,10 +14,10 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
+  bgcolor: "transparent",
+  border: "none",
+  boxShadow: 0,
+  p: 0,
 };
 
 export default function FollowerModal({followers, followerCount}:{followers:FormattedFollowersTable[], followerCount:number}) {
@@ -30,7 +30,12 @@ export default function FollowerModal({followers, followerCount}:{followers:Form
 
     return (
         <div>
-          <Button onClick={handleOpen}>{followerCount} Followers</Button>
+          <Button 
+            onClick={handleOpen}
+            className="text-green-500 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 transition-colors duration-200"
+          >
+            {followerCount} Followers
+          </Button>
           <Modal
             open={open}
             onClose={handleClose}
@@ -38,29 +43,38 @@ export default function FollowerModal({followers, followerCount}:{followers:Form
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
-                <div className="flex">
-                    <div className="w-full">
-                        <h1 className="text-center">Followers</h1>
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 p-6 transition-colors duration-300">
+                    <div className="flex mb-4">
+                        <div className="w-full">
+                            <h1 className="text-center text-xl font-semibold text-gray-900 dark:text-gray-100 transition-colors duration-200">Followers</h1>
+                        </div>
                     </div>
-                </div>
 
-                <table className="min-w-full text-gray-900 md:table">
-                    <tbody className="bg-white">
-                    {followers?.map((follower) => (
-                        <tr
-                        key={follower.id}
-                        className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
-                        >
-                        <td className="whitespace-nowrap py-3 pl-6 pr-3 hover:bg-sky-100 hover:text-green-500">
-                            <Link href={`/home/followers/${follower.follower}`} className="flex items-center gap-3 ">
-                                <img src={follower.image_url} className="rounded-full h-10 w-10 mr-2 " />
-                                {follower.username}
-                            </Link>
-                        </td>
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
+                    {followers.length === 0 ? (
+                        <div className="text-center py-8">
+                            <p className="text-gray-500 dark:text-gray-400">No followers yet</p>
+                        </div>
+                    ) : (
+                        <div className="max-h-64 overflow-y-auto">
+                            <div className="space-y-2">
+                                {followers?.map((follower) => (
+                                    <Link 
+                                        key={follower.id}
+                                        href={`/home/followers/${follower.follower}`} 
+                                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 hover:text-green-600 dark:hover:text-green-400 transition-colors duration-200 border border-transparent hover:border-green-200 dark:hover:border-green-800"
+                                    >
+                                        <img 
+                                            src={follower.image_url} 
+                                            className="rounded-full h-10 w-10 border-2 border-gray-200 dark:border-gray-600 transition-colors duration-200" 
+                                            alt={`${follower.username}'s profile`}
+                                        />
+                                        <span className="text-gray-900 dark:text-gray-100 font-medium transition-colors duration-200">{follower.username}</span>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
             </Box>
           </Modal>
         </div>

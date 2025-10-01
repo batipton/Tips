@@ -37,8 +37,8 @@ const PostInput: React.FC = () => {
   };
 
   return (
-    <div className="flex grow flex-col justify-between rounded-xl bg-gray-50 p-4">
-        <div className="bg-white px-6">
+    <div className="flex grow flex-col justify-between rounded-xl bg-gray-50 dark:bg-gray-900 p-4 transition-colors duration-300">
+        <div className="bg-white dark:bg-gray-800 px-6 transition-colors duration-300">
           <form onSubmit={handleSubmit}>
             <div style={{ height: 200, border: "none" }}>
               <div ref={quillRef} />
@@ -46,7 +46,7 @@ const PostInput: React.FC = () => {
             <div>
               <button
                 type="submit"
-                className="px-4 py-2 mb-2 mt-4 bg-green-500 hover:bg-green-400 text-white rounded-md"
+                className="px-4 py-2 mb-2 mt-4 bg-green-500 hover:bg-green-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-200"
               >
                 Post
               </button>

@@ -14,7 +14,7 @@ export default function RecoverPage({ params }: { params: { token: string } }) {
               <Logo />
             </div>
           </div>
-          <div className="flex-1 rounded-lg bg-gray-50 px-4 pb-4 pt-6 md:px-6 md:pb-4 md:pt-8">
+          <div className="flex-1 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 pb-4 pt-6 md:px-6 md:pb-4 md:pt-8 transition-colors duration-300">
             <RecoverForm token={params.token} />
           </div>
         </div>
