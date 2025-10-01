@@ -10,12 +10,14 @@ export default function TokenWalletClient({numTokens, redeem, userid}:{numTokens
     const { tokens, setTokens } = useTokens();
 
     return (
-        <>
-            <div className="flex items-center justify-center min-w-min">
-                <CurrencyDollarIcon className="w-6 mr-2" />
-                <p>{tokens}</p>
+        <div className="space-y-2">
+            <div className="flex items-center justify-center">
+                <CurrencyDollarIcon className="w-5 h-5 mr-2 text-green-200" />
+                <p className="text-lg font-bold">{tokens}</p>
             </div>
-            <CountdownTimer initialRedeem={redeem} userid={userid} />
-        </>
+            <div className="text-xs">
+                <CountdownTimer initialRedeem={redeem} userid={userid} />
+            </div>
+        </div>
     );
 }

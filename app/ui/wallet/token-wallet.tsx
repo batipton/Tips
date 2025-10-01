@@ -16,8 +16,11 @@ export default async function TokenWallet() {
     const redeem = user?.redeem!;
 
     return (
-        <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 h-18 bg-green-500 text-white p-2 text-center rounded-t-lg">
-            <TokenWalletClient numTokens={tokens} redeem={redeem} userid={userid} />
+        <div className="fixed top-20 right-4 z-40 bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-xl shadow-lg border border-green-400 min-w-[200px] backdrop-blur-sm">
+            <div className="text-center">
+                <div className="text-xs font-medium text-green-100 mb-1">Token Wallet</div>
+                <TokenWalletClient numTokens={tokens} redeem={redeem} userid={userid} />
+            </div>
         </div>
     )
 }
