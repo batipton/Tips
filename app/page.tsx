@@ -37,46 +37,78 @@ export default function Page() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
-    <div className="flex min-h-screen flex-col">
-      <main className="flex-grow flex flex-col p-6 md:p-20">
-        <div className="mt-2 flex grow flex-col gap-4 md:flex-row md:items-start">
-          <div className="md:w-1/2 gap-4 rounded-lg px-4 py-6 md:px-24">
-            <div className={`${lusitana.className} flex flex-row items-center leading-none text-white`}>
-              <p className="text-3xl text-green-500 md:text-[44px]">Tips</p>
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
+      <main className="flex min-h-screen">
+        {/* Left Side - Hero Section */}
+        <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-green-600 to-green-700 p-12 items-center justify-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-black opacity-10"></div>
+          <div className="relative z-10 text-center">
+            <div className="inline-flex items-center justify-center w-20 h-20 mb-8">
+              <div className="w-12 text-white">
+                <Logo />
+              </div>
             </div>
-            <p className={`${lusitana.className} text-lg text-gray-800 md:text-3xl md:leading-normal`}>
-              Where your content has real value.
+            <p className={`${lusitana.className} text-xl text-green-100 mb-8 leading-relaxed`}>
+              Where your content has real value. Connect, share, and earn from your community.
             </p>
           </div>
-          <div className="mx-auto flex w-full max-w-[400px] flex-col space-y-4 p-4 md:w-1/2">
-            <div className="flex-1 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-6 pb-4 pt-8 transition-colors duration-300">
+        </div>
+
+        {/* Right Side - Form Section */}
+        <div className="w-full lg:w-1/2 flex items-center justify-center p-6 lg:p-12">
+          <div className="w-full max-w-md">
+            {/* Mobile Logo */}
+            <div className="lg:hidden text-center mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-green-500 rounded-2xl mb-4 shadow-lg">
+                <div className="w-10 text-white">
+                  <Logo />
+                </div>
+              </div>
+              <p className="text-gray-600">Where your content has real value</p>
+            </div>
+
+            {/* Welcome Text */}
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome back</h2>
+              <p className="text-gray-600">Sign in to continue your journey</p>
+            </div>
+
+            {/* Form Card */}
+            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 backdrop-blur-sm">
               <LoginForm />
-              <hr className="border-gray-300 dark:border-gray-600" />
+              
+              <div className="relative my-6">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-200"></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-4 bg-white text-gray-500">or</span>
+                </div>
+              </div>
+
               <Button 
                 onClick={handleOpen} 
-                className="mt-4 w-full bg-green-500 hover:bg-green-600" 
+                className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105" 
                 aria-disabled={isPending}
               >
                 Create An Account 
-                <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+                <ArrowRightIcon className="ml-2 h-5 w-5" />
               </Button>
             </div>
-            <div>
-              <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Box sx={style}>
-                  <SignupForm />
-                </Box>
-              </Modal>
-            </div>
+
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <SignupForm />
+              </Box>
+            </Modal>
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

@@ -6,26 +6,51 @@ import Footer from "@/app/ui/general/footer";
  
 export default function LoginPage() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <main className="flex-grow flex flex-col p-6 md:p-40">
-        <div className="relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4 md:-mt-32">
-          <div className="flex h-16 w-full items-end rounded-lg bg-green-500 p-3 md:h-36">
-            <div className="w-28 text-white md:w-36">
-              <Logo />
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex flex-col">
+      <main className="flex-grow flex items-center justify-center p-6">
+        <div className="w-full max-w-md">
+          {/* Logo Section */}
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-green-500 rounded-2xl mb-4 shadow-lg">
+              <div className="w-10 text-white">
+                <Logo />
+              </div>
+            </div>
+            <h1 className={`${lusitana.className} text-3xl font-bold text-gray-900 mb-2`}>Welcome back</h1>
+            <p className="text-gray-600">Sign in to your account to continue</p>
+          </div>
+
+          {/* Form Card */}
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 backdrop-blur-sm">
+            <LoginForm />
+            
+            <div className="relative my-6">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-200"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-4 bg-white text-gray-500">or</span>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <p className="text-gray-600">
+                Don't have an account?{" "}
+                <Link href="/signup" className="font-semibold text-green-600 hover:text-green-500 transition-colors duration-200">
+                  Sign up
+                </Link>
+              </p>
             </div>
           </div>
-          <div className="flex-1 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-4 pb-4 pt-6 md:px-6 md:pb-4 md:pt-8 transition-colors duration-300">
-            <LoginForm />
-            <hr className="border-gray-300 dark:border-gray-600"/>
-            <div>
-            <p className={`${lusitana.className} text-center mt-4`}>
-              <Link href="/signup" className="text-green-500 hover:underline">Need an account?</Link>
+
+          {/* Footer */}
+          <div className="text-center mt-8">
+            <p className="text-sm text-gray-500">
+              © 2025 All rights reserved.
             </p>
-            </div>
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }
