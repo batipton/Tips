@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Button } from "@/app/ui/general/button";
+import Head from 'next/head';
 
 import Logo from "@/app/ui/general/logo";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
@@ -15,6 +16,8 @@ import { useActionState } from "react";
 import { authenticate } from "@/app/lib/actions";
 import SignupForm from "@/app/ui/authentication/signup-form";
 import Footer from "@/app/ui/general/footer";
+import StructuredData from "@/app/ui/seo/structured-data";
+import { generateStructuredData } from "@/app/lib/seo";
 
 const style = {
   position: "absolute" as "absolute",
@@ -36,8 +39,17 @@ export default function Page() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  
+  const structuredData = generateStructuredData('WebApplication', {
+    name: "Tips",
+    url: "https://tipseco.com",
+    description: "Where your content has real value. Earn tokens daily and spend those tokens to access, promote, and reward the best content in our community."
+  });
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
+    <>
+      <StructuredData data={structuredData} />
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100">
       <main className="flex min-h-screen">
         {/* Left Side - Hero Section */}
         <div className="hidden lg:flex lg:w-1/2 p-12 items-center justify-center relative">
@@ -110,5 +122,6 @@ export default function Page() {
       </main>
       <Footer />
     </div>
+    </>
   );
 }

@@ -1,7 +1,25 @@
 import React from "react";
 import Footer from "@/app/ui/general/footer";
+import type { Metadata } from 'next';
 
-export default function() {
+export const metadata: Metadata = {
+  title: 'About Us',
+  description: 'Learn about Tips - our mission to empower users to recognize and reward great content through daily token distribution. Join our positive and engaging community.',
+  openGraph: {
+    title: 'About Tips - Our Mission & Vision',
+    description: 'Learn about Tips - our mission to empower users to recognize and reward great content through daily token distribution.',
+    url: 'https://tipseco.com/about',
+  },
+  twitter: {
+    title: 'About Tips - Our Mission & Vision',
+    description: 'Learn about Tips - our mission to empower users to recognize and reward great content through daily token distribution.',
+  },
+  alternates: {
+    canonical: 'https://tipseco.com/about',
+  },
+};
+
+export default function AboutPage() {
   return (
     <div>
       <header className="bg-green-500 w-full py-8 text-white text-center">

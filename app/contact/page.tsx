@@ -1,8 +1,26 @@
 import React from "react";
 import { createFeedback } from "@/app/lib/actions"
 import Footer from "@/app/ui/general/footer";
+import type { Metadata } from 'next';
 
-export default function sendFeedback() {
+export const metadata: Metadata = {
+  title: 'Contact Us',
+  description: 'Get in touch with the Tips team. Send us your feedback, questions, or suggestions to help us improve your experience.',
+  openGraph: {
+    title: 'Contact Tips - Get in Touch',
+    description: 'Get in touch with the Tips team. Send us your feedback, questions, or suggestions.',
+    url: 'https://tipseco.com/contact',
+  },
+  twitter: {
+    title: 'Contact Tips - Get in Touch',
+    description: 'Get in touch with the Tips team. Send us your feedback, questions, or suggestions.',
+  },
+  alternates: {
+    canonical: 'https://tipseco.com/contact',
+  },
+};
+
+export default function ContactPage() {
     async function sendFeedback(formData: FormData) {
         "use server";
         const name = formData.get("name")?.toString();

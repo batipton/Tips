@@ -3,6 +3,28 @@ import SignupForm from "@/app/ui/authentication/signup-form";
 import { lusitana } from "@/app/ui/general/fonts";
 import Link from "next/link";
 import Footer from "@/app/ui/general/footer";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Sign Up',
+  description: 'Create your Tips account today and start earning tokens from your content. Join our community where your content has real value.',
+  openGraph: {
+    title: 'Join Tips - Create Your Account',
+    description: 'Create your Tips account today and start earning tokens from your content. Join our community where your content has real value.',
+    url: 'https://tipseco.com/signup',
+  },
+  twitter: {
+    title: 'Join Tips - Create Your Account',
+    description: 'Create your Tips account today and start earning tokens from your content.',
+  },
+  alternates: {
+    canonical: 'https://tipseco.com/signup',
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
  
 export default function SignupPage() {
   return (

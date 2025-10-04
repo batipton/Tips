@@ -3,6 +3,28 @@ import Link from "next/link";
 import { lusitana } from "@/app/ui/general/fonts";
 import LoginForm from "@/app/ui/authentication/login-form";
 import Footer from "@/app/ui/general/footer";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Sign In',
+  description: 'Sign in to your Tips account to access your dashboard, manage your tokens, and engage with the community.',
+  openGraph: {
+    title: 'Sign In to Tips',
+    description: 'Sign in to your Tips account to access your dashboard and engage with the community.',
+    url: 'https://tipseco.com/login',
+  },
+  twitter: {
+    title: 'Sign In to Tips',
+    description: 'Sign in to your Tips account to access your dashboard and engage with the community.',
+  },
+  alternates: {
+    canonical: 'https://tipseco.com/login',
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
  
 export default function LoginPage() {
   return (

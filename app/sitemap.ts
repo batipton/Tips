@@ -1,27 +1,58 @@
 import { MetadataRoute } from 'next'
  
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://tipseco.com'
+  const currentDate = new Date().toISOString()
+
   return [
     {
-        url: 'https://tipseco.com',
+      url: baseUrl,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 1,
     },
     {
-        url: 'https://tipseco.com/home',
+      url: `${baseUrl}/about`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
     },
     {
-        url: 'https://tipseco.com/login',
+      url: `${baseUrl}/contact`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
     },
     {
-        url: 'https://tipseco.com/signup',  
+      url: `${baseUrl}/login`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.6,
     },
     {
-        url: 'https://tipseco.com/home/settings',
+      url: `${baseUrl}/signup`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    // Protected routes with lower priority
+    {
+      url: `${baseUrl}/home`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.5,
     },
     {
-        url: 'https://tipseco.com/home/followers',
+      url: `${baseUrl}/home/profile`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.4,
     },
     {
-        url: 'https://tipseco.com/home/profile',
+      url: `${baseUrl}/home/followers`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.4,
     }
   ]
 }
