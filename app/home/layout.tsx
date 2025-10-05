@@ -26,7 +26,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
   return (
     <TokenProvider initialTokens={tokens}>
       <LayoutClient 
-        user={session.user} 
+        user={user} 
         notifications={notifications}
         sideNav={<SideNavServer />}
         mainContent={children}

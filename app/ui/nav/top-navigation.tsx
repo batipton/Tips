@@ -5,13 +5,10 @@ import { Bars3Icon, BellIcon, UserCircleIcon, CurrencyDollarIcon, SparklesIcon }
 import Link from 'next/link';
 import Image from 'next/image';
 import DarkModeToggle from '@/app/ui/general/dark-mode-toggle';
+import { User } from '@/app/lib/definitions';
 
 interface TopNavigationProps {
-  user?: {
-    name?: string | null;
-    email?: string | null;
-    image?: string | null;
-  };
+  user?: User;
   notifications?: number;
   onMenuToggle?: () => void;
 }
@@ -45,8 +42,7 @@ export default function TopNavigation({ user, notifications = 0, onMenuToggle }:
         {/* Right side - Dark mode, Notifications and user menu */}
         <div className="flex items-center space-x-2">
           {/* Dark mode toggle */}
-          <DarkModeToggle />
-          
+          <DarkModeToggle userDarkMode={user?.darkmode ?? false} ></DarkModeToggle>
           {/* Notifications */}
           <Link
             href="/home/notifications"
@@ -66,9 +62,9 @@ export default function TopNavigation({ user, notifications = 0, onMenuToggle }:
               onClick={() => setShowUserMenu(!showUserMenu)}
               className="flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
             >
-              {user?.image ? (
+              {user?.image_url ? (
                 <Image
-                  src={user.image}
+                  src={user.image_url}
                   alt="Profile"
                   width={32}
                   height={32}

@@ -2,17 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import TopNavigation from "@/app/ui/nav/top-navigation";
+import { User } from '@/app/lib/definitions';
 
 interface LayoutClientProps {
   sideNav: React.ReactNode;
   mainContent: React.ReactNode;
   recommendations: React.ReactNode;
   tokenWallet: React.ReactNode;
-  user: {
-    name?: string | null;
-    email?: string | null;
-    image?: string | null;
-  };
+  user?: User;
   notifications: number;
 }
 

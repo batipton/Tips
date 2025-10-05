@@ -2,27 +2,49 @@
 
 import { useState, useEffect } from 'react';
 import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
+import { setTheme } from '@/app/lib/user-actions';
 
-export default function DarkModeToggle() {
-  const [darkMode, setDarkMode] = useState(false);
+export default function DarkModeToggle({userDarkMode}:{userDarkMode: boolean}) {
+  console.log("userDarkMode: ", userDarkMode);
+  const [darkMode, setDarkMode] = useState(userDarkMode);
 
   useEffect(() => {
-    // Check if dark mode is enabled on mount
-    const isDark = document.documentElement.classList.contains('dark') ||
-      (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches));
-    setDarkMode(isDark);
-  }, []);
+    // Apply the user's dark mode preference on mount
+    if (userDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    
+    // Update state to match the actual DOM state
+    setDarkMode(userDarkMode);
+  }, [userDarkMode]);
+
+  // Fallback effect for initial load (in case userDarkMode is undefined initially)
+  useEffect(() => {
+    // Only run if userDarkMode is not explicitly set
+    if (userDarkMode === undefined) {
+      const isDark = localStorage.getItem('theme') === 'dark' || 
+        (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+        setDarkMode(true);
+      }
+    }
+  }, []); // Only run once on mount
 
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
     setDarkMode(newDarkMode);
+    setTheme(newDarkMode);
     
     if (newDarkMode) {
       document.documentElement.classList.add('dark');
-      localStorage.theme = 'dark';
+      // localStorage.theme = 'dark';
     } else {
       document.documentElement.classList.remove('dark');
-      localStorage.theme = 'light';
+      // localStorage.theme = 'light';
     }
   };
 

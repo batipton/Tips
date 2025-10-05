@@ -11,6 +11,7 @@ export type User = {
   image_url: string;
   tokens: number;
   redeem: boolean;
+  darkmode: boolean;
 }; 
 
 export type Customer = {
