@@ -5,34 +5,59 @@ import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 import { setTheme } from '@/app/lib/user-actions';
 
 export default function DarkModeToggle({userDarkMode}:{userDarkMode: boolean}) {
-  console.log("userDarkMode: ", userDarkMode);
   const [darkMode, setDarkMode] = useState(userDarkMode);
+  const [isHydrated, setIsHydrated] = useState(false);
 
+  // Handle hydration
   useEffect(() => {
-    // Apply the user's dark mode preference on mount
+    setIsHydrated(true);
+    
+    // Initialize dark mode after hydration
+    const initializeDarkMode = () => {
+      let shouldBeDark = userDarkMode;
+      
+      // Only check localStorage and system preference if userDarkMode is undefined/null
+      if (userDarkMode === undefined || userDarkMode === null) {
+        const storedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (storedTheme === 'dark') {
+          shouldBeDark = true;
+        } else if (storedTheme === 'light') {
+          shouldBeDark = false;
+        } else {
+          shouldBeDark = systemPrefersDark;
+        }
+      }
+      
+      // Apply theme to DOM
+      if (shouldBeDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      
+      // Update state only if different from current
+      if (shouldBeDark !== darkMode) {
+        setDarkMode(shouldBeDark);
+      }
+    };
+    
+    initializeDarkMode();
+  }, []); // Only run once on mount
+
+  // Update DOM when userDarkMode prop changes (but only after hydration)
+  useEffect(() => {
+    if (!isHydrated) return;
+    
     if (userDarkMode) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
     
-    // Update state to match the actual DOM state
     setDarkMode(userDarkMode);
-  }, [userDarkMode]);
-
-  // Fallback effect for initial load (in case userDarkMode is undefined initially)
-  useEffect(() => {
-    // Only run if userDarkMode is not explicitly set
-    if (userDarkMode === undefined) {
-      const isDark = localStorage.getItem('theme') === 'dark' || 
-        (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      
-      if (isDark) {
-        document.documentElement.classList.add('dark');
-        setDarkMode(true);
-      }
-    }
-  }, []); // Only run once on mount
+  }, [userDarkMode, isHydrated]);
 
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
@@ -41,12 +66,22 @@ export default function DarkModeToggle({userDarkMode}:{userDarkMode: boolean}) {
     
     if (newDarkMode) {
       document.documentElement.classList.add('dark');
-      // localStorage.theme = 'dark';
     } else {
       document.documentElement.classList.remove('dark');
-      // localStorage.theme = 'light';
     }
   };
+
+  // Prevent hydration mismatch by not rendering until hydrated
+  if (!isHydrated) {
+    return (
+      <button
+        className="p-2 rounded-full text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 transition-colors"
+        disabled
+      >
+        <MoonIcon className="h-5 w-5" />
+      </button>
+    );
+  }
 
   return (
     <button

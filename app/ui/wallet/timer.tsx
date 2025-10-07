@@ -7,15 +7,20 @@ import { useTokens } from '@/app/context/TokenContext';
 export default function CountdownTimer({initialRedeem, userid}:{initialRedeem:boolean, userid:string}) {
   const { tokens, setTokens } = useTokens();
   const [redeem, setRedeem] = useState(initialRedeem);
+  const [timeRemaining, setTimeRemaining] = useState({ hours: 0, minutes: 0, seconds: 0 });
+  const [isHydrated, setIsHydrated] = useState(false);
+  
   function getTokens() {
     setTokens(tokens+15);
     setRedeem(!redeem);
     redeemTokens(userid);
   }
 
-  const [timeRemaining, setTimeRemaining] = useState(timeUntilNextIncrement());
-
   useEffect(() => {
+    // Mark as hydrated and set initial time
+    setIsHydrated(true);
+    setTimeRemaining(timeUntilNextIncrement());
+    
     const intervalId = setInterval(() => {
       setTimeRemaining(timeUntilNextIncrement());
     }, 1000);
@@ -33,8 +38,12 @@ export default function CountdownTimer({initialRedeem, userid}:{initialRedeem:bo
             Redeem Tokens
           </button>
         ) : (
-          <p suppressHydrationWarning className="text-green-100 text-center">
-            Next: {timeRemaining.hours}h {timeRemaining.minutes}m {timeRemaining.seconds}s
+          <p className="text-green-100 text-center">
+            {isHydrated ? (
+              <>Next: {timeRemaining.hours}h {timeRemaining.minutes}m {timeRemaining.seconds}s</>
+            ) : (
+              <>Next: --h --m --s</>
+            )}
           </p>
         )
       }

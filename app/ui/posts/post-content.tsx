@@ -61,7 +61,7 @@ export default async function Post({id}:{id:string}) {
                 <PostSettings userid={userid} posterid={post.customer_id} postid={post.id} />
               </div>
               <div className="break-words whitespace-normal overflow-auto max-w-full max-h-80 text-gray-900 dark:text-gray-100 transition-colors duration-200">
-                <p>{reactElement}</p>
+                {reactElement}
               </div>
               <div className="flex">
                 <LikeButton initialTips={post.tips} id={post.id!} userid={session.user?.id!} posterid={post.customer_id!} />
