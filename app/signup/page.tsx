@@ -66,12 +66,29 @@ export default function SignupPage() {
           </div>
 
           {/* Footer */}
-          <div className="text-center mt-8">
+          <div className="text-center mt-8 space-y-3">
+            <div className="flex justify-center gap-6 text-sm">
+              <Link href="/" className="text-green-600 hover:text-green-500 transition-colors duration-200">
+                Home
+              </Link>
+              <Link href="/about" className="text-green-600 hover:text-green-500 transition-colors duration-200">
+                About
+              </Link>
+              <Link href="/contact" className="text-green-600 hover:text-green-500 transition-colors duration-200">
+                Contact
+              </Link>
+              <a href="#" className="text-green-600 hover:text-green-500 transition-colors duration-200">
+                Terms of Service
+              </a>
+              <a href="#" className="text-green-600 hover:text-green-500 transition-colors duration-200">
+                Privacy Policy
+              </a>
+            </div>
             <p className="text-sm text-gray-500">
-              By signing up, you agree to our{" "}
-              <a href="#" className="text-green-600 hover:text-green-500">Terms of Service</a>{" "}
-              and{" "}
-              <a href="#" className="text-green-600 hover:text-green-500">Privacy Policy</a>
+              By signing up, you agree to our Terms of Service and Privacy Policy
+            </p>
+            <p className="text-sm text-gray-500">
+              © 2025 Tips. All rights reserved.
             </p>
           </div>
         </div>
