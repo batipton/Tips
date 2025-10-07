@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import TopNavigation from "@/app/ui/nav/top-navigation";
 import { User } from '@/app/lib/definitions';
+import { Session } from 'next-auth';
 
 interface LayoutClientProps {
   sideNav: React.ReactNode;
@@ -10,6 +11,7 @@ interface LayoutClientProps {
   recommendations: React.ReactNode;
   tokenWallet: React.ReactNode;
   user?: User;
+  session?: Session;
   notifications: number;
 }
 
@@ -18,7 +20,8 @@ export default function LayoutClient({
   mainContent, 
   recommendations, 
   tokenWallet, 
-  user, 
+  user,
+  session,
   notifications 
 }: LayoutClientProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
