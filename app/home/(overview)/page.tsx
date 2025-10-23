@@ -10,9 +10,6 @@ export default async function Page() {
 
   return (
     <main>
-      <h2 className={`${lusitana.className} mb-4 ml-4 text-xl md:text-2xl`}>
-          Home
-      </h2>
       <PostInput />
       {latestPosts}
     </main>
