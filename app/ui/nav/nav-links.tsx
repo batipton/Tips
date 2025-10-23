@@ -13,7 +13,6 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import { fetchNumberOfNewNotifications } from "@/app/lib/data"
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
@@ -42,9 +41,9 @@ export default function NavLinks({notifications, collapsed = false}:{notificatio
             className={clsx(
               collapsed 
                 ? "flex h-10 w-10 items-center justify-center rounded-md bg-gray-50 dark:bg-gray-700 text-sm font-medium hover:bg-sky-100 hover:text-green-500 dark:hover:bg-gray-600 transition-colors"
-                : "flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 dark:bg-gray-700 p-3 text-sm font-medium hover:bg-sky-100 hover:text-green-500 dark:hover:bg-gray-600 md:flex-none md:justify-start md:p-2 md:px-3 transition-colors",
+                : "flex h-[48px] grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium hover:bg-sky-100 hover:text-green-500 dark:hover:bg-gray-600 md:flex-none md:justify-start md:p-2 md:px-3 transition-colors",
               {
-                "bg-sky-100 text-green-500 dark:bg-green-900/20": pathname === link.href,
+                "text-green-500 dark:bg-green-900/20": pathname === link.href,
               },
             )}
           >
@@ -67,9 +66,9 @@ export function NotiLink({name, href, notifications, collapsed = false}:{name:st
       className={clsx(
         collapsed 
           ? "relative flex h-10 w-10 items-center justify-center rounded-md bg-gray-50 dark:bg-gray-700 text-sm font-medium hover:bg-sky-100 hover:text-green-500 dark:hover:bg-gray-600 transition-colors"
-          : "flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 dark:bg-gray-700 p-3 text-sm font-medium hover:bg-sky-100 hover:text-green-500 dark:hover:bg-gray-600 md:flex-none md:justify-start md:p-2 md:px-3 transition-colors",
+          : "flex h-[48px] grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium hover:bg-sky-100 hover:text-green-500 dark:hover:bg-gray-600 md:flex-none md:justify-start md:p-2 md:px-3 transition-colors",
         {
-          "bg-sky-100 text-green-500 dark:bg-green-900/20": pathname === href,
+          "text-green-500 dark:bg-green-900/20": pathname === href,
         },
       )}
     >

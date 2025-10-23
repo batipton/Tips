@@ -19,9 +19,7 @@ export default async function SideNavServer() {
       {/* Navigation content */}
       <div className="flex-1 overflow-y-auto">
         <div className="p-4">
-          <CollapsibleSection title="Navigation" defaultOpen={true}>
             <NavLinks notifications={notifications} />
-          </CollapsibleSection>
         </div>
       </div>
 
