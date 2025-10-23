@@ -47,9 +47,6 @@ export default async function Page({ params }: { params: { id: string } }) {
   return (
     <div>
       <div>
-        <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl text-gray-900 dark:text-gray-100 transition-colors duration-200`}>
-            Profile Information
-        </h1>
         <div className="rounded-xl bg-gray-50 dark:bg-gray-900 p-4 shadow-sm border border-gray-200 dark:border-gray-700 transition-colors duration-300">
           <div className="w-full">
             <div className="bg-white dark:bg-gray-800 rounded-lg p-6 flex flex-col items-center border border-gray-200 dark:border-gray-700 transition-colors duration-300">
