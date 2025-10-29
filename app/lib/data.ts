@@ -65,6 +65,29 @@ export async function fetchLatestPosts(mode:string, userid:string, id:string) {
   }
 }
 
+export async function fetchPopularPosts() {
+  try {
+    const data = await sql<LatestPost>`
+    SELECT p.id, p.tips, p.text, p.date, u.username, u.name, u.image_url, u.email, p.customer_id,tipPerDay.amount 
+    FROM POSTS p
+    LEFT JOIN users u ON p.customer_id = u.id
+    LEFT JOIN LATERAL (
+      SELECT SUM(t.amount) AS amount, t.date AS date
+      FROM TIPS t
+      WHERE t.postid = p.id
+      GROUP BY t.date
+    ) tipPerDay ON true
+    WHERE tipPerDay.date = CURRENT_DATE
+    ORDER BY tipPerDay.amount DESC
+    `
+    const popularPosts = data.rows;
+    return popularPosts;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch popular posts.")
+  }
+}
+
 export async function fetchPost(postid: string) {
   try {
     const data = await sql<LatestPost>`

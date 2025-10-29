@@ -40,7 +40,7 @@ const PostInput: React.FC = () => {
     <div className="flex grow flex-col justify-between rounded-xl bg-gray-50 dark:bg-gray-900 p-4 transition-colors duration-300">
         <div className="bg-white dark:bg-gray-800 px-6 transition-colors duration-300">
           <form onSubmit={handleSubmit}>
-            <div style={{ height: 200, border: "none" }}>
+            <div style={{ height: 50, border: "none" }}>
               <div ref={quillRef} />
             </div>
             <div>
