@@ -134,7 +134,6 @@ export async function likePost(postid: string, tips: number, userid: string, pos
   await sql`
     INSERT INTO tips (postid, userid, amount, date)
     VALUES (${postid}, ${userid}, ${1}, ${date})
-    ON CONFLICT (postid, userid) DO UPDATE SET amount = tips.amount + 1;
   `;
 
   if(tips % 2 === 0 && userid !== posterid) {
