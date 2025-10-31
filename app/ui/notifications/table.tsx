@@ -14,31 +14,54 @@ export default async function NotificationTable() {
 
     if(notifications.length === 0) {
       return (
-        <>
-          <div className="w-full text-center mt-4">
-            <p className="text-gray-900 dark:text-gray-100 transition-colors duration-300">No Notifications</p>
+        <div className="mt-6 flow-root">
+          <div className="inline-block min-w-full align-middle">
+            <div className="rounded-lg bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-8 transition-colors duration-300">
+              <div className="w-full text-center">
+                <p className="text-gray-900 dark:text-gray-100 transition-colors duration-300">No Notifications</p>
+              </div>
+            </div>
           </div>
-        </>
+        </div>
       )
     }
 
     
 
     return (
-        <table className="hidden min-w-full text-gray-900 dark:text-gray-100 md:table transition-colors duration-300">
-            <tbody className="bg-white dark:bg-gray-800 transition-colors duration-300">
-              {notifications?.map((notification) => (
-                <tr
-                  key={notification.id}
-                  className="w-full border-b border-gray-200 dark:border-gray-700 py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg transition-colors duration-300"
-                >
-                  <td className="whitespace-nowrap hover:bg-sky-100 dark:hover:bg-gray-700 hover:text-green-500 transition-colors duration-300">
+        <div className="mt-6 flow-root">
+          <div className="inline-block min-w-full align-middle">
+            <div className="rounded-lg bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-2 md:pt-0 transition-colors duration-300">
+              {/* Mobile view */}
+              <div className="md:hidden">
+                {notifications?.map((notification) => (
+                  <div
+                    key={notification.id}
+                    className="mb-2 w-full rounded-md bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+                  >
                     <NotificationElement notification={notification} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Desktop view */}
+              <table className="hidden min-w-full text-gray-900 dark:text-gray-100 md:table transition-colors duration-300">
+                <tbody className="bg-white dark:bg-gray-800 transition-colors duration-300">
+                  {notifications?.map((notification) => (
+                    <tr
+                      key={notification.id}
+                      className="w-full border-b border-gray-200 dark:border-gray-700 py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg transition-colors duration-300"
+                    >
+                      <td className="whitespace-nowrap hover:bg-sky-100 dark:hover:bg-gray-700 hover:text-green-500 transition-colors duration-300">
+                        <NotificationElement notification={notification} />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
     )
 }
 
