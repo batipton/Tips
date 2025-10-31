@@ -50,7 +50,7 @@ export default function NavLinks({notifications, collapsed = false}:{notificatio
             )}
           >
             <LinkIcon className="w-5 h-5" />
-            {!collapsed && <p className="hidden md:block">{link.name}</p>}
+            {!collapsed && <p>{link.name}</p>}
           </Link>
         );
       })}
@@ -77,7 +77,7 @@ export function NotiLink({name, href, notifications, collapsed = false}:{name:st
       <BellIcon className="w-5 h-5" />
       {!collapsed && (
         <>
-          <p className="hidden md:block">{name}</p>
+          <p>{name}</p>
           <p className="text-green-500 text-xs">{notifications > 0 ? `${notifications} new` : ""}</p>
         </>
       )}

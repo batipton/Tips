@@ -21,12 +21,12 @@ export default function SideNav({ isCollapsed = false, onToggle, notifications, 
       {/* Header with logo and collapse button */}
       <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
         <Link
-          className={`flex items-center rounded-md bg-green-500 p-2 transition-all duration-300 ${
+          className={`flex items-center rounded-md p-2 transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700 ${
             isCollapsed ? 'w-10 h-10' : 'w-full h-12'
           }`}
           href="/home"
         >
-          <div className={`text-white transition-all duration-300 ${isCollapsed ? 'w-6' : 'w-full'}`}>
+          <div className={`text-gray-900 dark:text-white transition-all duration-300 ${isCollapsed ? 'w-6' : 'w-full'}`}>
             <Logo />
           </div>
         </Link>

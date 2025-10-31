@@ -12,6 +12,7 @@ export type User = {
   tokens: number;
   redeem: boolean;
   darkmode: boolean;
+  dateCreated: string;
 }; 
 
 export type Customer = {
