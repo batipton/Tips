@@ -16,7 +16,7 @@ export default async function NotificationTable() {
       return (
         <>
           <div className="w-full text-center mt-4">
-            <p>No Notifications</p>
+            <p className="text-gray-900 dark:text-gray-100 transition-colors duration-300">No Notifications</p>
           </div>
         </>
       )
@@ -25,14 +25,14 @@ export default async function NotificationTable() {
     
 
     return (
-        <table className="hidden min-w-full text-gray-900 md:table">
-            <tbody className="bg-white">
+        <table className="hidden min-w-full text-gray-900 dark:text-gray-100 md:table transition-colors duration-300">
+            <tbody className="bg-white dark:bg-gray-800 transition-colors duration-300">
               {notifications?.map((notification) => (
                 <tr
                   key={notification.id}
-                  className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
+                  className="w-full border-b border-gray-200 dark:border-gray-700 py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg transition-colors duration-300"
                 >
-                  <td className="whitespace-nowrap hover:bg-sky-100 hover:text-green-500">
+                  <td className="whitespace-nowrap hover:bg-sky-100 dark:hover:bg-gray-700 hover:text-green-500 transition-colors duration-300">
                     <NotificationElement notification={notification} />
                   </td>
                 </tr>
@@ -47,7 +47,7 @@ async function NotificationElement({notification}:{notification:Notification}) {
     if(notification.type == "tip") {
         return (
             <Link href={`/home/post/${notification.postid}`}>
-                <div className="flex items-center gap-3 py-3 pl-6 pr-3">
+                <div className="flex items-center gap-3 py-3 pl-6 pr-3 text-gray-900 dark:text-gray-100 transition-colors duration-300">
                     <Image src={sender.image_url} width={20} height={20} className="rounded-full h-10 w-10 mr-2 " alt={`${sender.username}'s username`} />
                     {sender.username} tipped your post
                     <p className="text-green-500">{notification.seen ? "" : "new"}</p>
@@ -57,7 +57,7 @@ async function NotificationElement({notification}:{notification:Notification}) {
     } else if (notification.type == "follow") {
         return (
             <Link href={`/home/followers/${notification.send_userid}`}>
-                <div className="flex items-center gap-3  py-3 pl-6 pr-3">
+                <div className="flex items-center gap-3  py-3 pl-6 pr-3 text-gray-900 dark:text-gray-100 transition-colors duration-300">
                     <Image src={sender.image_url} width={20} height={20} className="rounded-full h-10 w-10 mr-2 " alt={`${sender.username}'s username`} />
                     {sender.username} followed you
                     <p className="text-green-500">{notification.seen ? "" : "new"}</p>
@@ -68,7 +68,7 @@ async function NotificationElement({notification}:{notification:Notification}) {
     } else if (notification.type == "comment") {
         return (
             <Link href={`/home/post/${notification.postid}`}>
-                <div className="flex items-center gap-3  py-3 pl-6 pr-3">
+                <div className="flex items-center gap-3  py-3 pl-6 pr-3 text-gray-900 dark:text-gray-100 transition-colors duration-300">
                     <Image src={sender.image_url} width={40} height={40} className="rounded-full aspect-square object-cover" alt={`${sender.username}'s username`} />
                     {sender.username} commented on your post
                     
