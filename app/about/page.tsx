@@ -28,31 +28,21 @@ export default function AboutPage() {
         <div className="w-full max-w-4xl">
           {/* Logo Section */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-32 h-16 bg-green-500 rounded-2xl mb-4 shadow-lg">
-              <div className="w-10 text-white">
-                <Logo />
-              </div>
-            </div>
             <h1 className={`${lusitana.className} text-4xl font-bold text-gray-900 mb-2`}>About Tips</h1>
-            <p className="text-gray-600 max-w-2xl mx-auto">Learn about our mission to empower users to recognize and reward great content through daily token distribution</p>
           </div>
 
           {/* Content Card */}
           <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 backdrop-blur-sm">
             <div className="space-y-8">
-              <section>
-                <h2 className="text-3xl font-semibold mb-4 text-gray-900">Our Mission</h2>
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  Our mission is to empower users to recognize and reward great content through daily token distribution. We believe in fostering a positive and engaging community where everyone has the chance to support what they love.
-                </p>
-              </section>
 
-              <div className="border-t border-gray-200 pt-8">
+              <div>
                 <section>
                   <h2 className="text-3xl font-semibold mb-4 text-gray-900">How It Works</h2>
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    Every day, each user can redeem 15 tokens that they can use to tip posts they find valuable or enjoyable.
-                    A user is not limited to giving a post 1 token, they may give it 2, 3 or even 15 tokens.  
+                    Hello! This is a social media application I've been working on in my spare time. 
+                    Every day, each user can redeem 15 tokens that 
+                    they can use to tip posts they find valuable or enjoyable.
+                    A user is not limited to giving a post 1 token, they may give it 2, 3 or even 15 tokens. 
                     Tipping allows users to create a rewarding community experience.
                     For every 2 tokens a post gets, the user who posted it will earn 1 token. 
                   </p>
