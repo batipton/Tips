@@ -5,7 +5,6 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Link from "next/link";
-import QueryResultRow from "@vercel/postgres";
 import { FormattedFollowersTable } from "@/app/lib/definitions";
 
 const style = {

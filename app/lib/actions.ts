@@ -1,13 +1,13 @@
 "use server";
 import { auth } from "@/auth";
 import { z } from "zod";
-import { sql } from "@vercel/postgres";
+import { sql } from "./db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
-import { User } from "@/app/lib/definitions";
+import { User as DatabaseUser } from "@/app/lib/definitions";
  
 export async function authenticate(
   prevState: string | undefined,
@@ -77,9 +77,9 @@ export async function signupUser(previousState : string | undefined, formData : 
   }
 }
 
-export async function getUser(id: string): Promise<User | undefined> {
+export async function getUser(id: string): Promise<DatabaseUser | undefined> {
   try {
-    const user = await sql<User>`SELECT * FROM users WHERE id=${id}`;
+    const user = await sql<DatabaseUser>`SELECT * FROM users WHERE id=${id}`;
     return user.rows[0];
   } catch (error) {
     console.error("Failed to fetch user:", error);
@@ -87,9 +87,9 @@ export async function getUser(id: string): Promise<User | undefined> {
   }
 }
 
-export async function getUserByEmail(email: string): Promise<User | undefined> {
+export async function getUserByEmail(email: string): Promise<DatabaseUser | undefined> {
   try {
-    const user = await sql<User>`SELECT * FROM users WHERE email=${email}`;
+    const user = await sql<DatabaseUser>`SELECT * FROM users WHERE email=${email}`;
     return user.rows[0];
   } catch (error) {
     console.error("Failed to fetch user:", error);
@@ -310,5 +310,113 @@ export async function resetPassword(token:string, password:string, confirmPasswo
   await sql`UPDATE users SET password=${newPassword} WHERE id=${userid}`;
 
   redirect("/login");
+}
+
+// API calls to the Rust backend
+
+const RUST_API_BASE = 'http://127.0.0.1:8080';
+
+interface ApiResponse<T> {
+  success: boolean;
+  data?: T;
+  message: string;
+}
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+interface CreateUserRequest {
+  name: string;
+  email: string;
+}
+
+// Echo API call
+export async function callEchoAPI(message: string) {
+  try {
+    const response = await fetch(`${RUST_API_BASE}/echo`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(message),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result: ApiResponse<string> = await response.json();
+    return {
+      success: result.success,
+      data: result.data,
+      message: result.message,
+    };
+  } catch (error) {
+    console.error('Echo API call failed:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+    };
+  }
+}
+
+// Get users from Rust API
+export async function getUsersFromRust(): Promise<{ success: boolean; data?: User[]; error?: string }> {
+  try {
+    const response = await fetch(`${RUST_API_BASE}/users`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result: ApiResponse<User[]> = await response.json();
+    return {
+      success: result.success,
+      data: result.data,
+    };
+  } catch (error) {
+    console.error('Get users API call failed:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+    };
+  }
+}
+
+// Create user via Rust API
+export async function createUserInRust(userData: CreateUserRequest): Promise<{ success: boolean; data?: User; error?: string }> {
+  try {
+    const response = await fetch(`${RUST_API_BASE}/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result: ApiResponse<User> = await response.json();
+    return {
+      success: result.success,
+      data: result.data,
+    };
+  } catch (error) {
+    console.error('Create user API call failed:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+    };
+  }
 }
 

@@ -1,7 +1,7 @@
 "use server";
 import { auth } from "@/auth";
 import { z } from "zod";
-import { sql } from "@vercel/postgres";
+import { sql } from "./db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";

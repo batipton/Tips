@@ -1,7 +1,7 @@
 import { ForgotPasswordTemplate } from "@/app/ui/email/forgot-password-template";
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
-import { sql } from "@vercel/postgres";
+import { sql } from "@/app/lib/db";
 import { User } from "@/app/lib/definitions";
 import { v4 } from "uuid";
 
