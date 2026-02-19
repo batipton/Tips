@@ -100,30 +100,23 @@ VALUES (
   'This is a test user for local development'
 ) ON CONFLICT (email) DO NOTHING;
 
--- Insert a second test user
-INSERT INTO users (username, name, email, password, tokens, bio) 
-VALUES (
-  'demouser',
-  'Demo User',
-  'demo@example.com',
-  '$2b$10$rKZvVqVQxJ5kQ5h5KZvVqeF5KZvVqVQxJ5kQ5h5KZvVqeF5KZvVqO',
-  150,
-  'Demo account for testing'
-) ON CONFLICT (email) DO NOTHING;
-
 -- Insert some sample posts
-INSERT INTO posts (customer_id, tips, text, date)
+INSERT INTO posts (customer_id, text, tips, date) 
 SELECT 
-  1,
-  0,
-  'Welcome to the local development environment!',
-  CURRENT_TIMESTAMP
-WHERE NOT EXISTS (SELECT 1 FROM posts WHERE customer_id = 1);
-
-INSERT INTO posts (customer_id, tips, text, date)
-SELECT 
-  2,
+  u.id,
+  'Welcome to my profile! This is my first post.',
   5,
-  'This is a sample post with some tips.',
+  CURRENT_TIMESTAMP - INTERVAL '2 days'
+FROM users u 
+WHERE u.username = 'testuser'
+ON CONFLICT DO NOTHING;
+
+INSERT INTO posts (customer_id, text, tips, date) 
+SELECT 
+  u.id,
+  'Just testing out this amazing platform!',
+  10,
   CURRENT_TIMESTAMP - INTERVAL '1 day'
-WHERE NOT EXISTS (SELECT 1 FROM posts WHERE customer_id = 2);
+FROM users u 
+WHERE u.username = 'testuser'
+ON CONFLICT DO NOTHING;
