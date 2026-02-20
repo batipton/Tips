@@ -1,7 +1,5 @@
 import LatestPosts from "@/app/ui/posts/latest-posts";
-import { lusitana } from "@/app/ui/general/fonts";
 import PostInput from "@/app/ui/posts/post-input";
-import { useEffect } from "react";
 
 
 
