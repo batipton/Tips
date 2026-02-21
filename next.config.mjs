@@ -4,6 +4,7 @@ const nextConfig = {
     experimental: {
         ppr: 'incremental',
     },
+    turbopack: {},
     images: {
       remotePatterns: [
         {

@@ -20,7 +20,7 @@ export const { auth, signIn, signOut } = NextAuth({
   ...authConfig,
   providers: [
     Credentials({
-      async authorize(credentials) {
+      async authorize(credentials: Record<string, any>): Promise<User | null> {
         const parsedCredentials = z
           .object({ email: z.string().email(), password: z.string().min(6) })
           .safeParse(credentials);
@@ -41,13 +41,12 @@ export const { auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: any; user: any }) {
 			user && (token.user = user);
 			return token;
 		},
-		async session({ session, token }) {
+		async session({ session, token }: { session: any; token: any }) {
 			// Send properties to the client, like an access_token and user id from a provider.
-      // @ts-expect-error
 			session.user = token.user;
 			return session;
 		},
