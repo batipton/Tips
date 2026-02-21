@@ -244,6 +244,11 @@ export async function getCurrentUser() {
     FROM users
     WHERE id = ${session.user.id}`;
 
+    if (!data.rows || data.rows.length === 0) {
+      console.error("No user found with id:", session.user.id);
+      return null;
+    }
+
     const user = {
       username: data.rows[0].username,
       name: data.rows[0].name,

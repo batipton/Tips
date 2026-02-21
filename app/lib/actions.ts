@@ -14,7 +14,13 @@ export async function authenticate(
   formData: FormData,
 ) {
   try {
-    await signIn("credentials", formData);
+    await signIn("credentials", {
+      email: formData.get('email'),
+      password: formData.get('password'),
+      redirect: false,
+    });
+    
+    redirect('/home');
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
