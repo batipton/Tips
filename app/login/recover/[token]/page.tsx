@@ -1,10 +1,17 @@
 import Logo from "@/app/ui/general/logo";
-import Link from "next/link";
 import { lusitana } from "@/app/ui/general/fonts";
 import RecoverForm from "@/app/ui/authentication/recover-form";
-import Footer from "@/app/ui/general/footer";
+
+type Params = {
+    token: string;
+}
+
+type PageProps = {
+    params: Promise<Params>;
+}
  
-export default function RecoverPage({ params }: { params: { token: string } }) {
+export default async function RecoverPage({ params }: PageProps) {
+  const { token } = await params;
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-100 flex flex-col">
       <main className="flex-grow flex items-center justify-center p-6">
@@ -22,7 +29,7 @@ export default function RecoverPage({ params }: { params: { token: string } }) {
 
           {/* Form Card */}
           <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 backdrop-blur-sm">
-            <RecoverForm token={params.token} />
+            <RecoverForm token={token} />
           </div>
 
           {/* Security Notice */}

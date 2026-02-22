@@ -68,17 +68,26 @@ export async function fetchLatestPosts(mode:string, userid:string, id:string) {
 export async function fetchPopularPosts() {
   try {
     const data = await sql<LatestPost>`
-    SELECT p.id, p.tips, p.text, p.date, u.username, u.name, u.image_url, u.email, p.customer_id,tipPerDay.amount 
+    SELECT 
+      p.id, 
+      p.tips, 
+      p.text, 
+      p.date, 
+      u.username, 
+      u.name, 
+      u.image_url, 
+      u.email, 
+      p.customer_id,
+      COALESCE(tipPerDay.amount, 0) as amount 
     FROM POSTS p
     LEFT JOIN users u ON p.customer_id = u.id
     LEFT JOIN LATERAL (
-      SELECT SUM(t.amount) AS amount, t.date AS date
+      SELECT SUM(t.amount) AS amount
       FROM TIPS t
-      WHERE t.postid = p.id
-      GROUP BY t.date
+      WHERE t.postid = p.id 
+        AND t.date >= CURRENT_DATE - INTERVAL '2 days'
     ) tipPerDay ON true
-    WHERE tipPerDay.date = CURRENT_DATE
-    ORDER BY tipPerDay.amount DESC
+    ORDER BY tipPerDay.amount DESC NULLS LAST
     `
     const popularPosts = data.rows;
     return popularPosts;

@@ -3,6 +3,7 @@ import Post from "./post-content";
 
 export default async function PopularPosts() {
     const popularPosts = await fetchPopularPosts();
+    console.log("Fetched popular posts: ", popularPosts);
 
     console.log(popularPosts);
 
