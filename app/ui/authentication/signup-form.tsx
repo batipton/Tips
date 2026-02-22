@@ -9,8 +9,7 @@ import {
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Button } from "@/app/ui/general/button";
 import { useActionState } from "react";
-import { authenticate, signupUser } from "@/app/lib/actions";
-import Link from "next/link";
+import { signupUser } from "@/app/lib/actions";
 
 export default function SignupForm() {
   const [errorMessage, formAction] = useActionState(signupUser, undefined);

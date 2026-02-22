@@ -2,7 +2,6 @@
 import * as React from "react";
 import { lusitana } from "@/app/ui/general/fonts";
 import {
-  AtSymbolIcon,
   KeyIcon,
   ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
@@ -10,8 +9,6 @@ import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Button } from "@/app/ui/general/button";
 import { useActionState } from "react";
 import { resetPassword } from "@/app/lib/actions";
-import Link from "next/link";
-import SignupForm from "@/app/ui/authentication/signup-form";
 
 
 export default function RecoverForm({token}:{token:string}) {

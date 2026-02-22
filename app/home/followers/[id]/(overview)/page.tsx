@@ -9,7 +9,15 @@ import FollowButton from "@/app/ui/followers/follow-button";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
-export default async function Page({ params }: { params: { id: string } }) {
+type Params = {
+    id: string;
+}
+
+type PageProps = {
+    params: Promise<Params>;
+}
+
+export default async function Page({ params }: PageProps) {
     const session = await auth();
     
     if (!session?.user) {
@@ -23,8 +31,6 @@ export default async function Page({ params }: { params: { id: string } }) {
       redirect("/home/profile");
     }
 
-    console.log("params = ", params);
-    console.log("id = ", id);
     const profilePromise = await Promise.all([fetchProfile(id)]);
     const profile = profilePromise[0];
     const bio = profile.bio;

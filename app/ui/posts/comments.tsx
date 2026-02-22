@@ -8,16 +8,16 @@ export default function Comments({comments}:{comments:FormattedComments[]}) {
     return (
         <div className="space-y-4 mb-4">
             {comments.map((comment, i) => {
-                return <Comment comment={comment} key={i} />;
+                return <Comment comment={comment} idx={i} key={i} />;
             })}
         </div>
     )
 }
 
-function Comment({comment, key}:{comment:FormattedComments, key:number}) {
+function Comment({comment, idx}:{comment:FormattedComments, idx:number}) {
 
     return (
-        <div key={key} className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 transition-colors duration-300">
+        <div key={idx} className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 transition-colors duration-300">
             <div className="flex items-center mb-2">
                 <img
                       src={comment.image_url}

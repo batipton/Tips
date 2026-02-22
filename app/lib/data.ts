@@ -163,7 +163,6 @@ export async function fetchInvoicesPages(query: string) {
 }
 
 export async function fetchProfile(id : string) {
-  console.log("id = ", id);
   try {
     const data = await sql<ProfileField>`
     SELECT

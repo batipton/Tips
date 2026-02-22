@@ -1,8 +1,5 @@
 "use client";
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
 
 import { lusitana } from "@/app/ui/general/fonts";
 import {
@@ -15,7 +12,6 @@ import { Button } from "@/app/ui/general/button";
 import { useActionState } from "react";
 import { authenticate } from "@/app/lib/actions";
 import Link from "next/link";
-import SignupForm from "@/app/ui/authentication/signup-form";
 
 const style = {
   position: "absolute" as "absolute",

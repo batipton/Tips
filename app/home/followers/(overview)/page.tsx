@@ -5,17 +5,22 @@ import Image from "next/image";
 import { lusitana } from "@/app/ui/general/fonts";
 import { fetchInvoicesPages } from "@/app/lib/data";
 
+type Params = {
+    query: string;
+    page: string;
+}
+
+type PageProps = {
+    params: Promise<Params>;
+}
+
  
 export default async function Page({
-    searchParams,
-  }: {
-    searchParams?: {
-      query?: string;
-      page?: string;
-    };
-  }) {
-    const query = searchParams?.query || '';
-    const currentPage = Number(searchParams?.page) || 1;
+    params,
+  }: PageProps) {
+    const { query, page } = await params;
+
+    const currentPage = Number(page) || 1;
 
     const totalPages = await fetchInvoicesPages(query);
 

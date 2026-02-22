@@ -1,18 +1,14 @@
 import clsx from "clsx";
 import Image from "next/image";
-import { lusitana } from "@/app/ui/general/fonts";
-import { fetchLatestPosts, getCurrentUser, fetchComments, fetchPost } from "@/app/lib/data";
+import { getCurrentUser, fetchComments, fetchPost } from "@/app/lib/data";
 import LikeButton from "@/app/ui/posts/like-button";
 import CommentButton from "@/app/ui/posts/comment-button";
 
 import { auth } from "@/auth";
-import Comments  from "@/app/ui/posts/comments";
-import CommentForm  from "@/app/ui/posts/comment-form";
 import PostSettings from "@/app/ui/posts/post-settings";
 import Link from "next/link";
 import TimeAgo from "javascript-time-ago"
 import en from "javascript-time-ago/locale/en"
-const ReactDOMServer = require("react-dom/server");
 const HtmlToReactParser = require("html-to-react").Parser;
 TimeAgo.addDefaultLocale(en)
 

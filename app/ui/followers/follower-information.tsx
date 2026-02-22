@@ -19,7 +19,12 @@ const style = {
   p: 0,
 };
 
-export default function FollowerModal({followers, followerCount}:{followers:FormattedFollowersTable[], followerCount:number}) {
+type FollowerModalProps = {
+    followers: FormattedFollowersTable[];
+    followerCount: number;
+}
+
+export default function FollowerModal({followers, followerCount}: FollowerModalProps) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);

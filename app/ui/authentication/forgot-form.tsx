@@ -8,9 +8,6 @@ import {
 } from "@heroicons/react/24/outline";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Button } from "@/app/ui/general/button";
-import { useActionState } from "react";
-import { resetPassword } from "@/app/lib/actions";
-import Link from "next/link";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast"; 
 

@@ -1,7 +1,13 @@
 "use client";
 import { followProfile, unfollowProfile } from "@/app/lib/actions";
 
-export default function FollowButton({ isFollowing, id, userid } : {isFollowing:boolean, id:string, userid:string}) {
+type FollowButtonProps = {
+    isFollowing: boolean;
+    id: string;
+    userid: string;
+}
+
+export default function FollowButton({ isFollowing, id, userid } : FollowButtonProps) {
 
     function handleFollow() {
         followProfile(id, userid);
