@@ -102,7 +102,7 @@ export async function fetchPost(postid: string) {
     const data = await sql<LatestPost>`
     SELECT posts.tips, posts.text, posts.date, users.username, users.name, users.image_url, posts.customer_id, posts.id
     FROM posts
-    JOIN users ON posts.customer_id = users.id
+    LEFT JOIN users ON posts.customer_id = users.id
     WHERE posts.id=${postid}
     `;
     if (!data.rows[0]) {
