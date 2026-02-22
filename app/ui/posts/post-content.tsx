@@ -12,21 +12,16 @@ import en from "javascript-time-ago/locale/en"
 const HtmlToReactParser = require("html-to-react").Parser;
 TimeAgo.addDefaultLocale(en)
 
-type Params = {
-    id: string;
-    date: string;
-    text: string;
-}
-
 
 export default async function Post({id}:{id:string}) {
     const session = await auth();
     if (!session?.user) return null;
     const userid = session.user?.id!;
-    const user = await getCurrentUser();
 
     const timeAgo = new TimeAgo("en-US");
     const post = await fetchPost(id);
+    console.log("id=",id);
+    console.log("post=", post);
     const time = timeAgo.format(new Date(post.date))
     const htmlToReactParser = new HtmlToReactParser();
     const reactElement = htmlToReactParser.parse(post.text);
