@@ -13,6 +13,8 @@ export default async function Recommendations() {
         return;
     }
 
+    console.log("Recommendations: ", recommendations);
+
     return (
         <div className="mt-6 px-2 flow-root">
                 <div className="rounded-lg bg-gray-50 dark:bg-gray-800 p-2 md:pt-0">

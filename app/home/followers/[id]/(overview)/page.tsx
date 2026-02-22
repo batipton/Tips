@@ -17,12 +17,14 @@ export default async function Page({ params }: { params: { id: string } }) {
     }
 
     const user = session?.user;
-    const id = params.id;
+    const { id } = await params;
 
     if(id === user.id) {
       redirect("/home/profile");
     }
 
+    console.log("params = ", params);
+    console.log("id = ", id);
     const profilePromise = await Promise.all([fetchProfile(id)]);
     const profile = profilePromise[0];
     const bio = profile.bio;
@@ -51,7 +53,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <div className="w-full">
             <div className="bg-white dark:bg-gray-800 rounded-lg p-6 flex flex-col items-center border border-gray-200 dark:border-gray-700 transition-colors duration-300">
               <Image  
-                src={profile.image_url} 
+                src={profile.image_url ?? "/default-profile.png"} 
                 width={100} 
                 height={100}
                 alt={`${profile.username}'s profile picture`}
