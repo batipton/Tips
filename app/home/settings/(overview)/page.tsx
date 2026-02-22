@@ -28,7 +28,7 @@ export default async function Page() {
         <h1 className="text-2xl md:text-3xl font-bold mb-8 text-gray-700 dark:text-gray-200 transition-colors duration-200">Settings</h1>
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12">
           <div className="space-y-6">
-            <UserInfo id={id} username={username} name={name} bio={user?.bio} url={profile.image_url}/>
+            <UserInfo id={id} username={username} name={name} bio={user?.bio ?? ""} url={profile.image_url}/>
           </div>
           <div className="space-y-6">
             <ChangePassword id={id} />

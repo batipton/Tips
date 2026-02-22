@@ -1,24 +1,22 @@
 import Pagination from "@/app/ui/search/pagination";
 import Search from "@/app/ui/search/search";
 import Table from "@/app/ui/search/table";
-import Image from "next/image";
-import { lusitana } from "@/app/ui/general/fonts";
 import { fetchInvoicesPages } from "@/app/lib/data";
 
-type Params = {
+type SearchParams = {
     query: string;
     page: string;
 }
 
 type PageProps = {
-    params: Promise<Params>;
+    searchParams: Promise<SearchParams>;
 }
 
  
 export default async function Page({
-    params,
+    searchParams,
   }: PageProps) {
-    const { query, page } = await params;
+    const { query, page } = await searchParams;
 
     const currentPage = Number(page) || 1;
 
