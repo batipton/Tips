@@ -1,25 +1,28 @@
 import { sql } from "./db";
 import { auth } from "@/auth"
 import {
-  CustomerField,
-  CustomersTableType,
-  InvoiceForm,
   InvoicesTable,
-  LatestInvoiceRaw,
   LatestPost,
-  Revenue,
   ProfileField,
   FormattedFollowersTable,
   FormattedComments,
   Notification
 } from "./definitions";
-import { formatCurrency } from "./utils";
 
 export async function fetchLatestPosts(mode:string, userid:string, id:string) {
   try {
     if(mode === "followers") {
       const data = await sql<LatestPost>`
-      SELECT p.tips, p.text, p.date, u.username, u.name, u.image_url, u.email, p.customer_id, p.id 
+      SELECT 
+        p.tips, 
+        p.text, 
+        p.date, 
+        u.username, 
+        u.name, 
+        u.image_url,
+        u.email, 
+        p.customer_id, 
+        p.id 
       FROM posts p 
       LEFT JOIN following f ON p.customer_id = f.followed AND f.follower = ${userid} 
       JOIN users u ON p.customer_id = u.id 
@@ -30,7 +33,16 @@ export async function fetchLatestPosts(mode:string, userid:string, id:string) {
       return latestPosts;
     } else if (mode === "user") {
       const data = await sql<LatestPost>`
-      SELECT posts.tips, posts.text, posts.date, users.username, users.name, users.image_url, users.email, posts.customer_id, posts.id
+      SELECT 
+        posts.tips, 
+        posts.text, 
+        posts.date, 
+        users.username, 
+        users.name, 
+        users.image_url, 
+        users.email, 
+        posts.customer_id, 
+        posts.id
       FROM posts
       JOIN users ON posts.customer_id = users.id
       WHERE posts.customer_id = ${userid}
@@ -40,7 +52,16 @@ export async function fetchLatestPosts(mode:string, userid:string, id:string) {
       return latestPosts;
     } else if (mode === "follower") {
       const data = await sql<LatestPost>`
-      SELECT posts.tips, posts.text, posts.date, users.username, users.name, users.image_url, users.email, posts.customer_id, posts.id
+      SELECT 
+        posts.tips, 
+        posts.text, 
+        posts.date, 
+        users.username, 
+        users.name, 
+        users.image_url, 
+        users.email, 
+        posts.customer_id, 
+        posts.id
       FROM posts
       JOIN users ON posts.customer_id = users.id
       WHERE posts.customer_id = ${id}
@@ -50,7 +71,16 @@ export async function fetchLatestPosts(mode:string, userid:string, id:string) {
       return latestPosts;
     } else {
       const data = await sql<LatestPost>`
-      SELECT posts.tips, posts.text, posts.date, users.username, users.name, users.image_url, users.email, posts.customer_id, posts.id
+      SELECT 
+        posts.tips, 
+        posts.text, 
+        posts.date, 
+        users.username, 
+        users.name, 
+        users.image_url, 
+        users.email, 
+        posts.customer_id, 
+        posts.id
       FROM posts
       JOIN users ON posts.customer_id = users.id
       ORDER BY posts.date DESC
