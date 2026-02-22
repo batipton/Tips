@@ -12,6 +12,12 @@ import en from "javascript-time-ago/locale/en"
 const HtmlToReactParser = require("html-to-react").Parser;
 TimeAgo.addDefaultLocale(en)
 
+type Params = {
+    id: string;
+    date: string;
+    text: string;
+}
+
 
 export default async function Post({id}:{id:string}) {
     const session = await auth();
