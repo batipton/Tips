@@ -299,6 +299,13 @@ export async function resetPassword(token:string, password:string, confirmPasswo
   }
 
   const result = await sql`SELECT userid, date FROM resettokens WHERE id=${token} ORDER BY date DESC`;
+  
+  // Check if token exists
+  if (!result.rows[0]) {
+    redirect("/login/expire");
+    return;
+  }
+  
   const userid = result.rows[0].userid;
   const date = result.rows[0].date;
   const dateObj = new Date(date);

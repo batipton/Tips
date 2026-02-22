@@ -20,8 +20,12 @@ export default async function Post({id}:{id:string}) {
 
     const timeAgo = new TimeAgo("en-US");
     const post = await fetchPost(id);
-    console.log("id=",id);
-    console.log("post=", post);
+    
+    if (!post || !post.date) {
+      console.error("Post not found or missing date:", id);
+      return null;
+    }
+    
     const time = timeAgo.format(new Date(post.date))
     const htmlToReactParser = new HtmlToReactParser();
     const reactElement = htmlToReactParser.parse(post.text);

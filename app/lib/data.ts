@@ -105,6 +105,9 @@ export async function fetchPost(postid: string) {
     JOIN users ON posts.customer_id = users.id
     WHERE posts.id=${postid}
     `;
+    if (!data.rows[0]) {
+      throw new Error(`Post not found: ${postid}`);
+    }
     return data.rows[0];
   } catch (error) {
     console.error("Database Error:", error);
